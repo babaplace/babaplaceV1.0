@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import Link from "next/link";
 import SearchHero from "./SearchHero";
-import { ImagesSlider } from "@/components/ui/acertiny/image-slider";
+import { ImagesSlider } from "../ui/acertiny/image-slider";
 
 type Props = {};
 
