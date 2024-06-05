@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 5000 2916" style="enable-background:new 0 0 5000 2916;" xml:space="preserve">
+<g>
+	<rect style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" width="5000" height="2916"/>
+	<defs>
+		<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="4274.478" height="2916">
+			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+		</filter>
+	</defs>
+	<mask maskUnits="userSpaceOnUse" x="0" y="0" width="4274.478" height="2916" id="SVGID_1_">
+		<g style="filter:url(#Adobe_OpacityMaskFilter);">
+			
+				<linearGradient id="SVGID_00000065059490482506386900000000325064175959627949_" gradientUnits="userSpaceOnUse" x1="-3126.0779" y1="5290.1167" x2="-1606.0663" y2="4540.1182" gradientTransform="matrix(1 0 0 1 3309.4519 -2868.0474)">
+				<stop  offset="0" style="stop-color:#FFFFFF"/>
+				<stop  offset="1" style="stop-color:#000000"/>
+			</linearGradient>
+			
+				<rect y="0.001" style="fill:url(#SVGID_00000065059490482506386900000000325064175959627949_);" width="4274.478" height="2915.999"/>
+		</g>
+	</mask>
+	<path style="mask:url(#SVGID_1_);fill-rule:evenodd;clip-rule:evenodd;fill:#E6E6E6;" d="M3462.651,0
+		C2845.56,959.157,1691.343,1709.826,0,2252.01V2916h108.214C2150.149,2139.911,3538.903,1167.91,4274.478,0H3462.651z"/>
+	<defs>
+		
+			<filter id="Adobe_OpacityMaskFilter_00000048482734659787115750000000320295827458327975_" filterUnits="userSpaceOnUse" x="0" y="0" width="3462.651" height="2252.01">
+			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+		</filter>
+	</defs>
+	
+		<mask maskUnits="userSpaceOnUse" x="0" y="0" width="3462.651" height="2252.01" id="SVGID_00000149374942001935048850000007996205169600561831_">
+		<g style="filter:url(#Adobe_OpacityMaskFilter_00000048482734659787115750000000320295827458327975_);">
+			
+				<linearGradient id="SVGID_00000178886764062471246860000000973376278670898855_" gradientUnits="userSpaceOnUse" x1="-315.1057" y1="3370.7686" x2="-1965.1113" y2="4560.7739" gradientTransform="matrix(1 0 0 1 3309.4519 -3155.6709)">
+				<stop  offset="0" style="stop-color:#FFFFFF"/>
+				<stop  offset="1" style="stop-color:#000000"/>
+			</linearGradient>
+			<rect style="fill:url(#SVGID_00000178886764062471246860000000973376278670898855_);" width="3462.65" height="2252.01"/>
+		</g>
+	</mask>
+	
+		<path style="mask:url(#SVGID_00000149374942001935048850000007996205169600561831_);fill-rule:evenodd;clip-rule:evenodd;fill:#E6E6E6;" d="
+		M0,2252.01C1691.343,1709.827,2845.56,959.157,3462.651,0H2778.47C2126.344,738.629,1200.187,1324.388,0,1757.275V2252.01z"/>
+	<defs>
+		
+			<filter id="Adobe_OpacityMaskFilter_00000029023926914048088560000001380773078831329452_" filterUnits="userSpaceOnUse" x="0" y="0" width="2778.47" height="1757.275">
+			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+		</filter>
+	</defs>
+	
+		<mask maskUnits="userSpaceOnUse" x="0" y="0" width="2778.47" height="1757.275" id="SVGID_00000146468705603255532970000006824413534346084495_">
+		<g style="filter:url(#Adobe_OpacityMaskFilter_00000029023926914048088560000001380773078831329452_);">
+			
+				<linearGradient id="SVGID_00000053522535563877054690000001914262497227828640_" gradientUnits="userSpaceOnUse" x1="-3105.1121" y1="4959.5547" x2="-1205.1149" y2="3819.552" gradientTransform="matrix(1 0 0 1 3309.4519 -3369.9775)">
+				<stop  offset="0" style="stop-color:#FFFFFF"/>
+				<stop  offset="1" style="stop-color:#000000"/>
+			</linearGradient>
+			<rect style="fill:url(#SVGID_00000053522535563877054690000001914262497227828640_);" width="2778.47" height="1757.275"/>
+		</g>
+	</mask>
+	
+		<path style="mask:url(#SVGID_00000146468705603255532970000006824413534346084495_);fill-rule:evenodd;clip-rule:evenodd;fill:#E6E6E6;" d="
+		M0,1757.275C1200.187,1324.388,2126.344,738.629,2778.47,0H1654.633C1401.578,637.246,850.034,1030.681,0,1180.304V1757.275z"/>
+</g>
+</svg>
