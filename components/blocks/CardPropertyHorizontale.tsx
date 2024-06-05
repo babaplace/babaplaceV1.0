@@ -28,7 +28,7 @@ export default function CardPropertyHorizontale({
                   width={400}
                   height={500}
                   alt=""
-                  className="rounded-t-xl w-full h-full object-cover"
+                  className="rounded-t-xl max-sm:h-[125px] max-md:h-[150px]   h-[200px] object-cover"
                 />
               </CarouselItem>
             ))}
@@ -38,7 +38,7 @@ export default function CardPropertyHorizontale({
         </Carousel>
       </div>
       <div className="flex flex-col justify-between w-2/3 pl-6">
-        <div className="flex flex-col md:gap-1 max-md:text-[0.6rem] gap-1 ">
+        <div className="flex flex-col md:gap-2 max-md:text-[0.6rem] gap-1 ">
           <div className="text-sm max-md:text-[0.5rem] text-gray-500">
             {property?.city}
           </div>

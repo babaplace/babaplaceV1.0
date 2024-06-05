@@ -15,6 +15,7 @@ import {
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
+import ImagesPageAppartement from "./ImagesPageAppartement";
 
 type PageAppartementProps = {
   params: { appartementId: string };
@@ -33,41 +34,8 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
 
       <Container className="mb-24 flex justify-between items-start gap-8 p-4  max-md:flex-col">
         {/* images */}
-        <div className="md:w-1/2">
-          <div className="grid gap-6">
-            <div className="relative group grid [grid-template-areas:stack] overflow-hidden rounded-lg">
-              <Image
-                src={appartement.medias[0].url ?? ""}
-                alt="Main Image"
-                width={800}
-                height={600}
-                className="[grid-area:stack] object-cover w-full aspect-[4/3]"
-              />
-              <button className="absolute top-4 right-4 bg-white/50 backdrop-blur-sm rounded-full p-2 hover:bg-white/80 transition-colors">
-                <ZoomInIcon className="w-5 h-5" />
-                <span className="sr-only">Zoom</span>
-              </button>
-            </div>
-            <div className="grid grid-cols-4 gap-2">
-              {appartement.medias.map((image) => (
-                <button
-                  key={image.id}
-                  title="image"
-                  className="relative group grid [grid-template-areas:stack] overflow-hidden rounded-md"
-                >
-                  <Image
-                    src={image.url}
-                    alt="Thumbnail 1"
-                    width={200}
-                    height={150}
-                    className="[grid-area:stack] object-cover w-full aspect-[4/3] group-hover:opacity-80 transition-opacity"
-                  />
-                  <div className="absolute inset-0 bg-black/50 group-hover:opacity-0 transition-opacity" />
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <ImagesPageAppartement images={appartement.medias} />
+
         {/* details right */}
         <div className="md:w-1/2 px-4 flex flex-col gap-6">
           {/* title */}
