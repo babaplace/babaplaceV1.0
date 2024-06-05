@@ -8,15 +8,21 @@ import { revalidatePath } from "next/cache";
 export const doCreateAppartement = authAction(
   appartementScheme,
   async (data, sessionUser) => {
-    if (!sessionUser.session.user.id) {
+    if (!sessionUser.session.user.email) {
       throw new Error("Impossible de creer cet appartement");
     }
 
-    console.log(data);
+    const user = await prisma.user.findUnique({
+      where: { email: sessionUser.session.user.email },
+    });
+
+    if (!user) {
+      throw new Error("Impossible de creer cet appartement");
+    }
 
     const appartement = await prisma.appartement.create({
       data: {
-        ownerId: sessionUser.session.user.id,
+        ownerId: user.id,
         description: data.additionalInfoScheme.description,
         title: data.basicInfoScheme.title,
         city: data.basicInfoScheme.city,
@@ -42,7 +48,7 @@ export const doCreateAppartement = authAction(
     });
 
     if (!appartement) {
-      throw new Error("Impossible de creer user");
+      throw new Error("Impossible");
     }
 
     revalidatePath("/");
