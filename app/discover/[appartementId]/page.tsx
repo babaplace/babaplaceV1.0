@@ -1,5 +1,4 @@
 import { getAppartementByIdWithMedias } from "@/app/appartements/appartement/apartement.query";
-import { TitlePage } from "@/components/blocks/TitlePage";
 import Container from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import {

@@ -37,14 +37,10 @@ export type allAppartementsWithImagesType = Prisma.PromiseReturnType<
   typeof getAllAppartementsWithImages
 >;
 
-export const getAppartementByIdWithMedias = async (
-  id: string,
-  userId: string
-) =>
+export const getAppartementByIdWithMedias = async (id: string) =>
   await prisma.appartement.findUnique({
     where: {
       id,
-      ownerId: userId,
     },
     include: {
       medias: true,
@@ -53,27 +49,4 @@ export const getAppartementByIdWithMedias = async (
 
 export type appartementByIdWithMediasType = Prisma.PromiseReturnType<
   typeof getAppartementByIdWithMedias
->;
-
-export const getAppartementsByUserId = async (userId: string) =>
-  await prisma.appartement.findMany({
-    where: {
-      ownerId: userId,
-    },
-  });
-
-export type appartementsByUserIdType = Prisma.PromiseReturnType<
-  typeof getAppartementsByUserId
->;
-
-export const getAppartementsByUserIdWithMedias = async (userId: string) =>
-  await prisma.appartement.findMany({
-    where: {
-      ownerId: userId,
-    },
-    include: { medias: true },
-  });
-
-export type appartementsByUserIdWithMediasType = Prisma.PromiseReturnType<
-  typeof getAppartementsByUserIdWithMedias
 >;
