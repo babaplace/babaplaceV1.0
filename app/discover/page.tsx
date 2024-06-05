@@ -4,11 +4,9 @@ import SearchMobile from "@/components/blocks/SearchMoble";
 import SearchSection from "@/components/blocks/SearchSection";
 import { TitlePage } from "@/components/blocks/TitlePage";
 import Container from "@/components/layout/Container";
-import PropertiesHorizontaleSectionSkeleton from "@/components/skeletons/PropertiesHorizontaleSectionSkeleton";
 
 import React, { Suspense } from "react";
 import { getAllAppartementsWithImages } from "../appartements/appartement/apartement.query";
-import { NumberchambresFilters } from "@/src/data/searchData";
 import Filters from "@/components/blocks/Filters";
 
 export default async function page() {

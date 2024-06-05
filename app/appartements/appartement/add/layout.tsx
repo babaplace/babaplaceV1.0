@@ -4,8 +4,15 @@ import Sidebar from "./sidebar/Sidebar";
 import Image from "next/image";
 import bg from "@/public/assets/images/bg-sidebar-mobile.svg";
 import NavigationStep from "./NavigationStep";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-const layout = ({ children }: PropsWithChildren) => {
+const layout = async ({ children }: PropsWithChildren) => {
+  const session = await auth();
+  if (!session?.user.email) {
+    redirect("/auth/login");
+  }
+
   return (
     <main className="relative flex flex-col justify-center items-center ">
       <div className="w-full  relative">
