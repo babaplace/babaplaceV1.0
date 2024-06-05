@@ -123,7 +123,10 @@ export default function Header({ user }: HeaderProps) {
                       router.push(nav.href);
                       setMobileMenuOpen(false);
                     }}
-                    className="bg-white text-black hover:text-white text-start flex justify-start"
+                    className={cn(
+                      "bg-white text-black hover:text-white text-start flex justify-start",
+                      { "bg-primary text-white": pathname === nav.href }
+                    )}
                   >
                     {nav.name}
                   </Button>

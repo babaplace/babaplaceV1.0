@@ -46,7 +46,7 @@ const Hero = (props: Props) => {
                 Mettre en location
               </Link>
               <Link
-                href="/biens"
+                href="/discover"
                 className="px-4 py-2 max-md:text-xs text-white transition duration-300 bg-primary border border-gray-600 rounded-lg lg:px-8 lg:py-3 hover:bg-secondary hover:shadow-xl"
               >
                 Voir les biens
