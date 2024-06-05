@@ -46,7 +46,9 @@ export default function CardPropertyHorizontale({
             {property?.title}
           </div>
           {property?.description ? (
-            <p className="text-gray-500 ">{property?.description}</p>
+            <p className="text-gray-500 line-clamp-1">
+              {property?.description}
+            </p>
           ) : null}
           <div className="text-gray-500 ">
             <strong>Adresse :</strong> {property?.address}

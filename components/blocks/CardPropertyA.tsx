@@ -51,7 +51,7 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
         <h2 className="font-bold">
           {appartement?.address}, {appartement?.city}
         </h2>
-        <p className="text-sm text-gray-400 leading-4 ">
+        <p className="text-sm text-gray-400 leading-4 line-clamp-1">
           {appartement?.description}
         </p>
       </div>
