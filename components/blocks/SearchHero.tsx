@@ -14,7 +14,7 @@ type Props = {};
 const SearchHero = (props: Props) => {
   return (
     <Container className=" bg-white rounded-lg max-xl:mx-8 shadow-lg p-6">
-      <div className="md:flex  justify-between items-end gap-14 mx-14 ">
+      <div className="md:flex  justify-between items-end gap-14 ">
         <Search />
         <Link
           href={"/discover"}
