@@ -24,7 +24,7 @@ const SearchHero = (props: Props) => {
         </Link>
       </div>
 
-      <div className="mx-14 mt-9">
+      {/* <div className="mx-14 mt-9">
         <h2>Vous pourrez aimer ? </h2>
         <div className="flex gap-4 my-4">
           {suggestions.map((suggestion, index) => (
@@ -38,7 +38,7 @@ const SearchHero = (props: Props) => {
             </Button>
           ))}
         </div>
-      </div>
+      </div> */}
     </Container>
   );
 };
