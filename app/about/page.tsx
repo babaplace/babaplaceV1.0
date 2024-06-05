@@ -28,14 +28,14 @@ export default function PageAbout() {
                 </p>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Link
-                    href="#"
+                    href="/rent"
                     className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
                     prefetch={false}
                   >
                     Devenir bailleur
                   </Link>
                   <Link
-                    href="#"
+                    href="/discover"
                     className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
                     prefetch={false}
                   >
@@ -67,10 +67,19 @@ export default function PageAbout() {
                   la plateforme
                 </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Notre équipe d&apos;experts passionnés travaille chaque jour
-                  pour vous offrir la meilleure expérience de location
-                  immobilière.
+                Nous sommes une équipe dynamique d&apos;experts dévoués à simplifier le processus de location immobilière. 
+                Chaque membre de notre équipe apporte son expertise unique pour offrir une expérience exceptionnelle à nos utilisateurs, 
+                qu&apos;ils soient locataires à la recherche du logement parfait ou propriétaires souhaitant louer leur bien.
                 </p>
+                <h2 className="text-3xl tracking-tighter sm:text-5xl">
+                Qu&apos;est-ce que nous{" "}
+                  <span className="text-primary">faisons ?</span> 
+                </h2>
+                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                En tant qu&apos;équipe, nous travaillons chaque jour pour vous offrir la meilleure expérience de 
+                location immobilière possible. Nous développons et maintenons une plateforme conviviale et 
+                intuitive où les locataires peuvent facilement parcourir les annonces et trouver leur prochain chez-soi, 
+                et où les propriétaires peuvent gérer leurs biens en toute simplicité.</p>
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
@@ -139,9 +148,9 @@ export default function PageAbout() {
                   Des avantages pour les bailleurs et les clients
                 </h2>
                 <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Notre plateforme offre de nombreux avantages aux bailleurs et
-                  aux clients pour faciliter leurs démarches de location
-                  immobilière.
+                En choisissant notre plateforme, vous bénéficiez de l&apos;expertise et de l&apos;engagement d&apos;une équipe dédiée à simplifier
+                 votre expérience de location immobilière. Nous sommes là pour vous accompagner à chaque étape du processus, 
+                 en veillant à ce que vous trouviez le logement parfait ou que vous puissiez louer votre propriété en toute tranquillité d&apos;esprit.
                 </p>
               </div>
               <div className="grid gap-6">
@@ -198,6 +207,7 @@ export default function PageAbout() {
             </div>
           </div>
         </section>
+
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-800">
           <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
             <div className="space-y-3">
@@ -212,18 +222,18 @@ export default function PageAbout() {
             </div>
             <div className="flex flex-col justify-center gap-2 min-[400px]:flex-row">
               <Link
-                href="#"
+                href="/partnariat"
                 className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
                 prefetch={false}
               >
-                Devenir bailleur
+                Signer un contrat avec Nous
               </Link>
               <Link
-                href="#"
+                href="/discover"
                 className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
                 prefetch={false}
               >
-                Devenir client
+                Se procurer
               </Link>
             </div>
           </div>

@@ -31,13 +31,35 @@ export default function PagePartners() {
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                   Rejoignez notre écosystème de partenaires
                 </h1>
-                <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Notre plateforme de location immobilière vous offre de
-                  nombreuses opportunités de partenariat pour développer votre
-                  activité et atteindre de nouveaux clients.
+                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                Vous êtes un professionnel compétent ou un investisseur en quête d&apos;opportunités passionnantes ? 
+                Notre écosystème de partenaires offre une plateforme dynamique pour collaborer sur des projets 
+                innovants. En tant que membre, vous bénéficierez d&apos;un accès à un réseau de premier plan et 
+                d&apos;opportunités d&apos;investissement stratégiques. Nous croyons en la puissance de l&apos;innovation et de 
+                la collaboration pour créer un impact positif. Rejoignez-nous pour faire partie d&apos;une communauté
+                 engagée qui repousse les limites et crée un avenir meilleur. Contactez-nous dès aujourd&apos;hui pour 
+                 découvrir comment vous pouvez contribuer et prospérer au sein de notre écosystème.
                 </p>
               </div>
               <div className="grid gap-4">
+                <div className="flex items-center gap-2">
+                  <CheckIcon className="h-5 w-5 text-green-500" />
+                  <p className="text-gray-500 dark:text-gray-400">
+                    Investissement financier
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckIcon className="h-5 w-5 text-green-500" />
+                  <p className="text-gray-500 dark:text-gray-400">
+                    Ingénieur Logiciel
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckIcon className="h-5 w-5 text-green-500" />
+                  <p className="text-gray-500 dark:text-gray-400">
+                  chercheur en intelligence artificielle
+                  </p>
+                </div>
                 <div className="flex items-center gap-2">
                   <CheckIcon className="h-5 w-5 text-green-500" />
                   <p className="text-gray-500 dark:text-gray-400">
@@ -326,16 +348,80 @@ export default function PagePartners() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  En devenant partenaire, vous bénéficiez d&apos;un
-                  référencement prioritaire de vos biens, de campagnes de
-                  co-marketing ciblées et d&apos;un accès à nos services
-                  partagés (gestion, assurance, etc.). Cela vous permet
-                  d&apos;augmenter votre visibilité, de générer de nouveaux
-                  leads et d&apos;offrir un meilleur service à vos clients.
+                Notre entreprise offre une expertise spécialisée dans la creation de Logiciel et d&apos;immobiliers, 
+                une approche personnalisée et une équipe dévouée prête à répondre à vos besoins spécifiques. 
+                Nous travaillons en partenariat avec nos clients pour atteindre leurs objectifs commerciaux
+                 et leur offrir des solutions innovantes et efficaces.
                 </p>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="faq-2">
+              <AccordionTrigger className="text-base font-medium">
+              Quels types de services proposez-vous dans le cadre de la collaboration ?
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                Que vous ayez besoin d&apos;une consultation stratégique, de services de développement, 
+                de marketing ou de soutien technique, nous sommes là pour vous accompagner à chaque étape.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="faq-3">
+              <AccordionTrigger className="text-base font-medium">
+              Comment puis-je initier une collaboration avec votre entreprise ?
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                Vous pouvez nous contacter par téléphone, par e-mail ou via notre site web
+                 pour discuter de votre projet. Notre équipe vous rencontrera pour discuter de
+                  vos besoins, définir les objectifs et élaborer un plan d&apos;action adapté à votre entreprise.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="faq-4">
+              <AccordionTrigger className="text-base font-medium">
+              Quelle est la durée typique d&apos;une collaboration ?
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                La durée d&apos;une collaboration varie en fonction de la nature du projet et des 
+                objectifs à atteindre. Nous travaillons avec nos clients pour établir des 
+                calendriers réalistes et des jalons clés afin de garantir la réussite du projet dans les délais impartis.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="faq-5">
+              <AccordionTrigger className="text-base font-medium">
+              Quels sont les délais de réponse et de communication pendant la collaboration ?
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                Nous nous engageons à répondre rapidement à toutes les demandes de nos 
+                clients et à maintenir une communication ouverte et transparente tout au 
+                long du processus de collaboration. Nous assignons un responsable de projet 
+                dédié pour assurer une communication fluide et efficace.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="faq-6">
+              <AccordionTrigger className="text-base font-medium">
+              Que se passe-t-il en cas de problème ou de divergence pendant la collaboration ?
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                Nous sommes déterminés à résoudre rapidement tout problème ou divergence qui 
+                pourrait survenir pendant la collaboration. Notre équipe travaille en étroite 
+                collaboration avec nos clients pour trouver des solutions efficaces et atteindre les objectifs fixés.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+
+            <AccordionItem value="faq-7">
               <AccordionTrigger className="text-base font-medium">
                 Quels sont les critères pour devenir partenaire ?
               </AccordionTrigger>
