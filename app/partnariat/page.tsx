@@ -14,6 +14,7 @@ import { SVGProps } from "react";
 import DotPattern from "@/components/ui/Dotpattern";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
+import Image from "next/image";
 
 export default function PagePartners() {
   return (
@@ -53,7 +54,7 @@ export default function PagePartners() {
                 <div className="flex items-center gap-2">
                   <CheckIcon className="h-5 w-5 text-green-500" />
                   <p className="text-gray-500 dark:text-gray-400">
-                    Accès à nos services partagés (gestion, assurance, etc.)
+                    Accès à nos services partagés (gestion, publication, etc.)
                   </p>
                 </div>
               </div>
@@ -224,7 +225,7 @@ export default function PagePartners() {
                 <Button type="submit">Nous contacter</Button>
               </form>
             </div>
-            <img
+            <Image
               src="/placeholder.svg"
               width="550"
               height="310"

@@ -53,7 +53,7 @@ export default function PageAbout() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-800">
+        {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-800">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -76,16 +76,18 @@ export default function PageAbout() {
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
               <div className="flex flex-col items-center justify-center space-y-4">
                 <Avatar className="w-20 h-20 border">
-                  <img src="/placeholder.svg" alt="@username" />
+                  <AvatarImage src="/placeholder.svg" alt="@username" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <div className="space-y-1 text-center">
-                  <div className="text-lg font-semibold">John Doe</div>
+                  <div className="text-lg font-semibold">
+                    Sidy Mohamed Salim{" "}
+                  </div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">
                     Fondateur et PDG
                   </div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    John a plus de 15 ans d&apos;expérience dans
+                    Salim a plus de 15 ans d&apos;expérience dans
                     l&apos;industrie immobilière. Il est passionné par la
                     création de solutions innovantes pour faciliter la location.
                   </p>
@@ -93,16 +95,16 @@ export default function PageAbout() {
               </div>
               <div className="flex flex-col items-center justify-center space-y-4">
                 <Avatar className="w-20 h-20 border">
-                  <img src="/placeholder.svg" alt="@username" />
+                  <AvatarImage src="/placeholder.svg" alt="@username" />
                   <AvatarFallback>SM</AvatarFallback>
                 </Avatar>
                 <div className="space-y-1 text-center">
                   <div className="text-lg font-semibold">Sarah Miller</div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">
-                    Directrice des opérations
+                    PDG et Co-Fondateur
                   </div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Sarah a une expertise approfondie dans la gestion de
+                    Mara a une expertise approfondie dans la gestion de
                     plateformes de location immobilière. Elle veille à
                     l&apos;efficacité de nos processus.
                   </p>
@@ -110,7 +112,7 @@ export default function PageAbout() {
               </div>
               <div className="flex flex-col items-center justify-center space-y-4">
                 <Avatar className="w-20 h-20 border">
-                  <img src="/placeholder.svg" alt="@username" />
+                  <AvatarImage src="/placeholder.svg" alt="@username" />
                   <AvatarFallback>TL</AvatarFallback>
                 </Avatar>
                 <div className="space-y-1 text-center">
@@ -127,7 +129,7 @@ export default function PageAbout() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-image-b bg-center bg-cover">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
