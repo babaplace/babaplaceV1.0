@@ -14,6 +14,7 @@ import { LogOut } from "lucide-react";
 import { Session } from "next-auth";
 import { cn } from "@/lib/utils";
 import LogoutButton from "@/app/auth/LogoutButton";
+import Link from "next/link";
 
 type Props = { userSession: Session };
 
@@ -31,7 +32,9 @@ const ProfileAvatarHeader = ({ userSession }: Props) => {
       <DropdownMenuContent>
         <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href={"/admin/profile"}>Profile</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem>Parametres</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

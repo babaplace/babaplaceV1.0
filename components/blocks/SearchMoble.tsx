@@ -30,7 +30,7 @@ export default function SearchMobile() {
   } = useSearchStore();
 
   return (
-    <div className="w-full flex-1 flex  gap-2 max-w-6xl mx-auto p-4 md:p-6">
+    <div className="w-full flex-1 flex  gap-2 max-w-6xl  mx-auto p-4 md:p-6">
       <div className="relative flex-1 mr-4 w-full">
         <SearchIcon className="absolute left-3 top-3 h-4 w-4 text-gray-500 dark:text-gray-400" />
         <Input
@@ -50,7 +50,7 @@ export default function SearchMobile() {
             <FilterIcon className="w-4 h-4 mr-2" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[300px] p-4">
+        <DropdownMenuContent className="w-[300px] max-h-96 overflow-y-scroll p-4">
           <div className="grid gap-2">
             <CardFilter
               options={priceFilter}
