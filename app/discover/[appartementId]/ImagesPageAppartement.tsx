@@ -9,7 +9,7 @@ const ImagesPageAppartement = ({ images }: { images: medias[] }) => {
   return (
     <div className="md:w-1/2">
       <div className="grid gap-6">
-        <div className="relative group grid bg-red-500 [grid-template-areas:stack] overflow-hidden rounded-lg">
+        <div className="relative group grid bg-gray-50 [grid-template-areas:stack] overflow-hidden rounded-lg">
           <Image
             src={showImage}
             alt="Main Image"
