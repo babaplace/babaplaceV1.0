@@ -1,5 +1,6 @@
 import { createSafeActionClient } from "next-safe-action";
 import { auth } from "./auth";
+import { prisma } from "./prisma";
 
 export const action = createSafeActionClient({
   handleReturnedServerError: async (error) => {
@@ -15,9 +16,13 @@ export const authAction = createSafeActionClient({
   async middleware(parsedInput) {
     const session = await auth();
 
+    const user = await prisma.user.findUnique({
+      where: { email: session?.user.email ?? "" },
+    });
+
     console.log(session);
 
-    if (!session) {
+    if (!session || !user) {
       throw new Error("Vous devez vous connecter d'abord!");
     }
 
@@ -30,7 +35,7 @@ export const authAction = createSafeActionClient({
       throw new Error("Impossible de passer a l'action");
     }
 
-    return { session };
+    return { session, userId: user.id };
   },
   handleReturnedServerError: async (error) => {
     return error.message;
