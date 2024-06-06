@@ -37,11 +37,13 @@ const EditForm = ({
                 city: appartement.city,
                 address: appartement.address ?? "",
               }}
+              appartementId={appartement.id}
             />
 
             {/* etape 2 Detais  */}
 
             <EditDetailsInfos
+              appartementId={appartement.id}
               details={{
                 Cuisine: String(appartement.numberCuisine),
                 niveauEtage: String(appartement.niveauEtage),
@@ -52,12 +54,14 @@ const EditForm = ({
             />
 
             <EditPriceDetails
+              appartementId={appartement.id}
               priceInfos={{
                 price: String(appartement.price),
                 caution: String(appartement.caution),
               }}
             />
             <EditOtherInformations
+              appartementId={appartement.id}
               otherInfomations={{ description: appartement.description ?? "" }}
             />
 

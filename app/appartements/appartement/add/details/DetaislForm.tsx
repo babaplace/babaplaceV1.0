@@ -90,6 +90,30 @@ const DetailsForm = () => {
 
                   <FormField
                     control={form.control}
+                    name="Cuisine"
+                    render={({ field }) => (
+                      <FormItem className="py-2">
+                        <h4 className="text-black font-semibold">
+                          Nombre de Cuisine
+                        </h4>
+                        <div className="flex-1">
+                          <FormControl className="space-y-2">
+                            <Input
+                              id="Cuisine"
+                              placeholder="0"
+                              type="number"
+                              min="0"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </div>
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
                     name="numberToilettes"
                     render={({ field }) => (
                       <FormItem className="py-2">

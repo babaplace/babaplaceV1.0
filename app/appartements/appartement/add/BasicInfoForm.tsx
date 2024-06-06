@@ -21,7 +21,6 @@ import { useRouter } from "next/navigation";
 import { basicInfoScheme } from "../appartement.sheme";
 import NavigationStep from "./NavigationStep";
 import { useAppartementFormStore } from "@/lib/zustand/stores/appartementCreateStore";
-import Loader from "@/components/ui/Loader";
 
 const BasicInfoForm = () => {
   const { basicInfos, setBasicInfos } = useAppartementFormStore();

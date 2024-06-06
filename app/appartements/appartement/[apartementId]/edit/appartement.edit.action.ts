@@ -1,3 +1,5 @@
+"use server";
+
 import { authAction } from "@/lib/safe-action";
 import {
   additionalInfoScheme,
