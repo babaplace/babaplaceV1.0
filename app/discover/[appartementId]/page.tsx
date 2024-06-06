@@ -5,6 +5,7 @@ import {
   Bed,
   Building,
   Building2,
+  BuildingIcon,
   LandPlot,
   LucideIcon,
   MapPinned,
@@ -113,23 +114,17 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
       {/* Details */}
       <Container className="bg-white my-16 md:my-24 shadow-lg rounded-sm p-8 max-xl:mx-4 ">
         <h1 className="font-bold  text-2xl">Details </h1>
-        <p className="text-lg font-light ">{appartement.description}</p>
         <div>
           <div className="my-6  gap-10 grid grid-cols-2 md:grid-cols-4  items-center flex-wrap">
             <ItemInfosIcon
-              Icon={LandPlot}
+              Icon={UtensilsCrossed}
               title="Cuisine"
-              value={`${appartement.numberCuisine} m2`}
+              value={`${appartement.numberCuisine}`}
             />
             <ItemInfosIcon
               Icon={Bed}
               title="Chambres"
               value={`${appartement.numberChambres ?? 0}`}
-            />
-            <ItemInfosIcon
-              Icon={UtensilsCrossed}
-              title="Salon"
-              value={`${appartement.numberSalons ?? 0}`}
             />
             <ItemInfosIcon
               Icon={Building2}
