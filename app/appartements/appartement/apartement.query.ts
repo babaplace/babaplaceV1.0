@@ -50,3 +50,22 @@ export const getAppartementByIdWithMedias = async (id: string) =>
 export type appartementByIdWithMediasType = Prisma.PromiseReturnType<
   typeof getAppartementByIdWithMedias
 >;
+
+export const getAppartementByIdWithMediasUser = async (
+  id: string,
+  userId: string
+) => {
+  return await prisma.appartement.findUnique({
+    where: {
+      id,
+      ownerId: userId,
+    },
+    include: {
+      medias: true,
+    },
+  });
+};
+
+export type appartementByIdWithMediasUserType = Prisma.PromiseReturnType<
+  typeof getAppartementByIdWithMediasUser
+>;

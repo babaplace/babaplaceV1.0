@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
   Table,
@@ -11,6 +11,8 @@ import {
 import { auth } from "@/lib/auth";
 import { getUserWithAppartement } from "./user.query";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default async function ProfileAccueilPage() {
   const userSession = await auth();
@@ -86,7 +88,12 @@ export default async function ProfileAccueilPage() {
                   <TableCell>{appartement.city}</TableCell>
                   <TableCell>
                     <div className="flex items-center space-x-2">
-                      <Button>Modifier</Button>
+                      <Link
+                        href={`/appartements/appartement/${appartement.id}/edit`}
+                        className={cn(buttonVariants())}
+                      >
+                        Modifier
+                      </Link>
                       <Button variant="destructive">Supprimer</Button>
                     </div>
                   </TableCell>

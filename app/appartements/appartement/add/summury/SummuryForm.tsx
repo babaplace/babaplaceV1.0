@@ -248,7 +248,7 @@ const SummaryForm = () => {
 
 export default SummaryForm;
 
-const ItemList = ({
+export const ItemList = ({
   value,
   label,
 }: {
@@ -266,7 +266,13 @@ const ItemList = ({
   );
 };
 
-const OptionItem = ({ show, label }: { show: boolean; label: string }) => {
+export const OptionItem = ({
+  show,
+  label,
+}: {
+  show: boolean;
+  label: string;
+}) => {
   return show ? (
     <p className="p-2 my-4 bg-red-50 border-red-50 shadow-sm font-semibold border text-center rounded-md">
       {label}
