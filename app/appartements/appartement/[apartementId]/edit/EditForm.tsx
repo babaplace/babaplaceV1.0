@@ -25,9 +25,11 @@ const EditForm = ({
         <div className="flex flex-col w-full gap-4">
           <div className="flex flex-col gap-1">
             <h1 className="text-black text-2xl font-bold">
-              Appartement informations finales
+              Appartement informations
             </h1>
-            <p className="text-gray-500text-sm">verifier les informations</p>
+            <p className="text-gray-500text-sm">
+              Verifier ou Modifier les informations
+            </p>
           </div>
           <div className="flex flex-col gap-4 bg-neutro-magnolia rounded-lg ">
             {/* etape1 Localistion */}
