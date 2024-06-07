@@ -6,7 +6,7 @@ import * as React from "react";
 import { useDropzone, type DropzoneOptions } from "react-dropzone";
 import { twMerge } from "tailwind-merge";
 import { useEdgeStore } from "./edgestore";
-import { useAppartementFormStore } from "./zustand/stores/appartementCreateStore";
+import { useAppartementStore } from "./zustand/Providers/CreateAppartementStoreProviders";
 
 const variants = {
   base: "relative rounded-md aspect-square flex justify-center items-center flex-col cursor-pointer min-h-[150px] min-w-[200px] border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out",
@@ -55,7 +55,7 @@ const MultiImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const [customError, setCustomError] = React.useState<string>();
-    const removeImageByIdStore = useAppartementFormStore(
+    const removeImageByIdStore = useAppartementStore(
       (state) => state.removeImageById
     );
 

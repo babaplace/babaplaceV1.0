@@ -3,14 +3,16 @@
 import React, { useMemo } from "react";
 import CardPropertyHorizontale from "./CardPropertyHorizontale";
 import { allAppartementsWithImagesType } from "../../app/appartements/appartement/apartement.query";
-import { useSearchStore } from "@/lib/zustand/stores/SeachStore";
+import { useSearchStore } from "@/lib/zustand/Providers/SearchAppartementStoreProviders";
 
 const PropertiesHorizontaleSection = ({
   appartements,
 }: {
   appartements: allAppartementsWithImagesType;
 }) => {
-  const { city, address, maxprice, numberChambres } = useSearchStore();
+  const { city, address, maxprice, numberChambres } = useSearchStore(
+    (state) => state
+  );
   const filteredProperties = appartements.filter((property) => {
     if (
       city &&
