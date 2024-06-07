@@ -8,6 +8,8 @@ import { EdgeStoreProvider } from "@/lib/edgestore";
 import Transition from "./Transition";
 import { SessionProvider } from "next-auth/react";
 import { CreateSearchStoreProvider } from "@/lib/zustand/Providers/SearchAppartementStoreProviders";
+import { CreateAppartementStoreProvider } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
+import { CreateEditAppartementStoreProvider } from "@/lib/zustand/Providers/EditAppartementStoreProviders";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +24,13 @@ export const Providers = ({ children }: PropsWithChildren) => {
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
         <Toaster position="top-center" richColors duration={10000} />
-        <CreateSearchStoreProvider>{children}</CreateSearchStoreProvider>
+        <CreateSearchStoreProvider>
+          <CreateAppartementStoreProvider>
+            <CreateEditAppartementStoreProvider>
+              {children}
+            </CreateEditAppartementStoreProvider>
+          </CreateAppartementStoreProvider>
+        </CreateSearchStoreProvider>
       </QueryClientProvider>
     </SessionProvider>
   );
