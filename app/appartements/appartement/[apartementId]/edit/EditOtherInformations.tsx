@@ -16,17 +16,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useEditAppartementState } from "@/lib/zustand/stores/editAppartementStore";
+
 import { doEditAdditionalInfoAppartement } from "./appartement.edit.action";
 import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { useEditAppartementStore } from "@/lib/zustand/Providers/EditAppartementStoreProviders";
 
 type Props = { otherInfomations: additionalInfoScheme; appartementId: string };
 
 const EditOtherInformations = ({ otherInfomations, appartementId }: Props) => {
   const { startEditOtherInfos, setStartEditOtherInfos } =
-    useEditAppartementState();
+    useEditAppartementStore((state) => state);
 
   const router = useRouter();
   const form = useForm<additionalInfoScheme>({

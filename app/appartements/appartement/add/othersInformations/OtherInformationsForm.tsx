@@ -21,11 +21,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { additionalInfoScheme } from "../../appartement.sheme";
 import NavigationStep from "../NavigationStep";
 import { Textarea } from "@/components/ui/textarea";
-import { useAppartementFormStore } from "@/lib/zustand/stores/appartementCreateStore";
+import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 import Link from "next/link";
 
 const OtherInformationsForm = () => {
-  const { otherInformations, setOtherInformations } = useAppartementFormStore();
+  const { otherInformations, setOtherInformations } = useAppartementStore(
+    (state) => state
+  );
 
   const router = useRouter();
   const form = useForm<additionalInfoScheme>({

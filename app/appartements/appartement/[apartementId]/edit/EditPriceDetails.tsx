@@ -16,14 +16,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { useEditAppartementState } from "@/lib/zustand/stores/editAppartementStore";
+
 import { doEditFinancialInfoAppartement } from "./appartement.edit.action";
+import { useEditAppartementStore } from "@/lib/zustand/Providers/EditAppartementStoreProviders";
 
 type Props = { priceInfos: financialInfoScheme; appartementId: string };
 
 const EditPriceDetails = ({ priceInfos, appartementId }: Props) => {
   const { startEditFinancialInfos, setStartEditFinancialInfos } =
-    useEditAppartementState();
+    useEditAppartementStore((state) => state);
 
   const router = useRouter();
   const form = useForm<financialInfoScheme>({

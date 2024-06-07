@@ -9,25 +9,25 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import CardFilter from "./CardFilter";
-import { useSearchStore } from "@/lib/zustand/stores/SeachStore";
 import {
   NumberchambresFilters,
   priceFilter,
   villesFilter,
 } from "@/src/data/searchData";
 import Container from "../layout/Container";
+import { useSearchStore } from "@/lib/zustand/Providers/SearchAppartementStoreProviders";
 
 export default function SearchMobile() {
   const {
     numberChambres,
-    setNumbreChambres,
+    setNumberChambres,
     maxprice,
     setMaxPrice,
     city,
     setCity,
     address,
     setAddress,
-  } = useSearchStore();
+  } = useSearchStore((state) => state);
 
   return (
     <div className="w-full flex-1 flex  gap-2 max-w-6xl  mx-auto p-4 md:p-6">
@@ -60,7 +60,7 @@ export default function SearchMobile() {
             />
             <CardFilter
               options={NumberchambresFilters}
-              setValue={setNumbreChambres}
+              setValue={setNumberChambres}
               selectedValue={numberChambres}
               label="Nombre de chambres"
             />

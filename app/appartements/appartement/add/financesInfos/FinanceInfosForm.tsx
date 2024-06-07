@@ -20,11 +20,13 @@ import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
 import { financialInfoScheme } from "../../appartement.sheme";
 import NavigationStep from "../NavigationStep";
-import { useAppartementFormStore } from "@/lib/zustand/stores/appartementCreateStore";
 import Link from "next/link";
+import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 
 const FinanceInfosForm = () => {
-  const { financialInfos, setFinancialInfos } = useAppartementFormStore();
+  const { financialInfos, setFinancialInfos } = useAppartementStore(
+    (state) => state
+  );
   const router = useRouter();
   const form = useForm<financialInfoScheme>({
     resolver: zodResolver(financialInfoScheme),

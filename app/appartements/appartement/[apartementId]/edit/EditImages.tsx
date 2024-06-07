@@ -3,7 +3,7 @@ import { medias } from "@prisma/client";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import { useEditAppartementState } from "../../../../../lib/zustand/stores/editAppartementStore";
+import { useEditAppartementStore } from "@/lib/zustand/Providers/EditAppartementStoreProviders";
 
 type Props = {
   images: medias[];
@@ -11,7 +11,9 @@ type Props = {
 };
 
 const EditImages = ({ images, appartementId }: Props) => {
-  const { startEditImages, setStartEditImages } = useEditAppartementState();
+  const { startEditImages, setStartEditImages } = useEditAppartementStore(
+    (state) => state
+  );
   return (
     <div className="border border-gray-100 rounded-lg p-4">
       <div className="flex justify-between items-start">

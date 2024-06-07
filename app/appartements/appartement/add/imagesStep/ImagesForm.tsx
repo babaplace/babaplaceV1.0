@@ -13,16 +13,19 @@ import NavigationStep from "../NavigationStep";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react"; // Import useState hook
-import { useAppartementFormStore } from "@/lib/zustand/stores/appartementCreateStore";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useEdgeStore } from "@/lib/edgestore";
 import { FileState, MultiImageDropzone } from "@/lib/DropzoneImage";
+import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 
 export default function ImageForm() {
-  const { images, addImages, removeImageById } = useAppartementFormStore();
+  const { images, addImages, removeImageById } = useAppartementStore(
+    (state) => state
+  );
+
   const [fileStates, setFileStates] = useState<FileState[]>(images);
   const { edgestore } = useEdgeStore();
   const router = useRouter();

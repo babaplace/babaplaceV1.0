@@ -9,13 +9,13 @@ import {
 } from "@/src/data/searchData";
 
 import { SearchDate, SearchInput } from "../ui/SearchInputs";
-import { useSearchStore } from "@/lib/zustand/stores/SeachStore";
+import { useSearchStore } from "@/lib/zustand/Providers/SearchAppartementStoreProviders";
 
 type Props = {};
 
 const Search = (props: Props) => {
   const { setCity, setAddress, setMaxPrice, city, address, maxprice } =
-    useSearchStore();
+    useSearchStore((state) => state);
   return (
     <div className="md:grid md:grid-cols-3 items-center flex-1 md:justify-between space-y-2 md:space-x-4 md:px-6 gap-4">
       <SearchInput

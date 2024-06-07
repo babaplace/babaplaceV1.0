@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { CreateAppartementStoreProvider } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 import { ClassValue } from "class-variance-authority/types";
 import React, { ReactNode } from "react";
 
@@ -14,7 +15,9 @@ const NavigationStep = ({
       <div
         className={cn("w-full flex items-center justify-between", className)}
       >
-        {children}
+        <CreateAppartementStoreProvider>
+          {children}
+        </CreateAppartementStoreProvider>
       </div>
     </div>
   );

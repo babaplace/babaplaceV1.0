@@ -20,10 +20,10 @@ import { useRouter } from "next/navigation";
 
 import { basicInfoScheme } from "../appartement.sheme";
 import NavigationStep from "./NavigationStep";
-import { useAppartementFormStore } from "@/lib/zustand/stores/appartementCreateStore";
+import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 
 const BasicInfoForm = () => {
-  const { basicInfos, setBasicInfos } = useAppartementFormStore();
+  const { basicInfos, setBasicInfos } = useAppartementStore((state) => state);
   const router = useRouter();
   const form = useForm<basicInfoScheme>({
     resolver: zodResolver(basicInfoScheme),

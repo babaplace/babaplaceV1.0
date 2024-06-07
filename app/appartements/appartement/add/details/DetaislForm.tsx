@@ -20,11 +20,12 @@ import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
 import { detailsSheme } from "../../appartement.sheme";
 import NavigationStep from "../NavigationStep";
-import { useAppartementFormStore } from "@/lib/zustand/stores/appartementCreateStore";
+
 import Link from "next/link";
+import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 
 const DetailsForm = () => {
-  const { details, setDetails } = useAppartementFormStore();
+  const { details, setDetails } = useAppartementStore((state) => state);
 
   const router = useRouter();
   const form = useForm<detailsSheme>({

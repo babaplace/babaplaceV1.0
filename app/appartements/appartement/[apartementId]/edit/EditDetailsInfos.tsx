@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 import { ItemList } from "../../add/summury/SummuryForm";
 import { detailsSheme } from "../../appartement.sheme";
-import { useEditAppartementState } from "@/lib/zustand/stores/editAppartementStore";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useEditAppartementStore } from "@/lib/zustand/Providers/EditAppartementStoreProviders";
 
 type EditDetailsInfosProps = {
   details: detailsSheme;
@@ -31,7 +31,7 @@ const EditDetailsInfos = ({
   appartementId,
 }: EditDetailsInfosProps) => {
   const { startEditDetailsInfos, setStartEditDetailsInfos } =
-    useEditAppartementState();
+    useEditAppartementStore((state) => state);
 
   const router = useRouter();
   const form = useForm<detailsSheme>({

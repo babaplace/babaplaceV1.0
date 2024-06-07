@@ -2,7 +2,7 @@
 
 import React, { FormEventHandler } from "react";
 import Image from "next/image";
-import { useAppartementFormStore } from "@/lib/zustand/stores/appartementCreateStore";
+import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 import Link from "next/link";
 import NavigationStep from "../NavigationStep";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -23,7 +23,7 @@ const SummaryForm = () => {
     otherInformations,
     images,
     resetForm,
-  } = useAppartementFormStore();
+  } = useAppartementStore((state) => state);
   const { edgestore } = useEdgeStore();
   const router = useRouter();
 

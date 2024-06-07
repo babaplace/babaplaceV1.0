@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import Transition from "./Transition";
 import { SessionProvider } from "next-auth/react";
+import { CreateSearchStoreProvider } from "@/lib/zustand/Providers/SearchAppartementStoreProviders";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,7 +22,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
         <Toaster position="top-center" richColors duration={10000} />
-        <EdgeStoreProvider>{children}</EdgeStoreProvider>
+        <CreateSearchStoreProvider>{children}</CreateSearchStoreProvider>
       </QueryClientProvider>
     </SessionProvider>
   );
