@@ -1,6 +1,6 @@
-import { create } from "zustand";
+import { createStore } from "zustand/vanilla";
 
-export type SearchStoreType = {
+export type SearchStoreState = {
   title?: string;
   city?: string;
   maxprice?: string;
@@ -9,9 +9,10 @@ export type SearchStoreType = {
   quartier?: string;
   maxChambres?: string;
   minChambres?: string;
-
   numberChambres?: string;
+};
 
+export type SearchStoreActions = {
   setTitle: (newTitle?: string) => void;
   setCity: (newCity?: string) => void;
   setMaxPrice: (newMaxPrice?: string) => void;
@@ -20,14 +21,29 @@ export type SearchStoreType = {
   setQuartier: (newQuartier?: string) => void;
   setMaxChambres: (newMaxChambres?: string) => void;
   setMinChambres: (newMinChambres?: string) => void;
-
-  setNumbreChambres: (newNumbresChambres?: string) => void;
-
+  setNumberChambres: (newNumberChambres?: string) => void;
   resetSearch: () => void;
 };
 
-export const useSearchStore = create<SearchStoreType>((set) => {
-  return {
+export type SearchStore = SearchStoreState & SearchStoreActions;
+
+export const defaultSearchState: SearchStoreState = {
+  title: undefined,
+  city: undefined,
+  maxprice: undefined,
+  minprice: undefined,
+  address: undefined,
+  quartier: undefined,
+  maxChambres: undefined,
+  minChambres: undefined,
+  numberChambres: undefined,
+};
+
+export const createSearchStore = (
+  initState: SearchStoreState = defaultSearchState
+) => {
+  return createStore<SearchStore>()((set) => ({
+    ...initState,
     setTitle: (newTitle?: string) => set((state) => ({ title: newTitle })),
     setCity: (newCity?: string) => set((state) => ({ city: newCity })),
     setMaxPrice: (newMaxPrice?: string) =>
@@ -42,20 +58,8 @@ export const useSearchStore = create<SearchStoreType>((set) => {
       set((state) => ({ maxChambres: newMaxChambres })),
     setMinChambres: (newMinChambres?: string) =>
       set((state) => ({ minChambres: newMinChambres })),
-    setNumbreChambres: (newNumbresChambres?: string) =>
-      set((state) => ({ numberChambres: newNumbresChambres })),
-
-    resetSearch: () =>
-      set(() => ({
-        title: undefined,
-        city: undefined,
-        maxprice: undefined,
-        minprice: undefined,
-        address: undefined,
-        quartier: undefined,
-        maxChambres: undefined,
-        minChambres: undefined,
-        numberChambres: undefined,
-      })),
-  };
-});
+    setNumberChambres: (newNumberChambres?: string) =>
+      set((state) => ({ numberChambres: newNumberChambres })),
+    resetSearch: () => set(() => ({ ...defaultSearchState })),
+  }));
+};

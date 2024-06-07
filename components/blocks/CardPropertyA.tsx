@@ -11,13 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +32,7 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
                 width={400}
                 height={500}
                 alt=""
-                className="rounded-t-xl w-full h-60 object-cover"
+                className="rounded-sm w-full h-60 object-cover"
               />
             </CarouselItem>
           ))}
