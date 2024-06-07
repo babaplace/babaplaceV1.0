@@ -26,7 +26,10 @@ type cardPropertyProps = { appartement: appartementByIdWithMediasType };
 
 const CardPropertyB = ({ appartement }: cardPropertyProps) => {
   return (
-    <div className="">
+    <Link
+      href={`/discover/${appartement?.id}`}
+      className="hover:bg-gray-50 hover:bg-opacity-30"
+    >
       {/*
       /> */}
 
@@ -61,7 +64,7 @@ const CardPropertyB = ({ appartement }: cardPropertyProps) => {
           MAD <span className="text-primary">{appartement?.price}</span>
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

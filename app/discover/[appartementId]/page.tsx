@@ -96,8 +96,8 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
         </div>
       </Container>
 
-      {/* informations */}
-      <Container className="bg-white rounded-sm shadow-lg my-16 md:my-24 py-0  max-xl:mx-4  ">
+      {/* Addresse */}
+      {/* <Container className="bg-white rounded-sm shadow-lg my-16 md:my-24 py-0  max-xl:mx-4  ">
         <h1 className="font-bold  text-xl italic px-8 py-2 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
           {appartement.city} - {appartement.address}{" "}
         </h1>
@@ -108,7 +108,7 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
           height={600}
           className="w-full  bg-gray-50"
         ></Image>
-      </Container>
+      </Container> */}
 
       {/* Details */}
       <Container className="bg-white my-16 md:my-24 shadow-lg rounded-sm p-8 max-xl:mx-4 ">
