@@ -6,7 +6,7 @@ import { PropsWithChildren } from "react";
 
 export const TitleSection = ({ children }: PropsWithChildren) => {
   return (
-    <div className="relative flex h-full w-full  items-center justify-center overflow-hidden   p-16 my-4">
+    <div className="relative flex h-full w-full  items-center justify-center overflow-hidden   px-16 py-8 my-4">
       <div className="z-10 whitespace-pre-wrap text-center text-5xl font-medium tracking-tighter text-black dark:text-white">
         {children}
       </div>

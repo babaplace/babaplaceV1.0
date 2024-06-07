@@ -27,7 +27,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
         <CreateSearchStoreProvider>
           <CreateAppartementStoreProvider>
             <CreateEditAppartementStoreProvider>
-              {children}
+              <EdgeStoreProvider>{children}</EdgeStoreProvider>
             </CreateEditAppartementStoreProvider>
           </CreateAppartementStoreProvider>
         </CreateSearchStoreProvider>
