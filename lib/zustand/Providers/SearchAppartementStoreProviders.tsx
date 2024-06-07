@@ -2,7 +2,7 @@
 
 import { type ReactNode, createContext, useRef, useContext } from "react";
 import { type StoreApi, useStore } from "zustand";
-import { SearchStore, createSearchStore } from "../stores/SeachStore";
+import { type SearchStore, createSearchStore } from "../stores/SeachStore";
 
 export const SearchStoreContext = createContext<StoreApi<SearchStore> | null>(
   null
