@@ -3,12 +3,12 @@
 import { type ReactNode, createContext, useRef, useContext } from "react";
 import { type StoreApi, useStore } from "zustand";
 import {
-  EditAppartementStore,
+  type editAppartementStore,
   createEditAppartementStore,
 } from "../stores/editAppartementStore";
 
 export const EditAppartementStoreContext =
-  createContext<StoreApi<EditAppartementStore> | null>(null);
+  createContext<StoreApi<editAppartementStore> | null>(null);
 
 export interface EditAppartementStoreProviderProps {
   children: ReactNode;
@@ -17,7 +17,7 @@ export interface EditAppartementStoreProviderProps {
 export const CreateEditAppartementStoreProvider = ({
   children,
 }: EditAppartementStoreProviderProps) => {
-  const storeRef = useRef<StoreApi<EditAppartementStore>>();
+  const storeRef = useRef<StoreApi<editAppartementStore>>();
   if (!storeRef.current) {
     storeRef.current = createEditAppartementStore();
   }
@@ -30,7 +30,7 @@ export const CreateEditAppartementStoreProvider = ({
 };
 
 export const useEditAppartementStore = <T,>(
-  selector: (store: EditAppartementStore) => T
+  selector: (store: editAppartementStore) => T
 ): T => {
   const editAppartementStoreContext = useContext(EditAppartementStoreContext);
 
