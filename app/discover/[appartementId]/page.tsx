@@ -101,7 +101,6 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
         <h1 className="font-bold  text-xl italic px-8 py-2 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
           {appartement.city} - {appartement.address}{" "}
         </h1>
-        {/* datails */}
         <Image
           src={"/maps.svg"}
           alt="carte de localisation"
