@@ -6,7 +6,7 @@ import { getAllAppartementsWithImages } from "@/app/appartements/appartement/apa
 import CardPropertyB from "./CardPropertyB";
 
 const SectionPropertiesB = async () => {
-  const appartements = await getAllAppartementsWithImages(5);
+  const appartements = await getAllAppartementsWithImages(4);
   return (
     <div className="bg-cover  py-16 px-8">
       <TitleSection>
