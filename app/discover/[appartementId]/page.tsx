@@ -1,4 +1,4 @@
-import { getAppartementByIdWithMedias } from "@/app/appartements/appartement/apartement.query";
+import { getAppartementByIdWithMedias } from "@/src/db/apartement.query";
 import Container from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +16,7 @@ import {
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
-import ImagesPageAppartement from "./ImagesPageAppartement";
+import ImagesPageAppartement from "@/components/ImagesPageAppartement";
 
 type PageAppartementProps = {
   params: { appartementId: string };

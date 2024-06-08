@@ -3,7 +3,7 @@ import React from "react";
 import { Button, buttonVariants } from "../ui/button";
 import ImageSliderCard from "./ImageSliderCard";
 import Image from "next/image";
-import { appartementByIdWithMediasType } from "@/app/appartements/appartement/apartement.query";
+import { appartementByIdWithMediasType } from "@/src/db/apartement.query";
 import {
   Carousel,
   CarouselContent,

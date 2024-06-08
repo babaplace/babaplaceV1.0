@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckIcon, ChevronRight } from "lucide-react";
-import { appartementByIdWithMediasType } from "@/app/appartements/appartement/apartement.query";
+import { appartementByIdWithMediasType } from "@/src/db/apartement.query";
 import Image from "next/image";
 import Link from "next/link";
 import {

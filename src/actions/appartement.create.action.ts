@@ -1,7 +1,7 @@
 "use server";
 
 import { authAction } from "@/lib/safe-action";
-import { appartementScheme } from "../appartement.sheme";
+import { appartementScheme } from "../types/appartement.sheme";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 

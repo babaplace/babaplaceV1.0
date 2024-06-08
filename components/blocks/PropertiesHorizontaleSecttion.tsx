@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import CardPropertyHorizontale from "./CardPropertyHorizontale";
-import { allAppartementsWithImagesType } from "../../app/appartements/appartement/apartement.query";
+import { allAppartementsWithImagesType } from "../../src/db/apartement.query";
 import { useSearchStore } from "@/lib/zustand/Providers/SearchAppartementStoreProviders";
 
 const PropertiesHorizontaleSection = ({

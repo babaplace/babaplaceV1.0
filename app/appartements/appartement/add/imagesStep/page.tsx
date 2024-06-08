@@ -1,6 +1,6 @@
 import Container from "@/components/layout/Container";
 import React from "react";
-import ImagesForm from "./ImagesForm";
+import ImagesForm from "../../../../../components/AddAppartementSteps/ImagesForm";
 
 type Props = {};
 

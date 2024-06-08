@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { financialInfoScheme } from "../../../appartements/appartement/appartement.sheme";
-import { ItemList } from "../../../appartements/appartement/add/summury/SummuryForm";
+import { financialInfoScheme } from "../../src/types/appartement.sheme";
+import { ItemList } from "../AddAppartementSteps/SummuryForm";
 import {
   Form,
   FormControl,
@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 
-import { doEditFinancialInfoAppartement } from "./appartement.edit.action";
+import { doEditFinancialInfoAppartement } from "../../src/actions/appartement.edit.action";
 import { useEditAppartementStore } from "@/lib/zustand/Providers/EditAppartementStoreProviders";
 
 type Props = { priceInfos: financialInfoScheme; appartementId: string };

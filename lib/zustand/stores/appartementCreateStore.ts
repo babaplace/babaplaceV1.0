@@ -4,7 +4,7 @@ import {
   detailsSheme,
   financialInfoScheme,
   imagesStepSheme,
-} from "@/app/appartements/appartement/appartement.sheme";
+} from "@/src/types/appartement.sheme";
 import { createStore } from "zustand/vanilla";
 
 export type AppartementFormState = {

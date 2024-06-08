@@ -2,7 +2,7 @@
 
 import { AlertTriangle } from "lucide-react";
 import { useEffect } from "react";
-import ErrorIcon from "./ErrorIcon";
+import ErrorIcon from "../components/ui/ErrorIcon";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";

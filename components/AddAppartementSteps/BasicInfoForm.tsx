@@ -18,7 +18,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-import { basicInfoScheme } from "../appartement.sheme";
+import { basicInfoScheme } from "../../src/types/appartement.sheme";
 import NavigationStep from "./NavigationStep";
 import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 

@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import React from "react";
-import { ItemList } from "../../../appartements/appartement/add/summury/SummuryForm";
-import { detailsSheme } from "../../../appartements/appartement/appartement.sheme";
+import { ItemList } from "../AddAppartementSteps/SummuryForm";
+import { detailsSheme } from "../../src/types/appartement.sheme";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { doEditDetailsAppartement } from "./appartement.edit.action";
+import { doEditDetailsAppartement } from "../../src/actions/appartement.edit.action";
 import {
   Form,
   FormControl,

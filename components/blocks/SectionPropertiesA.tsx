@@ -2,7 +2,7 @@ import React from "react";
 import Container from "../layout/Container";
 import CardPropertyA from "./CardPropertyA";
 import { TitleSection } from "./TitleSection";
-import { getAllAppartementsWithImages } from "@/app/appartements/appartement/apartement.query";
+import { getAllAppartementsWithImages } from "@/src/db/apartement.query";
 
 const SectionPropertiesA = async () => {
   const appartements = await getAllAppartementsWithImages(4);

@@ -1,4 +1,5 @@
 "use client";
+
 import { medias } from "@prisma/client";
 import { ZoomInIcon } from "lucide-react";
 import Image from "next/image";

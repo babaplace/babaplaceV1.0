@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { basicInfoScheme } from "../../../appartements/appartement/appartement.sheme";
-import { ItemList } from "../../../appartements/appartement/add/summury/SummuryForm";
+import { basicInfoScheme } from "../../src/types/appartement.sheme";
+import { ItemList } from "../AddAppartementSteps/SummuryForm";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { doEditBasicInfomartionsAppartement } from "./appartement.edit.action";
+import { doEditBasicInfomartionsAppartement } from "../../src/actions/appartement.edit.action";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useEditAppartementStore } from "@/lib/zustand/Providers/EditAppartementStoreProviders";

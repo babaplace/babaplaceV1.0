@@ -2,22 +2,26 @@ import React from "react";
 import {
   getAppartementByIdWithMedias,
   getAppartementByIdWithMediasUser,
-} from "../../../appartements/appartement/apartement.query";
+} from "../../../../src/db/apartement.query";
 import { notFound } from "next/navigation";
-import { getUserSession } from "@/lib/prisma";
 import Container from "@/components/layout/Container";
-import EditDetailsInfos from "./EditDetailsInfos";
-import EditPriceDetails from "./EditPriceDetails";
-import EditOtherInformations from "./EditOtherInformations";
-import EditImages from "./EditImages";
-import EditBasicInfomartions from "./EditBasicInfomartions";
+import EditDetailsInfos from "../../../../components/EditAppartementSteps/EditDetailsInfos";
+import EditPriceDetails from "../../../../components/EditAppartementSteps/EditPriceDetails";
+import EditOtherInformations from "../../../../components/EditAppartementSteps/EditOtherInformations";
+import EditImages from "../../../../components/EditAppartementSteps/EditImages";
+import EditBasicInfomartions from "../../../../components/EditAppartementSteps/EditBasicInfomartions";
+import { auth } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
 const page = async ({ params }: { params: { appartementId: string } }) => {
-  const session = await getUserSession();
+  const session = await auth();
+  const user = await prisma.user.findUnique({
+    where: { email: session?.user.email ?? "" },
+  });
 
   const appartement = await getAppartementByIdWithMediasUser(
     params.appartementId,
-    session.userId ?? ""
+    user?.id ?? ""
   );
 
   if (!appartement || !appartement) {

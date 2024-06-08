@@ -4,13 +4,16 @@ import React, { FormEventHandler } from "react";
 import Image from "next/image";
 import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 import Link from "next/link";
-import NavigationStep from "../NavigationStep";
+import NavigationStep from "./NavigationStep";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { doCreateAppartement } from "../appartement.create.action";
-import { appartementScheme, imagesStepSheme } from "../../appartement.sheme";
+import { doCreateAppartement } from "../../src/actions/appartement.create.action";
+import {
+  appartementScheme,
+  imagesStepSheme,
+} from "../../src/types/appartement.sheme";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { uploadImages } from "../UploadImage";
+import { uploadImages } from "./UploadImage";
 import { useEdgeStore } from "@/lib/edgestore";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/ui/Loader";

@@ -1,5 +1,5 @@
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { imagesStepSheme } from "../appartement.sheme";
+import { imagesStepSheme } from "../../src/types/appartement.sheme";
 import { storageFirebase } from "@/lib/firebare/firebase";
 import { prisma } from "@/lib/prisma";
 

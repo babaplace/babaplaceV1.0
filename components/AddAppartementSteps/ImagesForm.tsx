@@ -9,7 +9,7 @@ import {
   SVGProps,
   useEffect,
 } from "react";
-import NavigationStep from "../NavigationStep";
+import NavigationStep from "./NavigationStep";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react"; // Import useState hook

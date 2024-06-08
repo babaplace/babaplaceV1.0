@@ -33,7 +33,7 @@ const ProfileAvatarHeader = ({ userSession }: Props) => {
         <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href={"/admin/profile"}>Profile</Link>
+          <Link href={"/profile"}>Profile</Link>
         </DropdownMenuItem>
         <DropdownMenuItem>Parametres</DropdownMenuItem>
         <DropdownMenuSeparator />

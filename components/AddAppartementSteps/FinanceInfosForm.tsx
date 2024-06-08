@@ -18,8 +18,8 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
-import { financialInfoScheme } from "../../appartement.sheme";
-import NavigationStep from "../NavigationStep";
+import { financialInfoScheme } from "../../src/types/appartement.sheme";
+import NavigationStep from "./NavigationStep";
 import Link from "next/link";
 import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 

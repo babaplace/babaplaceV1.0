@@ -6,7 +6,7 @@ import { TitlePage } from "@/components/blocks/TitlePage";
 import Container from "@/components/layout/Container";
 
 import React from "react";
-import { getAllAppartementsWithImages } from "../appartements/appartement/apartement.query";
+import { getAllAppartementsWithImages } from "../../src/db/apartement.query";
 import Filters from "@/components/blocks/Filters";
 
 export default async function page() {
