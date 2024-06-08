@@ -14,7 +14,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { getUserSession } from "@/lib/prisma";
 
-export default async function ProfileAccueilPage() {
+export default async function page() {
   const userSession = await getUserSession();
 
   if (!userSession?.user?.email) {

@@ -5,7 +5,7 @@ import SearchSection from "@/components/blocks/SearchSection";
 import { TitlePage } from "@/components/blocks/TitlePage";
 import Container from "@/components/layout/Container";
 
-import React, { Suspense } from "react";
+import React from "react";
 import { getAllAppartementsWithImages } from "../appartements/appartement/apartement.query";
 import Filters from "@/components/blocks/Filters";
 
@@ -22,9 +22,7 @@ export default async function page() {
       </div>
       <Container className="flex gap-2 justify-between py-8">
         <Filters />
-        {/* <Suspense fallback={<PropertiesHorizontaleSectionSkeleton />}> */}
         <PropertiesHorizontaleSection appartements={appartements} />
-        {/* </Suspense> */}
       </Container>
     </div>
   );
