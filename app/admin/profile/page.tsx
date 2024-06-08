@@ -8,16 +8,16 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import { auth } from "@/lib/auth";
 import { getUserWithAppartement } from "./user.query";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { getUserSession } from "@/lib/prisma";
 
 export default async function ProfileAccueilPage() {
-  const userSession = await auth();
+  const userSession = await getUserSession();
 
-  if (!userSession?.user.email) {
+  if (!userSession?.user?.email) {
     notFound();
   }
 

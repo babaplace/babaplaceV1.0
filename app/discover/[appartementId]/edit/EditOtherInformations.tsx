@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { additionalInfoScheme } from "../../appartement.sheme";
+import { additionalInfoScheme } from "../../../appartements/appartement/appartement.sheme";
 import Link from "next/link";
-import { ItemList } from "../../add/summury/SummuryForm";
+import { ItemList } from "../../../appartements/appartement/add/summury/SummuryForm";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

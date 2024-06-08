@@ -6,7 +6,7 @@ import {
   basicInfoScheme,
   detailsSheme,
   financialInfoScheme,
-} from "../../appartement.sheme";
+} from "../../../appartements/appartement/appartement.sheme";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";

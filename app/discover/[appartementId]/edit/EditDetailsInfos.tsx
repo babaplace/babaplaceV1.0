@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import React from "react";
-import { ItemList } from "../../add/summury/SummuryForm";
-import { detailsSheme } from "../../appartement.sheme";
+import { ItemList } from "../../../appartements/appartement/add/summury/SummuryForm";
+import { detailsSheme } from "../../../appartements/appartement/appartement.sheme";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

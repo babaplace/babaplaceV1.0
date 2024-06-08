@@ -2,22 +2,21 @@ import React from "react";
 import {
   getAppartementByIdWithMedias,
   getAppartementByIdWithMediasUser,
-} from "../../apartement.query";
+} from "../../../appartements/appartement/apartement.query";
 import { notFound } from "next/navigation";
 import { getUserSession } from "@/lib/prisma";
 import Container from "@/components/layout/Container";
-import Image from "next/image";
-import EditBasicInfomartions from "./EditBasicInfomartions";
 import EditDetailsInfos from "./EditDetailsInfos";
 import EditPriceDetails from "./EditPriceDetails";
 import EditOtherInformations from "./EditOtherInformations";
 import EditImages from "./EditImages";
+import EditBasicInfomartions from "./EditBasicInfomartions";
 
-const page = async ({ params }: { params: { apartementId: string } }) => {
+const page = async ({ params }: { params: { appartementId: string } }) => {
   const session = await getUserSession();
 
   const appartement = await getAppartementByIdWithMediasUser(
-    params.apartementId,
+    params.appartementId,
     session.userId ?? ""
   );
 
@@ -62,6 +61,8 @@ const page = async ({ params }: { params: { apartementId: string } }) => {
                 }}
               />
 
+              {/* etape 3 */}
+
               <EditPriceDetails
                 appartementId={appartement.id}
                 priceInfos={{
@@ -69,6 +70,9 @@ const page = async ({ params }: { params: { apartementId: string } }) => {
                   caution: String(appartement.caution),
                 }}
               />
+
+              {/* etape 4 */}
+
               <EditOtherInformations
                 appartementId={appartement.id}
                 otherInfomations={{
@@ -76,7 +80,7 @@ const page = async ({ params }: { params: { apartementId: string } }) => {
                 }}
               />
 
-              {/* etape. 4 images */}
+              {/* etape. 5 images */}
               <EditImages
                 images={appartement.medias}
                 appartementId={appartement.id}

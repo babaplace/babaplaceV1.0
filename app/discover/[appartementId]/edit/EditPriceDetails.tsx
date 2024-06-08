@@ -1,12 +1,7 @@
 "use client";
-
 import React from "react";
-import { basicInfoScheme } from "../../appartement.sheme";
-import { ItemList } from "../../add/summury/SummuryForm";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { financialInfoScheme } from "../../../appartements/appartement/appartement.sheme";
+import { ItemList } from "../../../appartements/appartement/add/summury/SummuryForm";
 import {
   Form,
   FormControl,
@@ -15,56 +10,59 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { doEditBasicInfomartionsAppartement } from "./appartement.edit.action";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+
+import { doEditFinancialInfoAppartement } from "./appartement.edit.action";
 import { useEditAppartementStore } from "@/lib/zustand/Providers/EditAppartementStoreProviders";
 
-type Props = { basicInfos: basicInfoScheme; appartementId: string };
+type Props = { priceInfos: financialInfoScheme; appartementId: string };
 
-const EditBasicInfomartions = ({ basicInfos, appartementId }: Props) => {
-  const { startEditBasicInfos, setStartEditBasicInfos } =
+const EditPriceDetails = ({ priceInfos, appartementId }: Props) => {
+  const { startEditFinancialInfos, setStartEditFinancialInfos } =
     useEditAppartementStore((state) => state);
 
-  console.log(startEditBasicInfos);
-
   const router = useRouter();
-  const form = useForm<basicInfoScheme>({
-    resolver: zodResolver(basicInfoScheme),
+  const form = useForm<financialInfoScheme>({
+    resolver: zodResolver(financialInfoScheme),
     defaultValues: {
-      ...basicInfos,
+      ...priceInfos,
     },
   });
 
   const editMutation = useMutation({
-    mutationFn: async (data: basicInfoScheme) => {
-      const result = await doEditBasicInfomartionsAppartement({
+    mutationFn: async (data: financialInfoScheme) => {
+      const result = await doEditFinancialInfoAppartement({
         ...data,
         appartementId,
       });
 
       if (!result.serverError) {
         toast.success(result.data?.message);
-        setStartEditBasicInfos(false);
+        setStartEditFinancialInfos(false);
       } else {
         toast.error(result.serverError);
       }
     },
   });
 
-  const onSubmit = (data: basicInfoScheme) => {
+  const onSubmit = (data: financialInfoScheme) => {
     editMutation.mutate(data);
   };
 
   return (
     <div className="border border-gray-100 rounded-lg p-4">
       <div className="flex justify-between items-start">
-        <h1 className="text-xl font-extrabold">Localisations Et Titre</h1>
-        {!startEditBasicInfos ? (
+        <h1 className="text-xl font-extrabold">Prix</h1>
+        {!startEditFinancialInfos ? (
           <button
             onClick={(e) => {
               e.preventDefault();
-              setStartEditBasicInfos(true);
+              setStartEditFinancialInfos(true);
             }}
             className="w-fit text-gray-500hover:text-primary text-sm underline justify-end"
           >
@@ -72,7 +70,7 @@ const EditBasicInfomartions = ({ basicInfos, appartementId }: Props) => {
           </button>
         ) : null}
       </div>
-      {startEditBasicInfos ? (
+      {startEditFinancialInfos ? (
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -82,16 +80,17 @@ const EditBasicInfomartions = ({ basicInfos, appartementId }: Props) => {
               <div className="divide-y-2 divide-dotted ">
                 <FormField
                   control={form.control}
-                  name="title"
+                  name="price"
                   render={({ field }) => (
                     <FormItem className="py-2">
-                      <h4 className="text-black font-semibold">Titre</h4>
+                      <h4 className="text-black font-semibold">Prix (DH)</h4>
                       <div className="flex-1">
                         <FormControl className="space-y-2">
                           <Input
-                            id="title"
-                            placeholder="title"
-                            type="text"
+                            id="price"
+                            placeholder="0"
+                            type="number"
+                            min={"0"}
                             {...field}
                           />
                         </FormControl>
@@ -103,37 +102,17 @@ const EditBasicInfomartions = ({ basicInfos, appartementId }: Props) => {
 
                 <FormField
                   control={form.control}
-                  name="city"
+                  name="caution"
                   render={({ field }) => (
                     <FormItem className="py-2">
-                      <h4 className="text-black font-semibold">Ville</h4>
+                      <h4 className="text-black font-semibold">Caution</h4>
                       <div className="flex-1">
-                        <FormControl>
+                        <FormControl className="space-y-2">
                           <Input
-                            id="city"
-                            placeholder="fes"
-                            type="text"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </div>
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="address"
-                  render={({ field }) => (
-                    <FormItem className="py-2">
-                      <h4 className="text-black font-semibold">Addresse</h4>
-                      <div className="flex-1">
-                        <FormControl>
-                          <Input
-                            id="address"
-                            placeholder="lot chems Mt fleurie 2"
-                            type="text"
+                            id="caution"
+                            placeholder="0"
+                            type="number"
+                            min={"0"}
                             {...field}
                           />
                         </FormControl>
@@ -154,13 +133,12 @@ const EditBasicInfomartions = ({ basicInfos, appartementId }: Props) => {
         </Form>
       ) : (
         <div className="divide-y-2 divide-dotted flex flex-col ">
-          <ItemList label="Title" value={basicInfos.title} />
-          <ItemList label="Ville" value={basicInfos.city} />
-          <ItemList label="Adresse" value={basicInfos.address ?? ""} />
+          <ItemList label="Prix" value={priceInfos.price} />
+          <ItemList label="Caution" value={priceInfos.caution ?? ""} />
         </div>
       )}
     </div>
   );
 };
 
-export default EditBasicInfomartions;
+export default EditPriceDetails;
