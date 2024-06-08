@@ -39,3 +39,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+
+/app/about
+/app/profile
+
+/app/discover/[appartementId]/edit
+
