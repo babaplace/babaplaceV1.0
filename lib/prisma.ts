@@ -24,9 +24,6 @@ export const getUserSession = async () => {
 
   return {
     ...session,
-    user: {
-      ...session?.user,
-      id: user?.id,
-    },
+    userId: user?.id,
   };
 };

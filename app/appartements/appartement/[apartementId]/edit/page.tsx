@@ -10,13 +10,13 @@ import EditForm from "./EditForm";
 
 const page = async ({ params }: { params: { apartementId: string } }) => {
   const session = await getUserSession();
-  if (!session.user.id) {
+  if (!session.userId) {
     notFound();
   }
 
   const appartement = await getAppartementByIdWithMediasUser(
     params.apartementId,
-    session.user.id
+    session.userId
   );
 
   if (!appartement) {
