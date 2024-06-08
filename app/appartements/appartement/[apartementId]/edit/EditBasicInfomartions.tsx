@@ -2,7 +2,6 @@
 
 import React from "react";
 import { basicInfoScheme } from "../../appartement.sheme";
-import Link from "next/link";
 import { ItemList } from "../../add/summury/SummuryForm";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
