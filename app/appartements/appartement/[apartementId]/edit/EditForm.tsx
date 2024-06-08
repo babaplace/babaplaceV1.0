@@ -19,6 +19,8 @@ const EditForm = ({
     notFound();
   }
 
+  console.log(appartement);
+
   return (
     <div>
       <>

@@ -19,6 +19,8 @@ const variants = {
   reject: "border border-red-700 bg-red-700 bg-opacity-10",
 };
 
+let i = 0;
+
 export type FileState = {
   file: File | string;
   key: string; // used to identify the file in the progress callback

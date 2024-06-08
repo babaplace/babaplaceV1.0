@@ -26,9 +26,11 @@ export const Providers = ({ children }: PropsWithChildren) => {
         <Toaster position="top-center" richColors duration={10000} />
         <CreateSearchStoreProvider>
           <CreateAppartementStoreProvider>
-            <CreateEditAppartementStoreProvider>
-              <EdgeStoreProvider>{children}</EdgeStoreProvider>
-            </CreateEditAppartementStoreProvider>
+            <EdgeStoreProvider>
+              <CreateEditAppartementStoreProvider>
+                {children}
+              </CreateEditAppartementStoreProvider>
+            </EdgeStoreProvider>
           </CreateAppartementStoreProvider>
         </CreateSearchStoreProvider>
       </QueryClientProvider>

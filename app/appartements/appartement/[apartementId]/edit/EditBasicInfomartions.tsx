@@ -27,6 +27,8 @@ const EditBasicInfomartions = ({ basicInfos, appartementId }: Props) => {
   const { startEditBasicInfos, setStartEditBasicInfos } =
     useEditAppartementStore((state) => state);
 
+  console.log(startEditBasicInfos);
+
   const router = useRouter();
   const form = useForm<basicInfoScheme>({
     resolver: zodResolver(basicInfoScheme),
