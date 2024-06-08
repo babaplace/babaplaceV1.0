@@ -5,6 +5,7 @@ import { type StoreApi, useStore } from "zustand";
 import {
   type editAppartementStore,
   createEditAppartementStore,
+  defaultEditAppartementState,
 } from "../stores/editAppartementStore";
 
 export const EditAppartementStoreContext =
@@ -19,7 +20,7 @@ export const CreateEditAppartementStoreProvider = ({
 }: EditAppartementStoreProviderProps) => {
   const storeRef = useRef<StoreApi<editAppartementStore>>();
   if (!storeRef.current) {
-    storeRef.current = createEditAppartementStore();
+    storeRef.current = createEditAppartementStore(defaultEditAppartementState);
   }
 
   return (

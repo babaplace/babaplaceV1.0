@@ -8,6 +8,7 @@ import { Providers } from "@/components/layout/Providers";
 import { cn } from "@/lib/utils";
 import { auth } from "@/lib/auth";
 import Annonce from "@/components/layout/Annonce";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const font = Sofia_Sans({
   weight: "variable",
@@ -34,6 +35,7 @@ export default async function RootLayout({
           <Header user={userSession} />
           <div className="mx-auto ">{children}</div>
           <Footer />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>

@@ -2,7 +2,11 @@
 
 import { type ReactNode, createContext, useRef, useContext } from "react";
 import { type StoreApi, useStore } from "zustand";
-import { type SearchStore, createSearchStore } from "../stores/SeachStore";
+import {
+  type SearchStore,
+  createSearchStore,
+  defaultSearchState,
+} from "../stores/SeachStore";
 
 export const SearchStoreContext = createContext<StoreApi<SearchStore> | null>(
   null
@@ -17,7 +21,7 @@ export const CreateSearchStoreProvider = ({
 }: SearchStoreProviderProps) => {
   const storeRef = useRef<StoreApi<SearchStore>>();
   if (!storeRef.current) {
-    storeRef.current = createSearchStore();
+    storeRef.current = createSearchStore(defaultSearchState);
   }
 
   return (

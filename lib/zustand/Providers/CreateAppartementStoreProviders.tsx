@@ -6,6 +6,7 @@ import { type StoreApi, useStore } from "zustand";
 import {
   type AppartementFormStore,
   createAppartementFormStore,
+  defaultAppartementFormState,
 } from "../stores/appartementCreateStore";
 
 export const AppartementStoreContext =
@@ -20,7 +21,7 @@ export const CreateAppartementStoreProvider = ({
 }: AppartementStoreStoreProviderProps) => {
   const storeRef = useRef<StoreApi<AppartementFormStore>>();
   if (!storeRef.current) {
-    storeRef.current = createAppartementFormStore();
+    storeRef.current = createAppartementFormStore(defaultAppartementFormState);
   }
 
   return (
