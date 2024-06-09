@@ -2,14 +2,14 @@ import React from "react";
 import {
   getAppartementByIdWithMedias,
   getAppartementByIdWithMediasUser,
-} from "../../../../src/db/apartement.query";
+} from "../../../../../../src/db/apartement.query";
 import { notFound } from "next/navigation";
 import Container from "@/components/layout/Container";
-import EditDetailsInfos from "../../../../components/EditAppartementSteps/EditDetailsInfos";
-import EditPriceDetails from "../../../../components/EditAppartementSteps/EditPriceDetails";
-import EditOtherInformations from "../../../../components/EditAppartementSteps/EditOtherInformations";
-import EditImages from "../../../../components/EditAppartementSteps/EditImages";
-import EditBasicInfomartions from "../../../../components/EditAppartementSteps/EditBasicInfomartions";
+import EditDetailsInfos from "../../../../../../components/EditAppartementSteps/EditDetailsInfos";
+import EditPriceDetails from "../../../../../../components/EditAppartementSteps/EditPriceDetails";
+import EditOtherInformations from "../../../../../../components/EditAppartementSteps/EditOtherInformations";
+import EditImages from "../../../../../../components/EditAppartementSteps/EditImages";
+import EditBasicInfomartions from "../../../../../../components/EditAppartementSteps/EditBasicInfomartions";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 

@@ -15,6 +15,7 @@ import DotPattern from "@/components/ui/Dotpattern";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
+import ContactForm from "./ContactForm";
 
 export default function PagePartners() {
   return (
@@ -68,65 +69,7 @@ export default function PagePartners() {
                 </Link>
               </div>
             </div>
-
-            <div className="mx-auto max-w-xl z-10 min-w-full rounded-xl bg-white p-6 shadow-xl md:p-8 lg:p-10">
-              <form className="mt-6 space-y-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Nom
-                  </label>
-                  <div className="mt-1">
-                    <Input
-                      id="name"
-                      type="text"
-                      placeholder="Entrez votre nom"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Email
-                  </label>
-                  <div className="mt-1">
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Entrez votre email"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Message
-                  </label>
-                  <div className="mt-1">
-                    <Textarea
-                      id="message"
-                      rows={4}
-                      placeholder="Entrez votre message"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Link
-                    href="#"
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-                    prefetch={false}
-                  >
-                    Devenez partenaire
-                  </Link>
-                </div>
-              </form>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </section>

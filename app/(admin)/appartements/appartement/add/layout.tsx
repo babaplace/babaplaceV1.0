@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from "react";
-import SidebarMobile from "../../../../components/AddAppartementSteps/sidebar/SidebarMobile";
-import Sidebar from "../../../../components/AddAppartementSteps/sidebar/Sidebar";
+import SidebarMobile from "../../../../../components/AddAppartementSteps/sidebar/SidebarMobile";
+import Sidebar from "../../../../../components/AddAppartementSteps/sidebar/Sidebar";
 import Image from "next/image";
 import bg from "@/public/assets/images/bg-sidebar-mobile.svg";
-import NavigationStep from "../../../../components/AddAppartementSteps/NavigationStep";
+import NavigationStep from "../../../../../components/AddAppartementSteps/NavigationStep";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 

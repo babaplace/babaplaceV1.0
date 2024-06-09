@@ -1,14 +1,12 @@
 import Container from "@/components/layout/Container";
 import React from "react";
-import ImagesForm from "../../../../../components/AddAppartementSteps/ImagesForm";
+import SummaryForm from "../../../../../../components/AddAppartementSteps/SummuryForm";
 
-type Props = {};
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <div>
       <Container>
-        <ImagesForm />
+        <SummaryForm />
       </Container>
     </div>
   );
