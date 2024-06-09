@@ -6,11 +6,13 @@ import {
   Building,
   Building2,
   BuildingIcon,
+  CheckIcon,
   LandPlot,
   LucideIcon,
   MapPinned,
   UtensilsCrossed,
   Waves,
+  X,
   ZoomInIcon,
 } from "lucide-react";
 import Image from "next/image";
@@ -71,14 +73,24 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
               <p className="text-primary font-bold">{appartement.caution} DH</p>
             </div>
           </div>
+          <div className="flex items-center ">
+            <div className="text-gray-500">Disponible maintenant</div>
+            {appartement?.status?.status === "disponible" ? (
+              <CheckIcon className="ml-2 text-green-500" />
+            ) : (
+              <X className="ml-2 text-red-500" />
+            )}
+          </div>
           {/* description */}
           <div>
             <p>{appartement.description}</p>
           </div>
           {/* actions */}
-          <div className="mt-auto">
-            <Button>Reserver maintenant</Button>
-          </div>
+          {appartement.status?.status === "disponible" ? (
+            <div className="mt-auto">
+              <Button>Reserver maintenant</Button>
+            </div>
+          ) : null}
         </div>
       </Container>
 

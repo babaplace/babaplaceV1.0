@@ -29,9 +29,17 @@ const layout = async ({ children }: PropsWithChildren) => {
       </div>
       <section className="hidden md:flex bg-neutro-white min-h-[80vh] lg:w-3/5 rounded-lg drop-shadow-soft p-4 my-8">
         <Sidebar />
-        <div className="flex-1">{children}</div>
+        <div className="flex-1">
+          <h1 className="text-2xl font-extrabold text-center">
+            Mettre en Location un appartement
+          </h1>
+          {children}
+        </div>
       </section>
       <section className="mx-4 md:hidden rounded-lg mt-5 w-full">
+        <h1 className="text-xl text-center font-bold">
+          Mettre en Location un appartement
+        </h1>
         {children}
       </section>
     </main>

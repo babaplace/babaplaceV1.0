@@ -21,7 +21,7 @@ export const detailsSheme = z.object({
 
   niveauEtage: z
     .string()
-    .min(1, { message: "Le niveau d'étage doit être supérieur à 1" }),
+    .min(0, { message: "Le niveau d'étage doit être supérieur à 0" }),
 
   numberSalons: z.string().default("0"),
 });

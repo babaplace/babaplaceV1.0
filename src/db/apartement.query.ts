@@ -26,8 +26,16 @@ export const getAllAppartementsWithImages = async (limit?: number) => {
   const appartements = await prisma.appartement.findMany({
     take: limit ? limit : undefined,
     orderBy: { createdAt: "desc" },
+    // where: {
+    //   status: {
+    //     NOT: {
+    //       status: "occuped",
+    //     },
+    //   },
+    // },
     include: {
       medias: true,
+      status: true,
     },
   });
   return appartements;
@@ -44,6 +52,7 @@ export const getAppartementByIdWithMedias = async (id: string) =>
     },
     include: {
       medias: true,
+      status: true,
     },
   });
 
@@ -62,6 +71,7 @@ export const getAppartementByIdWithMediasUser = async (
     },
     include: {
       medias: true,
+      status: true,
     },
   });
 };

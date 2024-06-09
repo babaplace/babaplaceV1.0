@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckIcon, ChevronRight } from "lucide-react";
+import { CheckIcon, ChevronRight, X } from "lucide-react";
 import { appartementByIdWithMediasType } from "@/src/db/apartement.query";
 import Image from "next/image";
 import Link from "next/link";
@@ -55,7 +55,11 @@ export default function CardPropertyHorizontale({
           </div>
           <div className="flex items-center ">
             <div className="text-gray-500">Disponible maintenant</div>
-            <CheckIcon className="ml-2 text-green-500" />
+            {property?.status?.status === "disponible" ? (
+              <CheckIcon className="ml-2 text-green-500" />
+            ) : (
+              <X className="ml-2 text-red-500" />
+            )}
           </div>
         </div>
         <div className="flex justify-between items-center">
