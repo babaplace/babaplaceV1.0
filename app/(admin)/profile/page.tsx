@@ -30,7 +30,12 @@ export default async function page() {
           <p className="text-gray-500">Partenaire immobilier</p>
         </div>
         <div className="flex items-center space-x-4">
-          <Button variant="outline">Gérer les propriétés</Button>
+          <Link
+            href={"/appartements/appartement/add"}
+            className={buttonVariants({ variant: "outline" })}
+          >
+            Mettre en location
+          </Link>
         </div>
       </div>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -56,52 +61,48 @@ export default async function page() {
         </div>
         <div className="prose max-w-none">
           <h2>À propos de moi</h2>
-          <p>
-            Je suis un partenaire immobilier expérimenté avec plus de 10 ans
-            d&apos;expérience dans le secteur. Je gère un portefeuille
-            diversifié de propriétés résidentielles et commerciales dans la
-            région. N&apos;hésitez pas à me contacter pour toute question ou
-            opportunité.
-          </p>
+          <p>{/* description A */}</p>
         </div>
       </section>
-      <section className="mb-12">
-        <h2 className="text-xl font-bold mb-4">Mes propriétés</h2>
-        <div className="overflow-x-auto">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Title</TableHead>
-                <TableHead>Prix</TableHead>
-                <TableHead>Emplacement</TableHead>
-                <TableHead>Ville</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {user?.appartements.map((appartement) => (
-                <TableRow key={appartement.id}>
-                  <TableCell>{appartement.title}</TableCell>
-                  <TableCell>{appartement.price} DH</TableCell>
-                  <TableCell>{appartement.address}</TableCell>
-                  <TableCell>{appartement.city}</TableCell>
-                  <TableCell>
-                    <div className="flex items-center space-x-2">
-                      <Link
-                        href={`/appartements/appartement/${appartement.id}/edit`}
-                        className={cn(buttonVariants())}
-                      >
-                        Modifier
-                      </Link>
-                      <Button variant="destructive">Supprimer</Button>
-                    </div>
-                  </TableCell>
+      {user?.appartements && user?.appartements?.length > 0 ? (
+        <section className="mb-12">
+          <h2 className="text-xl font-bold mb-4">Mes propriétés</h2>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Title</TableHead>
+                  <TableHead>Prix</TableHead>
+                  <TableHead>Emplacement</TableHead>
+                  <TableHead>Ville</TableHead>
+                  <TableHead>Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </section>
+              </TableHeader>
+              <TableBody>
+                {user?.appartements.map((appartement) => (
+                  <TableRow key={appartement.id}>
+                    <TableCell>{appartement.title}</TableCell>
+                    <TableCell>{appartement.price} DH</TableCell>
+                    <TableCell>{appartement.address}</TableCell>
+                    <TableCell>{appartement.city}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center space-x-2">
+                        <Link
+                          href={`/appartements/appartement/${appartement.id}/edit`}
+                          className={cn(buttonVariants())}
+                        >
+                          Modifier
+                        </Link>
+                        <Button variant="destructive">Supprimer</Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
