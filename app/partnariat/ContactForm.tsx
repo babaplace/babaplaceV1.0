@@ -20,39 +20,74 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { RequiredInputIndice } from "@/components/ui/RequiredInputIndice";
+import { Button } from "@/components/ui/button";
+import { useMutation } from "@tanstack/react-query";
+import { contactShemePartneriat } from "./contact.sheme";
+import { toast } from "sonner";
+import { doSendContactPartenariat } from "./contact.send.action";
 
-const schema = z.object({
-  name: z
-    .string({ required_error: "le nom est requis " })
-    .min(1, "minimiun 1 caracteres"),
-  email: z
-    .string({ required_error: "l'email est requis" })
-    .email("Email invalide"),
-  message: z.string().min(1, "Le message ne peut pas être vide"),
-  role: z.string({ required_error: "Le rôle est requis" }), // Added role field to schema
-});
-
-type FormData = z.infer<typeof schema>;
+type FormData = z.infer<typeof contactShemePartneriat>;
 
 const ContactForm = () => {
   const form = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(contactShemePartneriat),
+  });
+
+  const contactMutation = useMutation({
+    mutationFn: async (data: FormData) => {
+      const result = await doSendContactPartenariat(data);
+      if (!result.serverError) {
+        toast.success(result.data?.message);
+      } else {
+        toast.error(result.serverError);
+      }
+    },
   });
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    contactMutation.mutate(data);
   };
 
   return (
     <div className="mx-auto max-w-xl z-10 min-w-full rounded-xl bg-white p-6 shadow-xl md:p-8 lg:p-10">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 ">
+          <FormField
+            control={form.control}
+            name="role"
+            render={({ field }) => (
+              <FormItem className="py-2">
+                <h4 className="text-sm font-medium text-gray-700">
+                  Vous êtes ? <RequiredInputIndice />
+                </h4>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger defaultValue="agence">
+                      <SelectValue placeholder="Vous êtes" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="agence">Agence</SelectItem>
+                    <SelectItem value="bailleur">Bailleur</SelectItem>
+                    <SelectItem value="particulier">Particulier</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem className="py-2">
-                <h4 className="text-sm font-medium text-gray-700">Nom</h4>
+                <h4 className="text-sm font-medium text-gray-700">
+                  Nom <RequiredInputIndice />
+                </h4>
                 <FormControl>
                   <Input
                     id="name"
@@ -71,7 +106,10 @@ const ContactForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem className="py-2">
-                <h4 className="text-sm font-medium text-gray-700">Email</h4>
+                <h4 className="text-sm font-medium text-gray-700">
+                  Email
+                  <RequiredInputIndice />
+                </h4>
                 <FormControl>
                   <Input
                     id="email"
@@ -79,29 +117,6 @@ const ContactForm = () => {
                     placeholder="Entrez votre email"
                     {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="role"
-            render={({ field }) => (
-              <FormItem className="py-2">
-                <h4 className="text-sm font-medium text-gray-700">Rôle</h4>
-                <FormControl>
-                  <Select {...field} defaultValue="">
-                    <SelectTrigger className="">
-                      <SelectValue placeholder="Vous êtes" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="agence">Agence</SelectItem>
-                      <SelectItem value="bailleur">Bailleur</SelectItem>
-                      <SelectItem value="particulier">Particulier</SelectItem>
-                    </SelectContent>
-                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -127,13 +142,12 @@ const ContactForm = () => {
             )}
           />
 
-          <div className="flex flex-col gap-2 min-[400px]:flex-row">
-            <button
-              type="submit"
-              className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-            >
-              Devenez partenaire
-            </button>
+          <div className="flex flex-col my-2 gap-2 min-[400px]:flex-row">
+            <Button disabled={contactMutation.isPending} type="submit">
+              {contactMutation.isPending
+                ? "En cours ..."
+                : "Envoyer une demande"}
+            </Button>
           </div>
         </form>
       </Form>

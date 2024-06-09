@@ -16,8 +16,10 @@ import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import ContactForm from "./ContactForm";
+import { auth } from "@/lib/auth";
 
-export default function PagePartners() {
+export default async function PagePartners() {
+  const session = await auth();
   return (
     <div className="w-full">
       <section className="bg-gray-50 dark:bg-gray-800 py-12 md:py-24 lg:py-32 relative">
@@ -30,8 +32,12 @@ export default function PagePartners() {
           <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
             <div className="space-y-4">
               <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Rejoignez notre écosystème de partenaires
+                <h1 className="text-3xl font-light tracking-tighter sm:text-4xl md:text-5xl">
+                  Rejoignez notre{" "}
+                  <span className="text-primary ">
+                    {" "}
+                    écosystème de partenaires
+                  </span>
                 </h1>
                 <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                   Notre plateforme de location immobilière vous offre de
@@ -49,31 +55,34 @@ export default function PagePartners() {
                 <div className="flex items-center gap-2">
                   <CheckIcon className="h-5 w-5 text-green-500" />
                   <p className="text-gray-500 dark:text-gray-400">
-                    Campagnes de co-marketing ciblées
-                  </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckIcon className="h-5 w-5 text-green-500" />
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Accès à nos services partagés (gestion, publication, etc.)
+                    Accès à nos services partagés (gestion, publication de vos
+                    biens, etc.)
                   </p>
                 </div>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Link
-                  href="#guide"
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200  bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50  dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-                  prefetch={false}
-                >
-                  En savoir plus
-                </Link>
+                {session?.user.email ? (
+                  <Link
+                    href="/appartements/appartement/add"
+                    className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200  bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50  dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+                  >
+                    Mettre en location
+                  </Link>
+                ) : (
+                  <Link
+                    href="/auth/login"
+                    className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200  bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50  dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+                  >
+                    Commencez maintenant
+                  </Link>
+                )}
               </div>
             </div>
             <ContactForm />
           </div>
         </div>
       </section>
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-image-b bg-cover bg-center relative">
+      {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-image-b bg-cover bg-center relative">
         <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
           <div className="space-y-3">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -145,14 +154,15 @@ export default function PagePartners() {
             </Card>
           </div>
         </div>
-      </section>
+      </section> */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-800">
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
             <div className="space-y-4">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Devenez partenaire de notre plateforme
+                <h2 className="text-3xl font-light tracking-tighter sm:text-4xl md:text-5xl">
+                  Devenez partenaire de notre{" "}
+                  <span className="text-primary">plateforme</span>
                 </h2>
                 <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                   Rejoignez notre écosystème de partenaires et bénéficiez de
@@ -165,11 +175,11 @@ export default function PagePartners() {
                   placeholder="Entrez votre email"
                   className="max-w-lg flex-1"
                 />
-                <Button type="submit">Nous contacter</Button>
+                <Button type="submit">Envoyer</Button>
               </form>
             </div>
             <Image
-              src="/placeholder.svg"
+              src="/assets/images/email.svg"
               width="550"
               height="310"
               alt="Partenariat"
@@ -185,8 +195,9 @@ export default function PagePartners() {
         <div className="w-full max-w-3xl mx-auto">
           <div className="space-y-6">
             <div className="space-y-3 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Guide de notre programme de partenariat
+              <h2 className="text-3xl font-light tracking-tighter sm:text-4xl md:text-5xl">
+                <span className="text-primary">Guide</span> de notre programme
+                de partenariat
               </h2>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Découvrez les étapes pour devenir partenaire et les avantages de
@@ -203,8 +214,7 @@ export default function PagePartners() {
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Remplissez le formulaire d&apos;inscription en ligne pour
-                  commencer votre partenariat avec nous. Vous devrez fournir des
-                  informations sur votre entreprise et vos activités.
+                  commencer votre partenariat avec nous.
                 </p>
               </div>
               <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
@@ -216,8 +226,7 @@ export default function PagePartners() {
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Notre équipe examinera votre demande et vous contactera pour
-                  discuter des prochaines étapes. Nous vérifierons que votre
-                  entreprise correspond à nos critères de partenariat.
+                  discuter des prochaines étapes.
                 </p>
               </div>
               <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
@@ -230,8 +239,6 @@ export default function PagePartners() {
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Une fois votre partenariat approuvé, nous vous guiderons dans
                   l&apos;intégration de votre entreprise sur notre plateforme.
-                  Vous aurez accès à nos outils, formations et ressources pour
-                  vous aider à tirer le meilleur parti de notre collaboration.
                 </p>
               </div>
               <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
@@ -243,9 +250,7 @@ export default function PagePartners() {
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Nous resterons à vos côtés pour vous accompagner dans le
-                  développement de votre activité. Notre équipe dédiée sera
-                  disponible pour répondre à vos questions et vous aider à tirer
-                  le meilleur parti de notre partenariat.
+                  développement de votre activité.
                 </p>
               </div>
             </div>
@@ -271,11 +276,11 @@ export default function PagePartners() {
               <AccordionContent>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   En devenant partenaire, vous bénéficiez d&apos;un
-                  référencement prioritaire de vos biens, de campagnes de
-                  co-marketing ciblées et d&apos;un accès à nos services
-                  partagés (gestion, assurance, etc.). Cela vous permet
-                  d&apos;augmenter votre visibilité, de générer de nouveaux
-                  leads et d&apos;offrir un meilleur service à vos clients.
+                  référencement prioritaire de vos biens et d&apos;un accès à
+                  nos services partagés (gestion, publication, etc.). Cela vous
+                  permet d&apos;augmenter votre visibilité, de générer de
+                  nouveaux leads et d&apos;offrir un meilleur service à vos
+                  clients.
                 </p>
               </AccordionContent>
             </AccordionItem>

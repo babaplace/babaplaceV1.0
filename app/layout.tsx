@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { auth } from "@/lib/auth";
 import Annonce from "@/components/layout/Annonce";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Toaster } from "sonner";
 
 const font = Sofia_Sans({
   weight: "variable",
@@ -31,6 +32,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={cn(font.className, "min-h-screen")}>
         <Providers>
+          <Toaster theme="dark" position="top-center" richColors={true} />
           <Annonce />
           <Header user={userSession} />
           <div className="mx-auto ">{children}</div>
