@@ -1,6 +1,6 @@
 "use client";
 import { Calendar } from "@/components/ui/calendar";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -11,11 +11,16 @@ import { Calendar as CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 type Props = {};
 
 const FormReservationVisite = (props: Props) => {
-  const [date, setDate] = React.useState<Date>();
+  const [date, setDate] = useState<Date>();
+  const [phone, setPhone] = useState<any>();
+
+  console.log(phone, date);
 
   return (
     <div className="grid gap-4">
@@ -25,7 +30,15 @@ const FormReservationVisite = (props: Props) => {
         <Input placeholder="Nom"></Input>
       </div>
       <div>
-        <Input placeholder="Phone"></Input>
+        <PhoneInput
+          className={cn(
+            "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          )}
+          placeholder="Entrer un numero de telephone"
+          value={phone}
+          //   defaultCountry="MA"
+          onChange={setPhone}
+        />
       </div>
       <Popover>
         <PopoverTrigger asChild>
