@@ -10,6 +10,7 @@ import {
   LandPlot,
   LucideIcon,
   MapPinned,
+  PhoneIcon,
   UtensilsCrossed,
   Waves,
   X,
@@ -19,6 +20,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 import ImagesPageAppartement from "@/components/ImagesPageAppartement";
+import Booking from "./Booking";
 
 type PageAppartementProps = {
   params: { appartementId: string };
@@ -35,12 +37,12 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
     <div>
       {/* <TitlePage /> */}
 
-      <Container className="mb-24 flex justify-between items-start gap-8 p-4  max-md:flex-col">
+      <Container className="mb-24 flex justify-between items-start gap-8 p-4  max-md:flex-col relative">
         {/* images */}
         <ImagesPageAppartement images={appartement.medias} />
 
         {/* details right */}
-        <div className="md:w-1/2 px-4 flex flex-col gap-6">
+        <div className="w-full max-md:grid md:w-1/2 px-4 flex flex-col gap-6">
           {/* title */}
           <h2 className="text-2xl font-extrabold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
             {appartement.title}
@@ -86,11 +88,7 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
             <p>{appartement.description}</p>
           </div>
           {/* actions */}
-          {appartement.status?.status === "disponible" ? (
-            <div className="mt-auto">
-              <Button>Reserver maintenant</Button>
-            </div>
-          ) : null}
+          {appartement.status?.status === "disponible" ? <Booking /> : null}
         </div>
       </Container>
 

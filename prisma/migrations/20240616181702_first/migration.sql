@@ -4,6 +4,18 @@ CREATE TYPE "appartementVerified" AS ENUM ('pending', 'finish', 'reset');
 -- CreateEnum
 CREATE TYPE "status" AS ENUM ('disponible', 'occuped', 'soon');
 
+-- CreateEnum
+CREATE TYPE "role" AS ENUM ('agence', 'bailleur', 'client');
+
+-- CreateEnum
+CREATE TYPE "subjectContact" AS ENUM ('partneriat', 'contact');
+
+-- CreateEnum
+CREATE TYPE "BookingStatus" AS ENUM ('PENDING', 'CONFIRMED', 'CANCELLED');
+
+-- CreateEnum
+CREATE TYPE "userRole" AS ENUM ('user', 'admin', 'partner', 'certificated');
+
 -- CreateTable
 CREATE TABLE "appartement" (
     "id" TEXT NOT NULL,
@@ -21,7 +33,6 @@ CREATE TABLE "appartement" (
     "caution" DOUBLE PRECISION,
     "description" TEXT,
     "ownerId" TEXT NOT NULL,
-    "statusId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -35,6 +46,7 @@ CREATE TABLE "appartementStatus" (
     "dateDisponible" TIMESTAMP(3),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "appartementId" TEXT NOT NULL,
 
     CONSTRAINT "appartementStatus_pkey" PRIMARY KEY ("id")
 );
@@ -53,13 +65,41 @@ CREATE TABLE "medias" (
 );
 
 -- CreateTable
+CREATE TABLE "Contact" (
+    "id" TEXT NOT NULL,
+    "role" "role" NOT NULL DEFAULT 'client',
+    "name" TEXT,
+    "email" TEXT NOT NULL,
+    "message" TEXT,
+    "subject" "subjectContact" NOT NULL DEFAULT 'contact',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Contact_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Booking" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "appartementId" TEXT NOT NULL,
+    "startDate" TIMESTAMP(3) NOT NULL,
+    "endDate" TIMESTAMP(3) NOT NULL,
+    "status" "BookingStatus" NOT NULL DEFAULT 'PENDING',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Booking_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT,
     "firstName" TEXT,
     "email" TEXT,
     "phone" TEXT,
-    "role" TEXT NOT NULL DEFAULT 'user',
+    "role" "userRole" NOT NULL DEFAULT 'user',
     "password" TEXT,
     "emailVerified" TIMESTAMP(3),
     "image" TEXT,
@@ -123,7 +163,7 @@ CREATE TABLE "Authenticator" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "appartement_statusId_key" ON "appartement"("statusId");
+CREATE UNIQUE INDEX "appartementStatus_appartementId_key" ON "appartementStatus"("appartementId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
@@ -144,10 +184,16 @@ CREATE UNIQUE INDEX "Authenticator_credentialID_key" ON "Authenticator"("credent
 ALTER TABLE "appartement" ADD CONSTRAINT "appartement_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "appartement" ADD CONSTRAINT "appartement_statusId_fkey" FOREIGN KEY ("statusId") REFERENCES "appartementStatus"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "appartementStatus" ADD CONSTRAINT "appartementStatus_appartementId_fkey" FOREIGN KEY ("appartementId") REFERENCES "appartement"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "medias" ADD CONSTRAINT "medias_appartementId_fkey" FOREIGN KEY ("appartementId") REFERENCES "appartement"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Booking" ADD CONSTRAINT "Booking_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Booking" ADD CONSTRAINT "Booking_appartementId_fkey" FOREIGN KEY ("appartementId") REFERENCES "appartement"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
