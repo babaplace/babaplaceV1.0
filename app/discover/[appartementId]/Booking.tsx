@@ -3,9 +3,7 @@
 import { PhoneIcon } from "lucide-react";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { DayPicker } from "react-day-picker";
-import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
+
 import { Calendar as CalendarIcon } from "lucide-react";
 import {
   Popover,
@@ -14,11 +12,11 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
+import FormReservationVisite from "./FormReservationVisite";
 
 type Props = {};
 
 const Booking = (props: Props) => {
-  const [date, setDate] = React.useState<Date>();
   return (
     <Card className="pt-6 md:absolute right-0 bottom-0">
       <CardContent className="mt-auto grid grid-cols-1 gap-4 w-full justify-between">
@@ -31,16 +29,7 @@ const Booking = (props: Props) => {
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-4">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                initialFocus
-              />
-
-              <Button className="items-end mx-4 self-end" variant={"outline"}>
-                Reserver
-              </Button>
+              <FormReservationVisite />
             </PopoverContent>
           </Popover>
         </div>
