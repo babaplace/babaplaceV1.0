@@ -108,7 +108,7 @@ const FormReservationVisite = ({ appartementId }: Props) => {
             {date ? format(date, "PPP") : <span>Choisir une date</span>}
           </Button>
         </PopoverTrigger>
-        {errors?.formErrors.fieldErrors.phone && (
+        {errors?.formErrors.fieldErrors.date && (
           <p className="text-xs text-red-500 mx-1">Veuillez choisir une date</p>
         )}
         <PopoverContent className="w-auto p-0">
