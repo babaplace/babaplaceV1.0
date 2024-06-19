@@ -15,6 +15,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import FormReservationVisite from "./FormReservationVisite";
 import { useBookingVisiteStore } from "@/lib/zustand/stores/bookingVisiteStore";
 import { Separator } from "@/components/ui/separator";
+import { format } from "date-fns";
 
 type Props = { appartementId: string };
 
@@ -35,12 +36,8 @@ const Booking = ({ appartementId }: Props) => {
                 Vous avez dejà une reservation de visite pour cet appartement !
                 <span className="text-black">
                   date:{" "}
-                  {isBookingVisite.date?.toLocaleDateString("fr-FR", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  {isBookingVisite.date &&
+                    format(isBookingVisite.date, "eeee, d MMMM yyyy")}
                 </span>
               </p>
             </>
