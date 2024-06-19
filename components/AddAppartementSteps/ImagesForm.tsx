@@ -63,7 +63,7 @@ export default function ImageForm() {
         <MultiImageDropzone
           value={fileStates}
           dropzoneOptions={{
-            maxFiles: 6,
+            maxFiles: 12,
           }}
           onChange={(files) => {
             setFileStates(files);
