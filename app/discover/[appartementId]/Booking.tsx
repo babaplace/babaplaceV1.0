@@ -1,5 +1,6 @@
 "use client";
 
+import { fr } from "date-fns/locale/fr";
 import { Book, PhoneIcon } from "lucide-react";
 import React from "react";
 import { Button } from "@/components/ui/button";
@@ -37,7 +38,9 @@ const Booking = ({ appartementId }: Props) => {
                 <span className="text-black">
                   date:{" "}
                   {isBookingVisite.date &&
-                    format(isBookingVisite.date, "eeee, d MMMM yyyy")}
+                    format(isBookingVisite.date, "eeee, d MMMM yyyy", {
+                      locale: fr,
+                    })}
                 </span>
               </p>
             </>
