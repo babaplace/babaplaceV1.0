@@ -88,7 +88,9 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
             <p>{appartement.description}</p>
           </div>
           {/* actions */}
-          {appartement.status?.status === "disponible" ? <Booking /> : null}
+          {appartement.status?.status === "disponible" ? (
+            <Booking appartementId={appartementId} />
+          ) : null}
         </div>
       </Container>
 

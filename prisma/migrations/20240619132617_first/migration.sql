@@ -79,17 +79,16 @@ CREATE TABLE "Contact" (
 );
 
 -- CreateTable
-CREATE TABLE "Booking" (
+CREATE TABLE "BookingVisite" (
     "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
     "appartementId" TEXT NOT NULL,
-    "startDate" TIMESTAMP(3) NOT NULL,
-    "endDate" TIMESTAMP(3) NOT NULL,
-    "status" "BookingStatus" NOT NULL DEFAULT 'PENDING',
+    "name" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
+    "datevisite" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Booking_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "BookingVisite_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -190,10 +189,7 @@ ALTER TABLE "appartementStatus" ADD CONSTRAINT "appartementStatus_appartementId_
 ALTER TABLE "medias" ADD CONSTRAINT "medias_appartementId_fkey" FOREIGN KEY ("appartementId") REFERENCES "appartement"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Booking" ADD CONSTRAINT "Booking_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Booking" ADD CONSTRAINT "Booking_appartementId_fkey" FOREIGN KEY ("appartementId") REFERENCES "appartement"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "BookingVisite" ADD CONSTRAINT "BookingVisite_appartementId_fkey" FOREIGN KEY ("appartementId") REFERENCES "appartement"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

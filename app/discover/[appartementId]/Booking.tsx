@@ -1,6 +1,6 @@
 "use client";
 
-import { PhoneIcon } from "lucide-react";
+import { Book, PhoneIcon } from "lucide-react";
 import React from "react";
 import { Button } from "@/components/ui/button";
 
@@ -13,25 +13,56 @@ import {
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import FormReservationVisite from "./FormReservationVisite";
+import { useBookingVisiteStore } from "@/lib/zustand/stores/bookingVisiteStore";
+import { Separator } from "@/components/ui/separator";
 
-type Props = {};
+type Props = { appartementId: string };
 
-const Booking = (props: Props) => {
+const Booking = ({ appartementId }: Props) => {
+  const bookingsVisite = useBookingVisiteStore((state) => state.bookingsVisite);
+
+  const isBookingVisite = bookingsVisite.find(
+    (book) => book.appartementId === appartementId
+  );
   return (
     <Card className="pt-6 md:absolute right-0 bottom-0">
       <CardContent className="mt-auto grid grid-cols-1 gap-4 w-full justify-between">
         <div>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button className={cn("w-full")}>
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                Reserver une visite
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-4">
-              <FormReservationVisite />
-            </PopoverContent>
-          </Popover>
+          {isBookingVisite && isBookingVisite.isBooking ? (
+            <>
+              <p>Reservation de visite :</p>
+              <p className="text-green-500 text-xs flex flex-col gap-1 bold">
+                Vous avez dejà une reservation de visite pour cet appartement !
+                <span className="text-black">
+                  date:{" "}
+                  {isBookingVisite.date?.toLocaleDateString("fr-FR", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+              </p>
+            </>
+          ) : (
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button className={cn("w-full")}>
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  Reserver une visite
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-4">
+                <FormReservationVisite appartementId={appartementId} />
+              </PopoverContent>
+            </Popover>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Separator className="flex-1 bg-black" />
+          <span>Ou</span>
+          <Separator className="flex-1 bg-black" />
         </div>
 
         <Button
