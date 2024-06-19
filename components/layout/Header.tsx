@@ -73,7 +73,10 @@ export default function Header({ user }: HeaderProps) {
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {user?.user ? (
-            <ProfileAvatarHeader userSession={user} />
+            <ProfileAvatarHeader
+              setMobileMenuOpen={setMobileMenuOpen}
+              userSession={user}
+            />
           ) : (
             <Link
               href="/auth/login"
@@ -134,7 +137,10 @@ export default function Header({ user }: HeaderProps) {
               </div>
               <div className="py-6">
                 {user?.user ? (
-                  <ProfileAvatarHeader userSession={user} />
+                  <ProfileAvatarHeader
+                    setMobileMenuOpen={setMobileMenuOpen}
+                    userSession={user}
+                  />
                 ) : (
                   <Button
                     onClick={(e) => {
