@@ -7,7 +7,7 @@ import { getAllAppartementsWithImages } from "@/src/db/apartement.query";
 const SectionPropertiesA = async () => {
   const appartements = await getAllAppartementsWithImages(4);
   return (
-    <div className="bg-cover bg-image py-16 px-8">
+    <div className="bg-cover  py-16 px-8">
       <TitleSection>
         <h2 className="text-3xl tracking-tighter sm:text-5xl">
           Appartement récemment <span className="text-primary">ajoutée !</span>
