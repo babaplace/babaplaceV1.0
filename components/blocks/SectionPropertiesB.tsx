@@ -14,7 +14,7 @@ const SectionPropertiesB = async () => {
           Vous pourriez <span className="text-primary">aimé !</span>
         </h2>
       </TitleSection>
-      <Container className="grid items-start md:grid-cols-4 gap-10 justify-between  ">
+      <Container className="flex flex-col justify-center md:grid md:items-start md:grid-cols-4 gap-10 md:justify-between  ">
         {appartements.map((appartement) => (
           <CardPropertyB appartement={appartement} key={appartement.id} />
         ))}

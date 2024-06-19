@@ -3,8 +3,7 @@
 import React from "react";
 import Container from "../layout/Container";
 
-import { Button, buttonVariants } from "../ui/button";
-import { suggestions } from "@/src/data/searchData";
+import { buttonVariants } from "../ui/button";
 import Search from "./Search";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -13,7 +12,7 @@ type Props = {};
 
 const SearchHero = (props: Props) => {
   return (
-    <Container className=" bg-white rounded-lg max-xl:mx-8 shadow-lg p-6">
+    <Container className=" bg-white rounded-lg max-md:shadow-2xl max-xl:mx-8 shadow-lg p-6">
       <div className="md:flex  justify-between items-end gap-14 ">
         <Search />
         <Link

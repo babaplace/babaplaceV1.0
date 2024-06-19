@@ -15,7 +15,7 @@ const Hero = (props: Props) => {
   ];
   return (
     <div className="relative mb-16 max-md:mb-96">
-      <ImagesSlider className="h-[40rem]" images={images}>
+      <div className="h-[20rem] flex flex-col justify-center items-center bg-slate-600">
         <motion.div
           initial={{
             opacity: 0,
@@ -38,7 +38,7 @@ const Hero = (props: Props) => {
             université
           </motion.p>
           <div>
-            <div className="flex items-center justify-center space-x-2">
+            {/* <div className="flex items-center justify-center space-x-2">
               <Link
                 href="/appartements/appartement/add"
                 className="px-2 py-2 max-md:text-xs text text-gray-900 bg-gray-300 border  rounded-lg lg:px-8 lg:py-3 hover:bg-gray-100 hover:shadow"
@@ -51,10 +51,10 @@ const Hero = (props: Props) => {
               >
                 Voir les biens
               </Link>
-            </div>
+            </div> */}
           </div>
         </motion.div>
-      </ImagesSlider>
+      </div>
       <div className="absolute  left-0 right-0 -bottom-24 max-md:-bottom-96 ">
         <SearchHero />
       </div>

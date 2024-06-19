@@ -6,7 +6,7 @@ type Props = {};
 
 const SearchSection = (props: Props) => {
   return (
-    <Container className=" bg-white  rounded-lg max-xl:mx-8 shadow-sm p-6 mt-8  border-gray-50 border">
+    <Container className="  rounded-lg max-xl:mx-8 shadow-sm  p-6 mt-8  border-gray-100 border">
       <div className="md:flex  justify-between items-start gap-14 mx-14 ">
         <Search />
       </div>

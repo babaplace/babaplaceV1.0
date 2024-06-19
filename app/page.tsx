@@ -8,7 +8,7 @@ import { Suspense } from "react";
 export default function Home() {
   return (
     <main>
-      {/* <Hero /> */}
+      <Hero />
       <Suspense fallback={<SectionPropertiesASkeleton />}>
         <SectionPropertiesA />
       </Suspense>
