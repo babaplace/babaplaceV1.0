@@ -15,7 +15,8 @@ const Hero = (props: Props) => {
   ];
   return (
     <div className="relative mb-16 max-md:mb-96">
-      <div className="h-[20rem] flex flex-col justify-center items-center bg-slate-600">
+      <div className="flex absolute top-0 right-0 left-0 bottom-0 bg-black bg-opacity-50"></div>
+      <div className="h-[20rem] flex flex-col justify-center items-center bg-[url('/assets/images/hero.png')] bg-center bg-cover">
         <motion.div
           initial={{
             opacity: 0,
