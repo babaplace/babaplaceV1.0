@@ -9,7 +9,7 @@ const SectionPropertiesB = async () => {
     <div className="bg-white">
       <section className="py-16 container mx-auto px-4 ">
         <h2 className="text-3xl font-bold text-center mb-12">
-          Vous pourriez <span className="text-primary">aimé !</span>
+          Vous pourriez aimé !
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {appartements.map((appartement) => (
