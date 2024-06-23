@@ -21,6 +21,7 @@ import { notFound } from "next/navigation";
 import React from "react";
 import ImagesPageAppartement from "@/components/ImagesPageAppartement";
 import Booking from "./Booking";
+import { SuggestedApartments } from "./Suggestions";
 
 type PageAppartementProps = {
   params: { appartementId: string };
@@ -32,129 +33,113 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
   if (!appartement) {
     return notFound();
   }
+  const suggestedApartments = [
+    {
+      title: "Modern Apartment with Sea View",
+      price: 3500,
+      image: "apartment1.jpg",
+      rating: 4.7,
+      reviews: 18,
+    },
+    {
+      title: "Cozy Studio in City Center",
+      price: 2800,
+      image: "apartment2.jpg",
+      rating: 4.5,
+      reviews: 23,
+    },
+    {
+      title: "Spacious Family Apartment",
+      price: 4200,
+      image: "apartment3.jpg",
+      rating: 4.8,
+      reviews: 15,
+    },
+  ];
 
   return (
-    <div>
-      {/* <TitlePage /> */}
-
-      <Container className="mb-24 flex justify-between items-start gap-8 p-4  max-md:flex-col relative">
-        {/* images */}
-        <ImagesPageAppartement images={appartement.medias} />
-
-        {/* details right */}
-        <div className="w-full max-md:grid md:w-1/2 px-4 flex flex-col gap-6">
-          {/* title */}
-          <h2 className="text-2xl font-extrabold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+    <div className="bg-gray-100 min-h-screen">
+      <main className="container mx-auto px-4 py-8">
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h1 className="text-3xl font-bold text-gray-800 mb-4">
             {appartement.title}
-          </h2>
-          {/* address */}
-          <div className="flex items-center gap-8 ">
-            <p className="[text-shadow:_0_1px_0_rgb(0_0_0_/_40%)] flex gap-4 items-center">
-              <Building2 />
-              <span>{appartement.city}</span>
-            </p>
-            <p className="[text-shadow:_0_1px_0_rgb(0_0_0_/_40%)] flex gap-4 items-center">
-              <MapPinned />
-              <span>{appartement.address}</span>
-            </p>
-          </div>
-          {/* pricing */}
-          <div className="flex justify-between items-center">
-            <div>
-              <span className="text-sm font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-                à partir de :
-              </span>
-              <p className="text-primary text-2xl font-extrabold">
-                {appartement.price} DH
-              </p>
+          </h1>
+          <p className="text-lg text-gray-600 mb-4">
+            {appartement.city}, Maroc
+          </p>
+
+          <ImagesPageAppartement images={appartement.medias} />
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="w-full lg:w-2/3">
+              {/* property details */}
+              <div className="flex justify-between text-gray-600 mb-6">
+                <ItemInfos title="Ville" value={appartement.city} />
+                <ItemInfos title="Adresse" value={appartement.address} />
+                <ItemInfos
+                  title="Caution"
+                  value={`MAD  ${appartement.caution}`}
+                />
+                <ItemInfos
+                  title="Chambres"
+                  value={appartement.numberChambres}
+                />
+              </div>
+
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  À propos de cet appartement
+                </h2>
+                <p className="text-gray-600">{appartement.description}</p>
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-2xl font-semibold mb-4">Details</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <ItemInfosIcon
+                    Icon={UtensilsCrossed}
+                    title="Cuisine"
+                    value={`${appartement.numberCuisine}`}
+                  />
+                  <ItemInfosIcon
+                    Icon={Bed}
+                    title="Chambres"
+                    value={`${appartement.numberChambres ?? 0}`}
+                  />
+                  <ItemInfosIcon
+                    Icon={Building2}
+                    title="Niveau"
+                    value={`${appartement.niveauEtage ?? 0}`}
+                  />
+                  <ItemInfosIcon
+                    Icon={Building}
+                    title="Salons"
+                    value={`${appartement.numberSalons ?? 0}`}
+                  />
+                  <ItemInfosIcon
+                    Icon={Waves}
+                    title="Toilettes"
+                    value={`${appartement.numberToilettes ?? 0}`}
+                  />
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-2xl font-semibold mb-4">Localisation</h3>
+                <Map location="Route côtière, Casablanca, Maroc" />
+              </div>
             </div>
-            <div>
-              <span className="text-sm font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-                caution :
-              </span>
-              <p className="text-primary font-bold">{appartement.caution} DH</p>
+
+            <div className="w-full lg:w-1/3">
+              <Booking
+                appartementId={appartement.id}
+                price={appartement.price}
+              />
             </div>
           </div>
-          <div className="flex items-center ">
-            <div className="text-gray-500">Disponible maintenant</div>
-            {appartement?.status?.status === "disponible" ? (
-              <CheckIcon className="ml-2 text-green-500" />
-            ) : (
-              <X className="ml-2 text-red-500" />
-            )}
-          </div>
-          {/* description */}
-          <div>
-            <p>{appartement.description}</p>
-          </div>
-          {/* actions */}
-          {appartement.status?.status === "disponible" ? (
-            <Booking appartementId={appartementId} />
-          ) : null}
         </div>
-      </Container>
 
-      {/* informations */}
-      <Container className="bg-white rounded-sm shadow-lg p-8 my-16 md:my-24 max-xl:mx-4  ">
-        <h1 className="font-bold  text-2xl">Informations </h1>
-        {/* datails */}
-        <div>
-          <div className="my-4  gap-16  grid max-md:gap-4 md:flex md:justify-between items-center">
-            <ItemInfos title="Ville" value={appartement.city} />
-            <ItemInfos title="Adresse" value={appartement.address} />
-            <ItemInfos title="Caution" value={`MAD  ${appartement.caution}`} />
-            <ItemInfos title="Chambres" value={appartement.numberChambres} />
-          </div>
-        </div>
-      </Container>
-
-      {/* Addresse */}
-      {/* <Container className="bg-white rounded-sm shadow-lg my-16 md:my-24 py-0  max-xl:mx-4  ">
-        <h1 className="font-bold  text-xl italic px-8 py-2 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-          {appartement.city} - {appartement.address}{" "}
-        </h1>
-        <Image
-          src={"/maps.svg"}
-          alt="carte de localisation"
-          width={600}
-          height={600}
-          className="w-full  bg-gray-50"
-        ></Image>
-      </Container> */}
-
-      {/* Details */}
-      <Container className="bg-white my-16 md:my-24 shadow-lg rounded-sm p-8 max-xl:mx-4 ">
-        <h1 className="font-bold  text-2xl">Details </h1>
-        <div>
-          <div className="my-6  gap-10 grid grid-cols-2 md:grid-cols-4  items-center flex-wrap">
-            <ItemInfosIcon
-              Icon={UtensilsCrossed}
-              title="Cuisine"
-              value={`${appartement.numberCuisine}`}
-            />
-            <ItemInfosIcon
-              Icon={Bed}
-              title="Chambres"
-              value={`${appartement.numberChambres ?? 0}`}
-            />
-            <ItemInfosIcon
-              Icon={Building2}
-              title="Niveau"
-              value={`${appartement.niveauEtage ?? 0}`}
-            />
-            <ItemInfosIcon
-              Icon={Building}
-              title="Salons"
-              value={`${appartement.numberSalons ?? 0}`}
-            />
-            <ItemInfosIcon
-              Icon={Waves}
-              title="Toilettes"
-              value={`${appartement.numberToilettes ?? 0}`}
-            />
-          </div>
-        </div>
-      </Container>
+        <SuggestedApartments currentAppartementCity={appartement.city} />
+      </main>
     </div>
   );
 };
@@ -169,10 +154,10 @@ const ItemInfos = ({
   value?: string | null | number;
 }) => {
   return value ? (
-    <div>
+    <span>
       <p className="font-extralight my-1 text-xs">{title}</p>
       <h4 className="my-1 text-lg font-semibold">{value}</h4>
-    </div>
+    </span>
   ) : null;
 };
 
@@ -186,12 +171,25 @@ const ItemInfosIcon = ({
   Icon: LucideIcon;
 }) => {
   return value ? (
-    <div className="flex items-start gap-2">
-      <Icon className="text-primary" />
-      <div>
-        <p className="font-extralight text-xs mb-1  ">{title}</p>
-        <h4 className=" text-lg font-semibold">{value}</h4>
-      </div>
+    <div className="flex items-center">
+      <i className={`mr-2 text-primary`}>
+        <Icon />
+      </i>
+      <span>
+        {value}
+        {title}
+      </span>
     </div>
   ) : null;
 };
+
+type MapProps = {
+  location: string;
+};
+
+const Map = ({ location }: MapProps) => (
+  <div className="bg-gray-300 h-64 rounded-lg flex items-center justify-center mb-8">
+    {/* Placeholder for an actual map component */}
+    <p className="text-gray-600">Carte montrant {location}</p>
+  </div>
+);

@@ -12,7 +12,7 @@ type Props = {
 
 const CardFilter = ({ options, label, selectedValue, setValue }: Props) => {
   return (
-    <div className="border border-gray-100 p-4 rounded-sm my-4 ">
+    <div className="border border-gray-100 bg-white p-4 rounded-sm my-4 ">
       <h3 className="text-sm font-bold mb-4">{label}</h3>
       <div className="grid gap-4 space-y-2 pr-8">
         <RadioGroup

@@ -11,7 +11,7 @@ const Filters = () => {
   );
   return (
     <div className="hidden xl:block">
-      <div className="border border-gray-100 p-4 rounded-sm my-2">
+      <div className="border border-gray-100 p-4 rounded-sm my-2 bg-white">
         <h2 className="text-lg font-bold">Filtrer par : </h2>
       </div>
       <CardFilter

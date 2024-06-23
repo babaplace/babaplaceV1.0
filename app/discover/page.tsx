@@ -12,7 +12,7 @@ import Filters from "@/components/blocks/Filters";
 export default async function page() {
   const appartements = await getAllAppartementsWithImages();
   return (
-    <div>
+    <div className="">
       <TitlePage />
       <div className="hidden xl:block">
         <SearchSection />

@@ -8,8 +8,8 @@ import React, { useState } from "react";
 const ImagesPageAppartement = ({ images }: { images: medias[] }) => {
   const [showImage, setshowImage] = useState<string>(images[0].url);
   return (
-    <div className="md:w-1/2">
-      <div className="grid gap-6">
+    <div className="mb-8">
+      <div className="grid gap-6 md:grid-cols-2">
         <div className="relative group grid bg-gray-50 [grid-template-areas:stack] overflow-hidden rounded-lg">
           <Image
             src={showImage}

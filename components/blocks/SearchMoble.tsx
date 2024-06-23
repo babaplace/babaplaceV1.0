@@ -30,7 +30,7 @@ export default function SearchMobile() {
   } = useSearchStore((state) => state);
 
   return (
-    <div className="w-full flex-1 flex gap-2 max-w-6xl  mx-auto p-4 md:p-6">
+    <div className="w-full flex-1 flex gap-2 max-w-6xl  mx-auto p-4 md:p-6 bg-white">
       <div className="relative flex-1 mr-4 w-full">
         <SearchIcon className="absolute left-3 top-3 h-4 w-4 text-gray-500 dark:text-gray-400" />
         <Input

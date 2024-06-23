@@ -1,24 +1,22 @@
 import React from "react";
 import Container from "../layout/Container";
-import CardPropertyA from "./CardPropertyA";
-import { TitleSection } from "./TitleSection";
 import { getAllAppartementsWithImages } from "@/src/db/apartement.query";
 import CardPropertyB from "./CardPropertyB";
 
 const SectionPropertiesB = async () => {
   const appartements = await getAllAppartementsWithImages(4);
   return (
-    <div className="bg-cover  py-16 px-8">
-      <TitleSection>
-        <h2 className="text-3xl tracking-tighter sm:text-5xl">
+    <div className="bg-white">
+      <section className="py-16 container mx-auto px-4 ">
+        <h2 className="text-3xl font-bold text-center mb-12">
           Vous pourriez <span className="text-primary">aimé !</span>
         </h2>
-      </TitleSection>
-      <Container className="flex flex-col justify-center md:grid md:items-start md:grid-cols-4 gap-10 md:justify-between  ">
-        {appartements.map((appartement) => (
-          <CardPropertyB appartement={appartement} key={appartement.id} />
-        ))}
-      </Container>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {appartements.map((appartement) => (
+            <CardPropertyB appartement={appartement} key={appartement.id} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
