@@ -123,10 +123,10 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
                 </div>
               </div>
 
-              <div className="mb-8">
+              {/* <div className="mb-8 p-4">
                 <h3 className="text-2xl font-semibold mb-4">Localisation</h3>
                 <Map location="Route côtière, Casablanca, Maroc" />
-              </div>
+              </div> */}
             </div>
 
             <div className="w-full lg:w-1/3">
