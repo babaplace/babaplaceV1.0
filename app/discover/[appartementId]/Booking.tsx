@@ -27,16 +27,12 @@ const Booking = ({ appartementId, price }: Props) => {
     (book) => book.appartementId === appartementId
   );
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg sticky top-4">
-      <div className="flex justify-between items-center mb-4">
+    <div className="bg-white p-6 rounded-lg shadow-lg  top-4 grid items-center  ">
+      <div className="flex justify-between items-center mb-4 ">
         <span className="text-2xl font-bold">
-          <span className="text-base font-normal">a partir de : </span> {price}{" "}
-          MAD
+          <span className="text-base font-normal">a partir de : </span>{" "}
+          <span className="text-primary">{price} MAD</span>
         </span>
-        <div className="flex items-center">
-          <i className="fas fa-star text-yellow-400 mr-1"></i>
-          <span>caution: {price} MAD</span>
-        </div>
       </div>
       <form>
         <div>
@@ -55,17 +51,7 @@ const Booking = ({ appartementId, price }: Props) => {
               </p>
             </>
           ) : (
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button className={cn("w-full")}>
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  Reserver une visite
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-4">
-                <FormReservationVisite appartementId={appartementId} />
-              </PopoverContent>
-            </Popover>
+            <FormReservationVisite appartementId={appartementId} />
           )}
         </div>
 

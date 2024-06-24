@@ -81,45 +81,49 @@ const FormReservationVisite = ({ appartementId }: Props) => {
           <p className="text-xs text-red-500 m-1">Le nom est requis</p>
         )}
       </div>
-      <div>
-        <PhoneInput
-          className={cn(
-            "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          )}
-          placeholder="Entrer un numero de telephone"
-          value={phone}
-          //   defaultCountry="MA"
-          onChange={setPhone}
-        />
-        {errors?.formErrors.fieldErrors.phone && (
-          <p className="text-xs text-red-500 m-1">Le numero est requis</p>
-        )}
-      </div>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant={"outline"}
+      <div className="grid md:grid-cols-2 gap-2">
+        <div>
+          <PhoneInput
             className={cn(
-              "w-[280px] justify-start mb-0 text-left font-normal",
-              !date && "text-muted-foreground"
+              "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             )}
-          >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            {date ? format(date, "PPP") : <span>Choisir une date</span>}
-          </Button>
-        </PopoverTrigger>
-        {errors?.formErrors.fieldErrors.date && (
-          <p className="text-xs text-red-500 mx-1">Veuillez choisir une date</p>
-        )}
-        <PopoverContent className="w-auto p-0">
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={setDate}
-            initialFocus
+            placeholder="Entrer un numero de telephone"
+            value={phone}
+            //   defaultCountry="MA"
+            onChange={setPhone}
           />
-        </PopoverContent>
-      </Popover>
+          {errors?.formErrors.fieldErrors.phone && (
+            <p className="text-xs text-red-500 m-1">Le numero est requis</p>
+          )}
+        </div>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant={"outline"}
+              className={cn(
+                "w-[280px] justify-start mb-0 text-left font-normal",
+                !date && "text-muted-foreground"
+              )}
+            >
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              {date ? format(date, "PPP") : <span>Choisir une date</span>}
+            </Button>
+          </PopoverTrigger>
+          {errors?.formErrors.fieldErrors.date && (
+            <p className="text-xs text-red-500 mx-1">
+              Veuillez choisir une date
+            </p>
+          )}
+          <PopoverContent className="w-auto p-0">
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
+      </div>
 
       <Button
         type="submit"

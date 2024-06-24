@@ -19,7 +19,7 @@ type cardPropertyProps = { appartement: appartementByIdWithMediasType };
 
 const CardPropertyA = ({ appartement }: cardPropertyProps) => {
   return (
-    <div className="p-0 bg-white w-full rounded-sm">
+    <div className="p-0 bg-white w-full ">
       {/*
       /> */}
 
@@ -32,7 +32,7 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
                 width={400}
                 height={500}
                 alt=""
-                className="rounded-sm w-full h-60 object-cover"
+                className=" w-full h-60 object-cover"
               />
             </CarouselItem>
           ))}

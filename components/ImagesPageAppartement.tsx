@@ -1,50 +1,109 @@
 "use client";
 
 import { medias } from "@prisma/client";
-import { ZoomInIcon } from "lucide-react";
+import { PlusIcon, ZoomInIcon } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const ImagesPageAppartement = ({ images }: { images: medias[] }) => {
   const [showImage, setshowImage] = useState<string>(images[0].url);
   return (
-    <div className="mb-8">
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="relative group grid bg-gray-50 [grid-template-areas:stack] overflow-hidden rounded-lg">
+    <div className="space-y-4">
+      <div className="relative">
+        <Image
+          width={600}
+          height={600}
+          src={showImage ?? ""}
+          alt="Appartement"
+          className="w-full h-96 object-cover rounded-lg shadow-lg"
+        />
+      </div>
+      <div className="grid grid-cols-4 gap-2">
+        {images[0]?.url && (
           <Image
-            src={showImage}
-            alt="Main Image"
-            width={800}
-            height={600}
-            className="[grid-area:stack] object-cover  aspect-[4/3] transition-all"
+            onClick={(e) => {
+              setshowImage(images[0].url);
+            }}
+            width={200}
+            height={200}
+            src={images[0].url}
+            alt="Chambre"
+            className="w-full h-24 object-cover rounded-lg shadow cursor-pointer hover:opacity-75 transition duration-300"
           />
-          <button className="absolute top-4 right-4 bg-white/50 backdrop-blur-sm rounded-full p-2 hover:bg-white/80 transition-colors">
-            <ZoomInIcon className="w-5 h-5" />
-            <span className="sr-only">Zoom</span>
-          </button>
-        </div>
-        <div className="grid grid-cols-4 gap-2">
-          {images.map((image) => (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setshowImage(image.url);
-              }}
-              key={image.id}
-              title="image"
-              className="relative group grid [grid-template-areas:stack] overflow-hidden rounded-md"
+        )}
+        {images[1]?.url && (
+          <Image
+            onClick={(e) => {
+              setshowImage(images[1].url);
+            }}
+            width={200}
+            height={200}
+            src={images[1].url}
+            alt="Chambre"
+            className="w-full h-24 object-cover rounded-lg shadow cursor-pointer hover:opacity-75 transition duration-300"
+          />
+        )}
+        {images[2]?.url && (
+          <Image
+            onClick={(e) => {
+              setshowImage(images[2].url);
+            }}
+            width={200}
+            height={200}
+            src={images[2].url}
+            alt="Chambre"
+            className="w-full h-24 object-cover rounded-lg shadow cursor-pointer hover:opacity-75 transition duration-300"
+          />
+        )}
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <div
+              className="relative"
+              onClick={() => setshowImage(images[3].url)}
             >
+              {images[3]?.url && (
+                <Image
+                  width={200}
+                  height={200}
+                  src={images[3].url}
+                  alt="Chambre"
+                  className="w-full h-24 object-cover rounded-lg shadow cursor-pointer hover:opacity-75 transition duration-300"
+                />
+              )}
+
+              {images.length > 4 && (
+                <div className="absolute inset-0 bg-black bg-opacity-50 hover:opacity-75 cursor-pointer transition duration-300 flex items-center justify-center rounded-lg">
+                  <span className="text-black bg-white p-1 rounded-full text-center font-semibold">
+                    <PlusIcon size={20} />
+                  </span>
+                </div>
+              )}
+            </div>
+          </DialogTrigger>
+          <DialogContent className="flex gap-2 w-[800px] overflow-x-auto rounded-none">
+            {images.map((image, index) => (
               <Image
+                key={index}
                 src={image.url}
-                alt="Thumbnail 1"
-                width={200}
-                height={150}
-                className="[grid-area:stack] object-cover w-full aspect-[4/3] group-hover:opacity-80 transition-opacity"
+                width={600}
+                height={600}
+                alt={`Image ${index + 1}`}
+                className="w-full h-auto object-cover rounded-lg shadow"
               />
-              <div className="absolute inset-0 bg-black/50 group-hover:opacity-0 transition-opacity" />
-            </button>
-          ))}
-        </div>
+            ))}
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
