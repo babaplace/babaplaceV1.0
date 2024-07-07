@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import Container from "../layout/Container";
+import { FaSearch, FaMapMarkerAlt, FaRegCalendarAlt } from "react-icons/fa";
 
 type Props = {};
 
@@ -28,48 +29,43 @@ const services = [
   },
 ];
 
-const ServiceCard = ({
-  title,
-  description,
-  Icon,
-}: {
-  Icon: LucideIcon;
-  title: string;
-  description: string;
-}) => {
-  return (
-    <div className="px-6 py-8 min-h-80 bg-white rounded-md text-center flex justify-evenly items-center flex-col overflow-hidden shadow-xl hover:shadow-xl transition  transform hover:-translate-y-1 hover:shadow-red-200 ">
-      <Icon className="text-primary" size={50} />
-      <h2 className="text-4xl font-medium text-gray-800">{title}</h2>
-      <p className="max-w-md mx-auto mt-4  text-xl text-gray-400">
-        {description}
-      </p>
-    </div>
-  );
-};
-
 const Services = (props: Props) => {
   return (
-    <section className="bg-white py-16">
-      <div className="container mx-auto px-4">
+    <section className="bg-gray-100 py-16">
+      <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold mb-8 text-center">
-          Comment ça marche
+          Pourquoi Choisir BabaPlace ?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="text-5xl text-primary mb-4">🔍</div>
-            <h3 className="text-xl font-bold mb-2">Recherchez</h3>
-            <p>Trouvez l&apos;appartement parfait pour votre séjour</p>
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <div className="text-red-600 text-4xl mb-4">
+              <FaSearch />
+            </div>
+            <h3 className="text-xl font-bold mb-2">Recherche Facile</h3>
+            <p className="text-gray-600">
+              Trouvez rapidement le logement qui vous convient grâce à notre
+              moteur de recherche avancé.
+            </p>
           </div>
-          <div className="text-center">
-            <div className="text-5xl text-primary mb-4">📅</div>
-            <h3 className="text-xl font-bold mb-2">Réservez</h3>
-            <p>Choisissez réservez en quelques clics</p>
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <div className="text-red-600 text-4xl mb-4">
+              <FaMapMarkerAlt />
+            </div>
+            <h3 className="text-xl font-bold mb-2">Localisations Idéales</h3>
+            <p className="text-gray-600">
+              Découvrez des propriétés dans les meilleurs quartiers et
+              emplacements.
+            </p>
           </div>
-          <div className="text-center">
-            <div className="text-5xl text-primary mb-4">🏠</div>
-            <h3 className="text-xl font-bold mb-2">Profitez</h3>
-            <p>Installez-vous et profitez de votre séjour</p>
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <div className="text-red-600 text-4xl mb-4">
+              <FaRegCalendarAlt />
+            </div>
+            <h3 className="text-xl font-bold mb-2">Réservation Simple</h3>
+            <p className="text-gray-600">
+              Réservez votre visite ou votre location en quelques clics
+              seulement.
+            </p>
           </div>
         </div>
       </div>

@@ -30,15 +30,15 @@ export default async function RootLayout({
 }>) {
   const userSession = await auth();
   return (
-    <html lang="en">
-      <body className={cn(font.className, "min-h-screen")}>
+    <html lang="fr">
+      <body className={cn(font.className, "min-h-screen bg-gray-100 relative")}>
         <Providers>
           <Analytics />
           <Toaster theme="dark" position="top-center" richColors={true} />
           {/* <Annonce /> */}
-          {/* <Header user={userSession} /> */}
-          <div className="mx-auto ">{children}</div>
-          {/* <Footer /> */}
+          <Header user={userSession} />
+          <main className="mx-auto pt-14">{children}</main>
+          <Footer />
           <SpeedInsights />
         </Providers>
       </body>

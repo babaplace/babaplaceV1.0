@@ -1,29 +1,21 @@
 import React from "react";
-import Container from "../layout/Container";
 import CardPropertyA from "./CardPropertyA";
-import { TitleSection } from "./TitleSection";
 import { getAllAppartementsWithImages } from "@/src/db/apartement.query";
-import Link from "next/link";
 
 const SectionPropertiesA = async () => {
   const appartements = await getAllAppartementsWithImages(4);
   return (
-    <section className="py-16 container mx-auto px-4">
-      <h2 className="text-3xl font-bold text-center mb-12">
-        Nouveaux Appartements
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-        {appartements.map((appartement) => (
-          <CardPropertyA appartement={appartement} key={appartement.id} />
+    <section className="container mx-auto px-6 py-16">
+      <h2 className="text-3xl font-bold mb-8">Nouveaux Appartements</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {appartements.map((property) => (
+          <CardPropertyA key={property.id} appartement={property} />
         ))}
       </div>
-      <div className="text-center mt-12">
-        <Link
-          href="/discover"
-          className="inline-block bg-primary text-white px-8 py-3 rounded-full hover:bg-secondary transition-colors"
-        >
-          Voir plus
-        </Link>
+      <div className="text-center mt-8">
+        <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+          Voir plus d&apos;appartements
+        </button>
       </div>
     </section>
   );

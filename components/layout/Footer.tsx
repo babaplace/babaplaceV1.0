@@ -7,60 +7,48 @@ import React from "react";
 type Props = {};
 
 const Footer = () => {
-  const navs = Object.entries(navlinks).map(([key, value]) => ({
+  const navItems = Object.entries(navlinks).map(([key, value]) => ({
     ...value,
     id: key,
   }));
   return (
-    <footer className="bg-slate-600 text-white pt-8">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <h3 className="text-xl font-bold mb-2">{SITECONFIG.seo.name}</h3>
-          <p>Votre partenaire immobilier de confiance au Maroc.</p>
-        </div>
-        <div>
-          <h3 className="text-xl font-bold mb-2">Liens Rapides</h3>
-          <ul>
-            {navs.map((nav) => (
-              <li key={nav.id}>
-                <Link href={nav.href} className="hover:text-primary">
-                  {nav.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 className="text-xl font-bold mb-2">Contactez-nous</h3>
-          <p>
-            Email:{" "}
-            <a href="mailto:babaplace9@gmail.com">babaplace9@gmail.com</a>
-          </p>
-          <p>
-            Téléphone: <a href="tel:+212720802039">+212 72 08 02 039</a>
-          </p>
+    <footer className="bg-gray-800 text-white">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 className="text-lg font-bold mb-4">
+              BabaPlace - appartement à louer
+            </h3>
+            <p>Votre partenaire immobilier de confiance au Maroc.</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold mb-4">Liens Rapides</h3>
+            <ul className="space-y-2">
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className="hover:text-red-400 transition duration-300"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold mb-4">Contactez-nous</h3>
+            <p>Email: babaplace@gmail.com</p>
+            <p>Tél: +212 72 00 02 039</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold mb-4">Suivez-nous</h3>
+            {/* Add social media icons here */}
+          </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 py-2 sm:flex-row mt-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-slate-500">
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          &copy; 2024 Babaplace Inc. Tous droits réservés.
-        </p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link
-            href="/politiques/usages"
-            className="text-xs hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Conditions d&apos;utilisation
-          </Link>
-          <Link
-            href="/politiques/confidentialities"
-            className="text-xs hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Confidentialité
-          </Link>
-        </nav>
+      <div className="bg-gray-900 py-4 text-center text-sm">
+        <p>&copy; 2024 BabaPlace. Tous droits réservés.</p>
       </div>
     </footer>
   );
