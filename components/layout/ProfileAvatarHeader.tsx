@@ -28,7 +28,7 @@ const ProfileAvatarHeader = ({ userSession, setMobileMenuOpen }: Props) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   return (
-    <DropdownMenu open={open}>
+    <DropdownMenu>
       <DropdownMenuTrigger
         onClick={() => {
           setOpen(true);

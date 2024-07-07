@@ -35,10 +35,10 @@ export default async function RootLayout({
         <Providers>
           <Analytics />
           <Toaster theme="dark" position="top-center" richColors={true} />
-          <Annonce />
-          <Header user={userSession} />
+          {/* <Annonce /> */}
+          {/* <Header user={userSession} /> */}
           <div className="mx-auto ">{children}</div>
-          <Footer />
+          {/* <Footer /> */}
           <SpeedInsights />
         </Providers>
       </body>
