@@ -15,8 +15,8 @@ import {
 type Props = {};
 
 const Hero = (props: Props) => {
-  const [searchType, setSearchType] = useState<"location" | "achat">(
-    "location"
+  const [searchType, setSearchType] = useState<"appartement" | "chambre">(
+    "appartement"
   );
   return (
     <section
@@ -43,23 +43,23 @@ const Hero = (props: Props) => {
           <div className="flex justify-center mb-4">
             <button
               className={`px-4 py-2 rounded-l-full ${
-                searchType === "location"
+                searchType === "appartement"
                   ? "bg-red-600 text-white"
                   : "bg-gray-200 text-gray-700"
               }`}
-              onClick={() => setSearchType("location")}
+              onClick={() => setSearchType("appartement")}
             >
-              Location
+              Appartement
             </button>
             <button
               className={`px-4 py-2 rounded-r-full ${
-                searchType === "achat"
+                searchType === "chambre"
                   ? "bg-red-600 text-white"
                   : "bg-gray-200 text-gray-700"
               }`}
-              onClick={() => setSearchType("achat")}
+              onClick={() => setSearchType("chambre")}
             >
-              Achat
+              Chambre
             </button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

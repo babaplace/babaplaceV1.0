@@ -21,10 +21,9 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   userSession: Session;
-  setMobileMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const ProfileAvatarHeader = ({ userSession, setMobileMenuOpen }: Props) => {
+const ProfileAvatarHeader = ({ userSession }: Props) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   return (
@@ -53,7 +52,6 @@ const ProfileAvatarHeader = ({ userSession, setMobileMenuOpen }: Props) => {
               e.preventDefault();
               router.push("/profile");
               setOpen(false);
-              setMobileMenuOpen(false);
             }}
           >
             Profile
