@@ -21,8 +21,7 @@ enum appartementVerified {
 model appartement {
   id String @id @default(cuid())
 
-  title String
-
+  area     Float?
   city     String
   quartier String?
   verified appartementVerified @default(pending)
@@ -50,6 +49,10 @@ model appartement {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   BookingVisite BookingVisite[]
+}
+
+model chambre {
+  id String @id @default(cuid())
 }
 
 enum status {

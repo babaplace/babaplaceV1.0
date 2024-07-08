@@ -31,6 +31,7 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
   if (!appartement) {
     notFound();
   }
+
   return (
     <div className="p-0 bg-white w-full ">
       <motion.div
@@ -38,7 +39,7 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
         whileHover={{ scale: 1.03 }}
         className="bg-white rounded-lg shadow-lg overflow-hidden"
       >
-        <div className="relative h-48">
+        <div className="h-48 mb-10">
           <Carousel className="w-full relative">
             <CarouselContent>
               {appartement?.medias.map((image) => (
@@ -58,8 +59,8 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
           </Carousel>
         </div>
         <div className="p-4">
-          <h3 className="font-bold text-lg mb-2">{appartement?.title}</h3>
-          <p className="text-gray-600 mb-4 line-clamp-1">
+          <h3 className="font-bold text-lg mb-1">{appartement.title}</h3>
+          <p className="text-gray-600 mb-4 line-clamp-2">
             {appartement?.description}
           </p>
           <div className="flex justify-between items-center mb-4">

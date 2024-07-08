@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Mail, Menu } from "lucide-react";
+import { LogIn, Mail, Menu } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { SITECONFIG } from "@/src/config/siteConfig";
@@ -46,14 +46,14 @@ export default function Header({ user }: HeaderProps) {
       className="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-lg"
     >
       <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
-        <div className="text-2xl font-bold text-primary">
+        <Link href={"/"} className="text-2xl font-bold text-primary">
           <Image
             src={SITECONFIG.logo}
             alt={SITECONFIG.seo.description ?? "logo de baba place"}
             width={100}
             height={50}
           />
-        </div>
+        </Link>
         <div className="hidden md:flex space-x-6">
           {navItems.map((item) => (
             <Link
@@ -71,24 +71,42 @@ export default function Header({ user }: HeaderProps) {
           ))}
         </div>
         <div className="flex items-center space-x-4">
-          {user?.user ? <ProfileAvatarHeader userSession={user} /> : null}
+          {user?.user ? (
+            <ProfileAvatarHeader userSession={user} />
+          ) : (
+            <Link
+              href={"/auth/login"}
+              className={cn(
+                buttonVariants({ size: "sm" }),
+                "flex justify-center gap-2 text-xs"
+              )}
+            >
+              <span className="hidden md:inline"> Se connecter</span>{" "}
+              <LogIn size={15} />
+            </Link>
+          )}
           <div className="inline md:hidden">
-            <Sheet open={mobileMenuOpen}>
-              <SheetTrigger
-                asChild
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMobileMenuOpen(true);
-                }}
-              >
+            <Sheet defaultOpen={mobileMenuOpen}>
+              <SheetTrigger asChild>
                 <Menu />
               </SheetTrigger>
-              <SheetContent>
+              <SheetContent className=" justify-start items-start">
                 <SheetHeader>
                   <SheetTitle>
                     {user?.user ? (
                       <ProfileAvatarHeader userSession={user} />
-                    ) : null}
+                    ) : (
+                      <Link
+                        href={"/auth/login"}
+                        className={cn(
+                          buttonVariants({ size: "sm" }),
+                          "gap-2 text-xs"
+                        )}
+                      >
+                        <span className="hidden md:inline"> Se connecter</span>{" "}
+                        <LogIn size={15} />
+                      </Link>
+                    )}
                   </SheetTitle>
                   <SheetDescription>
                     <Image
@@ -99,31 +117,27 @@ export default function Header({ user }: HeaderProps) {
                     />
                   </SheetDescription>
                 </SheetHeader>
-
-                <SheetFooter>
-                  <SheetClose asChild>
-                    <div className="grid gap-4 py-4">
-                      {navItems.map((item) => (
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            router.push(item.href);
-                            setMobileMenuOpen(false);
-                          }}
-                          key={item.name}
-                          className={cn(
-                            "text-gray-600 hover:text-primary transition duration-300",
-                            {
-                              "text-primary": pathname === item.href,
-                            }
-                          )}
-                        >
-                          {item.name}
-                        </button>
-                      ))}
-                    </div>
-                  </SheetClose>
-                </SheetFooter>
+                <div className="grid gap-4 py-4">
+                  {navItems.map((item) => (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        router.push(item.href);
+                        setMobileMenuOpen(false);
+                      }}
+                      key={item.name}
+                      className={cn(
+                        "text-gray-600 hover:text-primary transition duration-300",
+                        {
+                          "text-primary": pathname === item.href,
+                        }
+                      )}
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                </div>
+                <SheetFooter></SheetFooter>
               </SheetContent>
             </Sheet>
           </div>
