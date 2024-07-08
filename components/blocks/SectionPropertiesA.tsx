@@ -13,7 +13,7 @@ const SectionPropertiesA = async () => {
         ))}
       </div>
       <div className="text-center mt-8">
-        <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+        <button className="bg-primary hover:bg-primary-foreground text-white font-bold py-2 px-6 rounded-full transition duration-300">
           Voir plus d&apos;appartements
         </button>
       </div>

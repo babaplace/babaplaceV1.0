@@ -5,11 +5,11 @@ import {
 } from "../../../../../../src/db/apartement.query";
 import { notFound } from "next/navigation";
 import Container from "@/components/layout/Container";
-import EditDetailsInfos from "../../../../../../components/EditAppartementSteps/EditDetailsInfos";
-import EditPriceDetails from "../../../../../../components/EditAppartementSteps/EditPriceDetails";
-import EditOtherInformations from "../../../../../../components/EditAppartementSteps/EditOtherInformations";
-import EditImages from "../../../../../../components/EditAppartementSteps/EditImages";
-import EditBasicInfomartions from "../../../../../../components/EditAppartementSteps/EditBasicInfomartions";
+import EditDetailsInfos from "./EditAppartementSteps/EditDetailsInfos";
+import EditPriceDetails from "./EditAppartementSteps/EditPriceDetails";
+import EditOtherInformations from "./EditAppartementSteps/EditOtherInformations";
+import EditImages from "./EditAppartementSteps/EditImages";
+import EditBasicInfomartions from "./EditAppartementSteps/EditBasicInfomartions";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 

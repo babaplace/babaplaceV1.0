@@ -38,7 +38,7 @@ const Services = (props: Props) => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <div className="text-red-600 text-4xl mb-4">
+            <div className="text-primary text-4xl mb-4">
               <FaSearch />
             </div>
             <h3 className="text-xl font-bold mb-2">Recherche Facile</h3>
@@ -48,7 +48,7 @@ const Services = (props: Props) => {
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <div className="text-red-600 text-4xl mb-4">
+            <div className="text-primary text-4xl mb-4">
               <FaMapMarkerAlt />
             </div>
             <h3 className="text-xl font-bold mb-2">Localisations Idéales</h3>
@@ -58,7 +58,7 @@ const Services = (props: Props) => {
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <div className="text-red-600 text-4xl mb-4">
+            <div className="text-primary text-4xl mb-4">
               <FaRegCalendarAlt />
             </div>
             <h3 className="text-xl font-bold mb-2">Réservation Simple</h3>

@@ -1,4 +1,4 @@
-import { SITECONFIG } from "@/src/constants/siteConfig";
+import { SITECONFIG } from "@/src/config/siteConfig";
 
 export default function PagePolitiquesConfidentialites() {
   return (

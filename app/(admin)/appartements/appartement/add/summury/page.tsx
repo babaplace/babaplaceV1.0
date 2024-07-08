@@ -1,6 +1,6 @@
 import Container from "@/components/layout/Container";
 import React from "react";
-import SummaryForm from "../../../../../../components/AddAppartementSteps/SummuryForm";
+import SummaryForm from "../AddAppartementSteps/SummuryForm";
 
 const page = () => {
   return (

@@ -1,17 +1,16 @@
 "use client";
 import { useState } from "react";
-import { Dialog, DialogPanel, Popover, PopoverGroup } from "@headlessui/react";
-import Link from "next/link";
-import { Mail, Menu, Phone, X } from "lucide-react";
+import { Mail, Menu } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { SITECONFIG } from "@/src/constants/siteConfig";
+import { SITECONFIG } from "@/src/config/siteConfig";
 import { Button, buttonVariants } from "../ui/button";
-import { navlinks } from "../../src/constants/siteConfig";
+import { navlinks } from "../../src/config/siteConfig";
 import { cn } from "@/lib/utils";
 import { Session } from "next-auth";
 import ProfileAvatarHeader from "./ProfileAvatarHeader";
 import SearchMobile from "../blocks/SearchMoble";
+import { motion } from "framer-motion";
 import {
   Sheet,
   SheetClose,
@@ -22,6 +21,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import Link from "next/link";
 
 type HeaderProps = {
   user?: Session | null;
@@ -39,9 +39,14 @@ export default function Header({ user }: HeaderProps) {
   }));
 
   return (
-    <header className="fixed w-full bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-sm z-50">
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 100 }}
+      className="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-lg"
+    >
       <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
-        <div className="text-2xl font-bold text-red-600">
+        <div className="text-2xl font-bold text-primary">
           <Image
             src={SITECONFIG.logo}
             alt={SITECONFIG.seo.description ?? "logo de baba place"}
@@ -55,9 +60,9 @@ export default function Header({ user }: HeaderProps) {
               key={item.name}
               href={item.href}
               className={cn(
-                "text-gray-600 hover:text-red-600 transition duration-300",
+                "text-gray-600 hover:text-primary transition duration-300",
                 {
-                  "text-red-600": pathname === item.href,
+                  "text-primary": pathname === item.href,
                 }
               )}
             >
@@ -107,9 +112,9 @@ export default function Header({ user }: HeaderProps) {
                           }}
                           key={item.name}
                           className={cn(
-                            "text-gray-600 hover:text-red-600 transition duration-300",
+                            "text-gray-600 hover:text-primary transition duration-300",
                             {
-                              "text-red-600": pathname === item.href,
+                              "text-primary": pathname === item.href,
                             }
                           )}
                         >
@@ -124,6 +129,6 @@ export default function Header({ user }: HeaderProps) {
           </div>
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 }

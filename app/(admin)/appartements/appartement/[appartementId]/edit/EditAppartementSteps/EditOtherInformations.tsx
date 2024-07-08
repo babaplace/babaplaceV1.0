@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { additionalInfoScheme } from "../../src/types/appartement.sheme";
+import { additionalInfoScheme } from "../../../../../../../src/types/appartement.sheme";
 import Link from "next/link";
-import { ItemList } from "../AddAppartementSteps/SummuryForm";
+import { ItemList } from "../../../add/AddAppartementSteps/SummuryForm";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { doEditAdditionalInfoAppartement } from "../../src/actions/appartement.edit.action";
+import { doEditAdditionalInfoAppartement } from "../appartement.edit.action";
 import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";

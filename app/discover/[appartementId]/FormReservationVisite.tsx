@@ -81,7 +81,7 @@ const FormReservationVisite = ({ appartementId }: Props) => {
           <p className="text-xs text-red-500 m-1">Le nom est requis</p>
         )}
       </div>
-      <div className="grid md:grid-cols-2 gap-2">
+      <div className="grid gap-2">
         <div>
           <PhoneInput
             className={cn(

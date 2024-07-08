@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Sofia_Sans } from "next/font/google";
 import "./globals.css";
-import { SITECONFIG } from "@/src/constants/siteConfig";
+import { SITECONFIG } from "@/src/config/siteConfig";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Providers } from "@/components/layout/Providers";
@@ -37,7 +37,7 @@ export default async function RootLayout({
           <Toaster theme="dark" position="top-center" richColors={true} />
           {/* <Annonce /> */}
           <Header user={userSession} />
-          <main className="mx-auto pt-14">{children}</main>
+          <main className="mx-auto ">{children}</main>
           <Footer />
           <SpeedInsights />
         </Providers>

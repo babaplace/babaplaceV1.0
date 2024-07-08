@@ -21,26 +21,24 @@ const config = {
     extend: {
       backgroundImage: {
         image: "url('/assets/images/bg.jpg')",
-        "image-a": "url('/assets/images/bgA.svg')",
+        "image-a": "url('/assets/images/hero.png')",
         "image-b": "url('/assets/images/bgB.svg')",
         "image-c": "url('/assets/images/bgC.svg')",
       },
       colors: {
-        primary: "#9a3412",
-        secondary: "#ea580c",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        // primary: {
-        //   DEFAULT: "hsl(var(--primary))",
-        //   foreground: "hsl(var(--primary-foreground))",
-        // },
-        // secondary: {
-        //   DEFAULT: "hsl(var(--secondary))",
-        //   foreground: "hsl(var(--secondary-foreground))",
-        // },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",

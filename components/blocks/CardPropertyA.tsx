@@ -63,7 +63,7 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
             {appartement?.description}
           </p>
           <div className="flex justify-between items-center mb-4">
-            <span className="font-bold text-red-600">
+            <span className="font-bold text-primary">
               {appartement?.price} DH/mois
             </span>
             <div className="flex space-x-2 text-gray-500">
@@ -82,7 +82,7 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
           </div>
           <Link
             href={`/discover/${appartement?.id}`}
-            className="w-full bg-red-600 flex flex-col justify-center items-center hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+            className="w-full bg-primary flex flex-col justify-center items-center hover:bg-primary-foreground text-white font-bold py-2 px-4 rounded transition duration-300"
           >
             Voir plus
           </Link>

@@ -1,4 +1,4 @@
-import { SITECONFIG, navlinks } from "@/src/constants/siteConfig";
+import { SITECONFIG, navlinks } from "@/src/config/siteConfig";
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

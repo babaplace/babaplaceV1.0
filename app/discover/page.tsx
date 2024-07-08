@@ -12,7 +12,7 @@ import Filters from "@/components/blocks/Filters";
 export default async function page() {
   const appartements = await getAllAppartementsWithImages();
   return (
-    <div className="">
+    <div className="mt-8">
       <TitlePage />
       <div className="hidden xl:block">
         <SearchSection />
