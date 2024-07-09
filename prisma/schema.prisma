@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,168 +5,265 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // uncomment next line if you use Prisma <5.10
-  // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
-enum appartementVerified {
-  pending
-  finish
-  reset
+// Modèle pour stocker les images des propriétés
+model Image {
+  id           String      @id @default(cuid())
+  url          String
+  size         String?
+  propertyId   String
+  propertyType String // "Appartment" ou "Room"
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  appartment   Appartment? @relation(fields: [propertyId], references: [id], map: "Image_appartmentId_fkey")
+  room         Room?       @relation(fields: [propertyId], references: [id], map: "Image_roomId_fkey")
 }
 
-model appartement {
-  id String @id @default(cuid())
+// Modèle pour gérer les adresses
+model Address {
+  id       String  @id @default(cuid())
+  street   String // Rue
+  city     String // Ville
+  quartier String // Quartier
+  zipCode  String? // Code postal
+  country  String  @default("Cameroun")
 
-  area     Float?
-  city     String
-  quartier String?
-  verified appartementVerified @default(pending)
-  address  String?
-
-  numberChambres  Int
-  numberToilettes Int @default(0)
-  niveauEtage     Int
-
-  numberCuisine Int @default(0)
-  numberSalons  Int @default(0)
-
-  price   Float
-  caution Float?
-
-  description String?
-
-  ownerId String
-  Owner   User   @relation(fields: [ownerId], references: [id])
-
-  status appartementStatus?
-
-  medias medias[]
-
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  BookingVisite BookingVisite[]
+  appartments Appartment[]
+  rooms       Room[]
 }
 
-model chambre {
-  id String @id @default(cuid())
+// Statut de la propriété
+enum PropertyStatus {
+  AVAILABLE // Disponible
+  NOT_AVAILABLE // Non disponible
+  MAINTENANCE // En maintenance
+  COMING_SOON // Bientôt disponible
 }
 
-enum status {
-  disponible
-  occuped
-  soon
+// Statut de vérification
+enum VerificationStatus {
+  PENDING // En attente
+  VERIFIED // Vérifié
+  REJECTED // Rejeté
 }
 
-model appartementStatus {
-  id     String @id @default(cuid())
-  status status @default(disponible) //disponible - occuped - soon
-
-  dateDisponible DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  appartementId String @unique
-
-  appartement appartement @relation(references: [id], fields: [appartementId], onDelete: Cascade)
+// Modèle pour les appartements
+model Appartment {
+  id                  String                 @id @default(cuid())
+  addressId           String
+  address             Address                @relation(fields: [addressId], references: [id])
+  surface             Float? // Surface en m²
+  numberRooms         Float // Nombre de pièces
+  numberBathrooms     Float // Nombre de salles de bain
+  numberMaxFloor      Float? // Nombre maximum d'étages
+  numberUnitsPerFloor Float? // Nombre d'unités par étage
+  amenities           ApartmentAmenityEnum[]
+  status              PropertyStatus         @default(AVAILABLE)
+  verificationStatus  VerificationStatus     @default(PENDING)
+  ownerId             String
+  owner               User                   @relation("OwnedAppartments", fields: [ownerId], references: [id])
+  price               Float // Prix
+  advancePayment      Float? // Paiement d'avance
+  createdAt           DateTime               @default(now())
+  updatedAt           DateTime               @updatedAt
+  deletedAt           DateTime?
+  createdBy           String?
+  updatedBy           String?
+  images              Image[]
+  bookingVisites      BookingVisite[]
+  rentals             Rental[]
+  rooms               Room[]
+  priceHistory        PriceHistory[]
+  availability        Availability[]
 }
 
-model medias {
-  id   String @id @default(cuid())
-  url  String
-  type String @default("image") //image - video
-
-  size Float?
-
-  appartementId String
-  appartement   appartement @relation(references: [id], fields: [appartementId])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// Modèle pour les chambres
+model Room {
+  id                 String             @id @default(cuid())
+  appartmentId       String?
+  appartment         Appartment?        @relation(fields: [appartmentId], references: [id], map: "Room_appartmentId_fkey")
+  addressId          String?
+  address            Address?           @relation(fields: [addressId], references: [id], map: "Room_addressId_fkey")
+  surface            Float? // Surface en m²
+  amenities          RoomAmenityEnum[]
+  status             PropertyStatus     @default(AVAILABLE)
+  verificationStatus VerificationStatus @default(PENDING)
+  ownerId            String
+  owner              User               @relation("OwnedRooms", fields: [ownerId], references: [id])
+  price              Float // Prix
+  advancePayment     Float? // Paiement d'avance
+  securityDeposit    Float? // Dépôt de garantie
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  deletedAt          DateTime?
+  createdBy          String?
+  updatedBy          String?
+  images             Image[]
+  bookingVisites     BookingVisite[]
+  rentals            Rental[]
+  priceHistory       PriceHistory[]
+  availability       Availability[]
 }
 
-enum role {
-  agence
-  bailleur
-  client
+// Équipements de l'appartement
+enum ApartmentAmenityEnum {
+  RUNNING_WATER // Eau courante
+  ELECTRICITY // Électricité
+  SHARED_BATHROOM // Salle de bain partagée
+  PRIVATE_BATHROOM // Salle de bain privée
+  SHARED_KITCHEN // Cuisine partagée
+  PRIVATE_KITCHEN // Cuisine privée
+  LIVING_ROOM // Salon
+  BALCONY // Balcon
+  TOILET // Toilettes
+  ELEVATOR // Ascenseur
+  SECURITY_GUARD // Gardien de sécurité
+  INTERNET_ACCESS // Accès Internet
 }
 
-enum subjectContact {
-  partneriat
-  contact
+// Équipements de la chambre
+enum RoomAmenityEnum {
+  TOILET // Toilettes
+  SHOWER // Douche
+  SHARED_BATHROOM // Salle de bain partagée
+  PRIVATE_BATHROOM // Salle de bain privée
+  BED // Lit
+  CLOSET // Placard
+  DESK // Bureau
+  CHAIR // Chaise
+  FAN // Ventilateur
+  INTERNET_ACCESS // Accès Internet
 }
 
-model Contact {
-  id      String         @id @default(cuid())
-  role    role           @default(client)
-  name    String?
-  email   String
-  message String?
-  subject subjectContact @default(contact)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// Modèle pour les locations
+model Rental {
+  id           String      @id @default(cuid())
+  propertyId   String
+  propertyType String // "Appartment" ou "Room"
+  appartment   Appartment? @relation(fields: [propertyId], references: [id], map: "Rental_appartmentId_fkey")
+  room         Room?       @relation(fields: [propertyId], references: [id], map: "Rental_roomId_fkey")
+  tenantId     String
+  tenant       User        @relation("Rentals", fields: [tenantId], references: [id])
+  startDate    DateTime // Date de début
+  endDate      DateTime? // Date de fin
+  payments     Payment[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
 }
 
+// Statut du paiement
+enum PaymentStatus {
+  PENDING // En attente
+  COMPLETED // Complété
+  CANCELLED // Annulé
+  FAILED // Échoué
+}
+
+// Modèle pour les paiements
+model Payment {
+  id          String  @id @default(cuid())
+  rentalId    String
+  rental      Rental  @relation(fields: [rentalId], references: [id])
+  amount      Float // Montant
+  description String? // Description
+
+  month String?
+  year  String?
+
+  status      PaymentStatus @default(PENDING)
+  paymentDate DateTime      @default(now())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+// Statut de la réservation de visite
+enum BookingVisiteStatus {
+  PENDING // En attente
+  CONFIRMED // Confirmé
+  CANCELLED // Annulé
+}
+
+// Modèle pour les réservations de visites
 model BookingVisite {
-  id            String   @id @default(cuid())
-  appartementId String
-  name          String
-  phone         String
-  datevisite    DateTime
-  // status        BookingStatus @default(PENDING) // PENDING - CONFIRMED - CANCELLED
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  appartement appartement @relation(fields: [appartementId], references: [id], onDelete: Cascade)
+  id           String              @id @default(cuid())
+  propertyId   String
+  propertyType String // "Appartment" ou "Chambre"
+  appartment   Appartment?         @relation(fields: [propertyId], references: [id], map: "BookingVisite_appartmentId_fkey")
+  room         Room?               @relation(fields: [propertyId], references: [id], map: "BookingVisite_roomId_fkey")
+  name         String // Nom
+  phone        String // Téléphone
+  datevisite   DateTime // Date de visite
+  status       BookingVisiteStatus @default(PENDING)
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
 }
 
-enum BookingStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
+enum PropertyType {
+  ROOM
+  APPARTMENT
 }
 
-// auth
-
-enum userRole {
-  user
-  admin
-  partner
-  certificated
+// Modèle pour l'historique des prix
+model PriceHistory {
+  id           String       @id @default(cuid())
+  propertyId   String
+  propertyType PropertyType // "Appartment" ou "Room"
+  appartment   Appartment?  @relation(fields: [propertyId], references: [id], map: "PriceHistory_appartmentId_fkey")
+  room         Room?        @relation(fields: [propertyId], references: [id], map: "PriceHistory_roomId_fkey")
+  price        Float // Prix
+  startDate    DateTime // Date de début
+  endDate      DateTime? // Date de fin
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 }
 
+// Modèle pour la disponibilité
+model Availability {
+  id           String      @id @default(cuid())
+  propertyId   String
+  propertyType String // "Appartment" ou "Room"
+  appartment   Appartment? @relation(fields: [id], references: [id], map: "Availability_appartmentId_fkey")
+  room         Room?       @relation(fields: [id], references: [id], map: "Availability_roomId_fkey")
+  startDate    DateTime // Date de début
+  endDate      DateTime // Date de fin
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+// Rôle de l'utilisateur
+enum UserRole {
+  USER // Utilisateur
+  ADMIN // Administrateur
+  PARTNER // Partenaire
+  CERTIFICATED // Certifié
+}
+
+// Modèle pour les utilisateurs
 model User {
-  id   String  @id @default(cuid())
-  name String?
-
-  firstName String?
-
-  email String? @unique
-
-  phone String?
-
-  role userRole @default(user) //user - admin - partner
-
-  password String?
-
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  // Optional for WebAuthn support
-  Authenticator Authenticator[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  appartements appartement[]
+  id               String          @id @default(cuid())
+  name             String? // Nom
+  firstName        String? // Prénom
+  email            String?         @unique
+  phone            String? // Téléphone
+  role             UserRole        @default(USER)
+  password         String? // Mot de passe
+  emailVerified    DateTime? // Email vérifié
+  image            String? // Image de profil
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  deletedAt        DateTime?
+  ownedAppartments Appartment[]    @relation("OwnedAppartments")
+  ownedRooms       Room[]          @relation("OwnedRooms")
+  rentals          Rental[]        @relation("Rentals")
+  accounts         Account[]
+  sessions         Session[]
+  authenticators   Authenticator[]
 }
 
+// Modèle pour les comptes (authentification)
 model Account {
-  id                String  @id @default(cuid())
+  id                String   @id @default(cuid())
   userId            String
   type              String
   provider          String
@@ -181,35 +275,37 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
+// Modèle pour les sessions
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@index([userId])
 }
 
+// Modèle pour les jetons de vérification
 model VerificationToken {
   identifier String
-  token      String
+  token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
 }
 
-// Optional for WebAuthn support
+// Modèle pour l'authentification (WebAuthn)
 model Authenticator {
   credentialID         String  @unique
   userId               String
@@ -219,8 +315,7 @@ model Authenticator {
   credentialDeviceType String
   credentialBackedUp   Boolean
   transports           String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
 }

@@ -1,7 +1,4 @@
-import { SITECONFIG, navlinks } from "@/src/config/siteConfig";
-import { Mail, Phone } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { navlinks } from "@/src/config/siteConfig";
 import React from "react";
 
 type Props = {};
@@ -12,7 +9,7 @@ const Footer = () => {
     id: key,
   }));
   return (
-    <footer className="bg-gray-800 text-white">
+    <footer className="bg-gray-800 text-white mt-auto">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
