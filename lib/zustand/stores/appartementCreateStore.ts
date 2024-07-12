@@ -2,6 +2,7 @@ import {
   additionalInfoScheme,
   basicInfoScheme,
   detailsSheme,
+  espaceAnnexeSheme,
   financialInfoScheme,
   imagesStepSheme,
 } from "@/src/types/appartement.sheme";
@@ -14,6 +15,7 @@ export type AppartementFormState = {
   financialInfos: financialInfoScheme;
   otherInformations: additionalInfoScheme;
   images: imagesStepSheme;
+  espaceAnnexe: espaceAnnexeSheme;
   PropertyType: PropertyType;
 };
 
@@ -36,6 +38,8 @@ export type AppartementFormActions = {
   addImages: (newImage: imagesStepSheme[0]) => void;
   removeImageById: (removeImage: imagesStepSheme[0]) => void;
   modifieImagesByKey: (key: string, newImage: imagesStepSheme[0]) => void;
+  addEspaceAnnexe: (newEspaceAnnexe: espaceAnnexeSheme[0]) => void;
+  removeEspaceAnnexe: (removeEspaceAnnexe: espaceAnnexeSheme[0]) => void;
   resetForm: () => void;
 };
 
@@ -64,6 +68,7 @@ export const defaultAppartementFormState: AppartementFormState = {
     description: "",
   },
   images: [],
+  espaceAnnexe: [],
 };
 
 export const createAppartementFormStore = (
@@ -151,6 +156,17 @@ export const createAppartementFormStore = (
           image.key === key ? newImage : image
         ),
       })),
+    addEspaceAnnexe: (newEspaceAnnexe: espaceAnnexeSheme[0]) =>
+      set((state) => ({
+        espaceAnnexe: [...state.espaceAnnexe, newEspaceAnnexe],
+      })),
+    removeEspaceAnnexe: (removeEspaceAnnexe: espaceAnnexeSheme[0]) =>
+      set((state) => ({
+        espaceAnnexe: state.espaceAnnexe.filter(
+          (espace) => espace !== removeEspaceAnnexe
+        ),
+      })),
+
     resetForm: () =>
       set({
         ...defaultAppartementFormState,

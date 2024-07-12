@@ -46,11 +46,23 @@ export const imagesStepSheme = z.array(
   })
 );
 
+export const espaceAnnexeSheme = z.array(
+  z.enum([
+    "BALCONY",
+    "SECURITY_GUARD",
+    "JARDIN",
+    "TERRASSE",
+    "ESPACE_VERT",
+    "PISCINE",
+  ])
+);
+
 export type basicInfoScheme = z.infer<typeof basicInfoScheme>;
 export type detailsSheme = z.infer<typeof detailsSheme>;
 export type financialInfoScheme = z.infer<typeof financialInfoScheme>;
 export type additionalInfoScheme = z.infer<typeof additionalInfoScheme>;
 export type imagesStepSheme = z.infer<typeof imagesStepSheme>;
+export type espaceAnnexeSheme = z.infer<typeof espaceAnnexeSheme>;
 
 export const appartementScheme = z.object({
   basicInfoScheme,

@@ -106,15 +106,25 @@ model Room {
 
 // Équipements de l'appartement
 enum ApartmentAmenityEnum {
+  // espace Annexe
+  BALCONY // Balcon
+  SECURITY_GUARD // Gardien de sécurité
+  JARDIN // JARDIN PRIVATIF
+  TERRASSE //Terasse
+  ESPACE_VERT //espace verts
+  PISCINE // piscine commune
+
+  //EQUIPEMENT
+  ELEVATOR // Ascenseur
   SHARED_BATHROOM // Salle de bain partagée
   PRIVATE_BATHROOM // Salle de bain privée
   SHARED_KITCHEN // Cuisine partagée
   PRIVATE_KITCHEN // Cuisine privée
   LIVING_ROOM // Salon
-  BALCONY // Balcon
   TOILET // Toilettes
-  ELEVATOR // Ascenseur
-  SECURITY_GUARD // Gardien de sécurité
+  CLIMATISATION // climatisation
+  CLOSED_RESIDENCE //Residence fermee
+  SECURITY // Dispositif de sécurité
 }
 
 // Équipements de la chambre

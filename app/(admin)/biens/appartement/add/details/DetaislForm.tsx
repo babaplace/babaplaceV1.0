@@ -36,7 +36,7 @@ const DetailsForm: React.FC = () => {
   const createMatiereMutation = useMutation<void, Error, detailsSheme>({
     mutationFn: async (data: detailsSheme) => {
       setDetails(data);
-      router.push("/biens/appartement/add/financesInfos");
+      router.push("/biens/appartement/add/espaceAnnexe");
     },
     onError: (error) => {
       console.error("Error submitting form:", error);
@@ -118,7 +118,7 @@ const DetailsForm: React.FC = () => {
                                           10
                                         );
                                         field.onChange(
-                                          String(isNaN(value) ? 0 : value)
+                                          Number(isNaN(value) ? 0 : value)
                                         );
                                       }}
                                     />
