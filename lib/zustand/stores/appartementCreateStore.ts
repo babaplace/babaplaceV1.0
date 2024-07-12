@@ -6,6 +6,7 @@ import {
   imagesStepSheme,
 } from "@/src/types/appartement.sheme";
 import { createStore } from "zustand/vanilla";
+import { PropertyType } from "../../../src/types/appartement.sheme";
 
 export type AppartementFormState = {
   basicInfos: basicInfoScheme;
@@ -13,19 +14,20 @@ export type AppartementFormState = {
   financialInfos: financialInfoScheme;
   otherInformations: additionalInfoScheme;
   images: imagesStepSheme;
+  PropertyType: PropertyType;
 };
 
 export type AppartementFormActions = {
-  setTitle: (newTitle: string) => void;
+  setQuartier: (newquartier: string) => void;
   setCity: (newCity: string) => void;
+  setPropertyType: (newPropertyType: PropertyType) => void;
   setAddress: (newAddress: string) => void;
-  setNumberChambres: (newNumberChambres: string) => void;
-  setNumberToilettes: (newNumberToilettes: string) => void;
-  setCuisine: (newCuisine: string) => void;
-  setNiveauEtage: (newNiveauEtage: string) => void;
-  setNumberSalons: (newNumberSalons: string) => void;
-  setPrice: (newPrice: string) => void;
-  setCaution: (newCaution: string) => void;
+  setSurface: (newSurface: number) => void;
+  setNumberRooms: (newNumberRooms: number) => void;
+  setNumberMaxFloor: (newNumberMaxFloor: number) => void;
+  setNumberUnitsPerFloor: (newNumberUnitsPerFloor: number) => void;
+  setPrice: (newPrice: number) => void;
+  setCaution: (newCaution: number) => void;
   setDescription: (newDescription: string) => void;
   setBasicInfos: (newBasicInfos: basicInfoScheme) => void;
   setDetails: (newDetails: detailsSheme) => void;
@@ -42,20 +44,21 @@ export type AppartementFormStore = AppartementFormState &
 
 export const defaultAppartementFormState: AppartementFormState = {
   basicInfos: {
-    title: "",
+    quartier: "",
     city: "",
     address: "",
   },
+  PropertyType: null,
+
   details: {
-    numberChambres: "",
-    numberToilettes: "",
-    Cuisine: "",
-    niveauEtage: "",
-    numberSalons: "",
+    surface: 0,
+    numberRooms: 0,
+    numberMaxFloor: 0,
+    numberUnitsPerFloor: 0,
   },
   financialInfos: {
-    price: "",
-    caution: "",
+    price: 0,
+    caution: 0,
   },
   otherInformations: {
     description: "",
@@ -68,43 +71,46 @@ export const createAppartementFormStore = (
 ) => {
   return createStore<AppartementFormStore>()((set) => ({
     ...initState,
-    setTitle: (newTitle: string) =>
+    setQuartier: (newquartier: string) =>
       set((state) => ({
-        basicInfos: { ...state.basicInfos, title: newTitle },
+        basicInfos: { ...state.basicInfos, quartier: newquartier },
       })),
     setCity: (newCity: string) =>
       set((state) => ({
         basicInfos: { ...state.basicInfos, city: newCity },
       })),
+    setPropertyType: (newProppertyType: PropertyType) =>
+      set((state) => ({
+        PropertyType: newProppertyType,
+      })),
     setAddress: (newAddress: string) =>
       set((state) => ({
         basicInfos: { ...state.basicInfos, address: newAddress },
       })),
-    setNumberChambres: (newNumberChambres: string) =>
+    setSurface: (newSurface: number) =>
       set((state) => ({
-        details: { ...state.details, numberChambres: newNumberChambres },
+        details: { ...state.details, surface: newSurface },
       })),
-    setNumberToilettes: (newNumberToilettes: string) =>
+    setNumberRooms: (newNumberRooms: number) =>
       set((state) => ({
-        details: { ...state.details, numberToilettes: newNumberToilettes },
+        details: { ...state.details, numberRooms: newNumberRooms },
       })),
-    setCuisine: (newCuisine: string) =>
+    setNumberMaxFloor: (newNumberMaxFloor: number) =>
       set((state) => ({
-        details: { ...state.details, Cuisine: newCuisine },
+        details: { ...state.details, numberMaxFloor: newNumberMaxFloor },
       })),
-    setNiveauEtage: (newNiveauEtage: string) =>
+    setNumberUnitsPerFloor: (newNumberUnitsPerFloor: number) =>
       set((state) => ({
-        details: { ...state.details, niveauEtage: newNiveauEtage },
+        details: {
+          ...state.details,
+          numberUnitsPerFloor: newNumberUnitsPerFloor,
+        },
       })),
-    setNumberSalons: (newNumberSalons: string) =>
-      set((state) => ({
-        details: { ...state.details, numberSalons: newNumberSalons },
-      })),
-    setPrice: (newPrice: string) =>
+    setPrice: (newPrice: number) =>
       set((state) => ({
         financialInfos: { ...state.financialInfos, price: newPrice },
       })),
-    setCaution: (newCaution: string) =>
+    setCaution: (newCaution: number) =>
       set((state) => ({
         financialInfos: { ...state.financialInfos, caution: newCaution },
       })),

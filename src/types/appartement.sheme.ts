@@ -1,34 +1,32 @@
 import { z } from "zod";
 
+export type PropertyType = "APPARTMENT" | "ROOM" | null;
+
 export const basicInfoScheme = z.object({
-  title: z
-    .string({ required_error: "le titre est requis" })
-    .min(1, { message: "Le titre est requis" }),
-  city: z
-    .string({ required_error: "la ville est requis" })
-    .min(1, { message: "La ville est requise" }),
   address: z
     .string({ required_error: "l'addresse est requis" })
     .min(1, { message: "L'addresse est requis" }),
+  city: z
+    .string({ required_error: "la ville est requis" })
+    .min(1, { message: "La ville est requise" }),
+  quartier: z
+    .string({ required_error: "le quartier est requis" })
+    .min(1, { message: "Le quartier est requis" }),
 });
 
 export const detailsSheme = z.object({
-  numberChambres: z
-    .string()
-    .min(1, { message: "Le nombre de chambres doit être supérieur à 1" }),
-  numberToilettes: z.string().default("0"),
-  Cuisine: z.string().default("0"),
-
-  niveauEtage: z
-    .string()
-    .min(0, { message: "Le niveau d'étage doit être supérieur à 0" }),
-
-  numberSalons: z.string().default("0"),
+  surface: z.number().optional().default(0),
+  numberRooms: z
+    .number()
+    .min(1, { message: "Le nombre de pièces doit être supérieur à 1" })
+    .default(0),
+  numberMaxFloor: z.number().optional().default(0),
+  numberUnitsPerFloor: z.number().optional().default(0),
 });
 
 export const financialInfoScheme = z.object({
-  price: z.string().min(1, { message: "Le prix est requis" }),
-  caution: z.string().optional(),
+  price: z.number().min(1, { message: "Le prix est requis" }),
+  caution: z.number().optional(),
 });
 
 export const additionalInfoScheme = z.object({

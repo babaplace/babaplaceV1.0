@@ -23,11 +23,10 @@ model Image {
 // Modèle pour gérer les adresses
 model Address {
   id       String  @id @default(cuid())
-  street   String // Rue
+  address  String? // Adresse
   city     String // Ville
   quartier String // Quartier
-  zipCode  String? // Code postal
-  country  String  @default("Cameroun")
+  country  String  @default("Maroc")
 
   appartments Appartment[]
   rooms       Room[]
@@ -55,7 +54,6 @@ model Appartment {
   address             Address                @relation(fields: [addressId], references: [id])
   surface             Float? // Surface en m²
   numberRooms         Float // Nombre de pièces
-  numberBathrooms     Float // Nombre de salles de bain
   numberMaxFloor      Float? // Nombre maximum d'étages
   numberUnitsPerFloor Float? // Nombre d'unités par étage
   amenities           ApartmentAmenityEnum[]
@@ -64,7 +62,7 @@ model Appartment {
   ownerId             String
   owner               User                   @relation("OwnedAppartments", fields: [ownerId], references: [id])
   price               Float // Prix
-  advancePayment      Float? // Paiement d'avance
+  caution             Float? // caution d'avance
   createdAt           DateTime               @default(now())
   updatedAt           DateTime               @updatedAt
   deletedAt           DateTime?
@@ -108,8 +106,6 @@ model Room {
 
 // Équipements de l'appartement
 enum ApartmentAmenityEnum {
-  RUNNING_WATER // Eau courante
-  ELECTRICITY // Électricité
   SHARED_BATHROOM // Salle de bain partagée
   PRIVATE_BATHROOM // Salle de bain privée
   SHARED_KITCHEN // Cuisine partagée
@@ -119,7 +115,6 @@ enum ApartmentAmenityEnum {
   TOILET // Toilettes
   ELEVATOR // Ascenseur
   SECURITY_GUARD // Gardien de sécurité
-  INTERNET_ACCESS // Accès Internet
 }
 
 // Équipements de la chambre
