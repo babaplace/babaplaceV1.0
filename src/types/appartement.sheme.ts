@@ -57,12 +57,28 @@ export const espaceAnnexeSheme = z.array(
   ])
 );
 
+export const equipementSheme = z.array(
+  z.enum([
+    "ELEVATOR",
+    "SHARED_BATHROOM",
+    "PRIVATE_BATHROOM",
+    "SHARED_KITCHEN",
+    "PRIVATE_KITCHEN",
+    "LIVING_ROOM",
+    "TOILET",
+    "CLIMATISATION",
+    "CLOSED_RESIDENCE",
+    "SECURITY",
+  ])
+);
+
 export type basicInfoScheme = z.infer<typeof basicInfoScheme>;
 export type detailsSheme = z.infer<typeof detailsSheme>;
 export type financialInfoScheme = z.infer<typeof financialInfoScheme>;
 export type additionalInfoScheme = z.infer<typeof additionalInfoScheme>;
 export type imagesStepSheme = z.infer<typeof imagesStepSheme>;
 export type espaceAnnexeSheme = z.infer<typeof espaceAnnexeSheme>;
+export type equipementSheme = z.infer<typeof equipementSheme>;
 
 export const appartementScheme = z.object({
   basicInfoScheme,
@@ -70,6 +86,8 @@ export const appartementScheme = z.object({
   financialInfoScheme,
   additionalInfoScheme,
   imagesStepSheme,
+  espaceAnnexeSheme,
+  equipementSheme,
 });
 
 export type appartementScheme = z.infer<typeof appartementScheme>;

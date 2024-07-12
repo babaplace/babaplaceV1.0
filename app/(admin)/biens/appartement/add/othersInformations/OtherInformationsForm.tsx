@@ -87,7 +87,7 @@ const OtherInformationsForm = () => {
 
               <NavigationStep>
                 <Link
-                  href={"/biens/appartement/add/financesInfos"}
+                  href={"/biens/appartement/add/equipement"}
                   className={buttonVariants({ variant: "outline" })}
                 >
                   Precedent

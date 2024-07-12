@@ -12,17 +12,18 @@ import { Button, buttonVariants } from "@/components/ui/button";
 
 import NavigationStep from "../AddAppartementSteps/NavigationStep";
 import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
-import { espaceAnnexeSheme } from "@/src/types/appartement.sheme";
+import { equipementSheme } from "@/src/types/appartement.sheme";
 import SelectedInputCard from "@/components/ui/SelectedInputCard";
 
-const EqupementForm: React.FC = () => {
-  const { espaceAnnexe, addEspaceAnnexe, removeEspaceAnnexe } =
-    useAppartementStore((state) => state);
+const EquipementForm: React.FC = () => {
+  const { equipements, addEquipement, removeEquipement } = useAppartementStore(
+    (state) => state
+  );
   const router = useRouter();
 
   const createMatiereMutation = useMutation({
     mutationFn: async () => {
-      router.push("/biens/appartement/add/financesInfos");
+      router.push("/biens/appartement/add/othersInformations");
     },
     onError: (error) => {
       console.error("Error submitting form:", error);
@@ -30,13 +31,17 @@ const EqupementForm: React.FC = () => {
     },
   });
 
-  const formFields: Array<{ name: espaceAnnexeSheme[0]; label: string }> = [
-    { name: "BALCONY", label: "Balcon" },
-    { name: "SECURITY_GUARD", label: "Garde de sécurité" },
-    { name: "JARDIN", label: "JARDIN PRIVATIF" },
-    { name: "TERRASSE", label: "Terrasse" },
-    { name: "ESPACE_VERT", label: "Espace vert" },
-    { name: "PISCINE", label: "Piscine commune" },
+  const formFields: Array<{ name: equipementSheme[0]; label: string }> = [
+    { name: "ELEVATOR", label: "Ascenseur" },
+    { name: "SHARED_BATHROOM", label: "Salle de bain partagée" },
+    { name: "PRIVATE_BATHROOM", label: "Salle de bain privée" },
+    { name: "SHARED_KITCHEN", label: "Cuisine partagée" },
+    { name: "PRIVATE_KITCHEN", label: "Cuisine privée" },
+    { name: "LIVING_ROOM", label: "Salon" },
+    { name: "TOILET", label: "Toilettes" },
+    { name: "CLIMATISATION", label: "Climatisation" },
+    { name: "CLOSED_RESIDENCE", label: "Résidence fermée" },
+    { name: "SECURITY", label: "Dispositif de sécurité" },
   ];
 
   return (
@@ -45,7 +50,7 @@ const EqupementForm: React.FC = () => {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col">
             <h1 className="text-black text-2xl font-bold">
-              Quels sont les espaces annexes de votre bien ?{" "}
+              Quels sont les équipements de votre bien ?
             </h1>
             <p className="text-gray-500 text-sm">
               Sélectionnez les espaces dont dispose votre bien
@@ -57,14 +62,14 @@ const EqupementForm: React.FC = () => {
               <div className="divide-dotted grid grid-cols-2 gap-8">
                 {formFields.map(({ name, label }) => (
                   <SelectedInputCard
-                    isSelected={searchEspaceAnnexe(name, espaceAnnexe)}
+                    isSelected={searchEspaceAnnexe(name, equipements)}
                     key={name}
                     label={label}
                     onSelected={() => {
-                      if (searchEspaceAnnexe(name, espaceAnnexe)) {
-                        removeEspaceAnnexe(name);
+                      if (searchEspaceAnnexe(name, equipements)) {
+                        removeEquipement(name);
                       } else {
-                        addEspaceAnnexe(name);
+                        addEquipement(name);
                       }
                     }}
                     name={name}
@@ -75,7 +80,7 @@ const EqupementForm: React.FC = () => {
 
             <NavigationStep>
               <Link
-                href="/biens/appartement/add/details"
+                href="/biens/appartement/add/financesInfos"
                 className={buttonVariants({ variant: "outline" })}
               >
                 Precedent
@@ -97,9 +102,9 @@ const EqupementForm: React.FC = () => {
   );
 };
 
-export default EqupementForm;
+export default EquipementForm;
 
 export const searchEspaceAnnexe = (
-  name: espaceAnnexeSheme[0],
-  array: espaceAnnexeSheme
+  name: equipementSheme[0],
+  array: equipementSheme
 ): boolean => array.includes(name);

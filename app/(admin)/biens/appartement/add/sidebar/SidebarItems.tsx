@@ -3,11 +3,23 @@ import StepItem from "./StepItem";
 
 const SidebarItems = () => {
   const stepLabels = [
-    { name: "Infors Basique", url: "/primary-foreground" },
+    { name: "Localisation", url: "/biens/appartement/add" },
+
+    { name: "Type de biens", url: "/biens/appartement/add/propertytype" },
+
     { name: "Detais", url: "/biens/appartement/add/details" },
+
     {
-      name: "Infos Financieres",
+      name: "Espaces Annexes",
+      url: "/biens/appartement/add/espaceAnnexe",
+    },
+    {
+      name: "Prix",
       url: "/biens/appartement/add/financesInfos",
+    },
+    {
+      name: "Equipements",
+      url: "/biens/appartement/add/equipement",
     },
     {
       name: "Autres informations",

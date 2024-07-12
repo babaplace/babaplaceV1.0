@@ -15,7 +15,7 @@ const StepItem: React.FC<Props> = ({ label, stepCount }) => {
       <div
         className={cn(
           `grid place-content-center md:w-8 md:h-8 w-6 h-6 border text-white `,
-          { "bg-secondary text-white": pathname === label.url }
+          { "bg-primary text-white": pathname === label.url }
         )}
       >
         {stepCount + 1}

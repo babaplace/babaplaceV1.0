@@ -3,6 +3,7 @@ import {
   basicInfoScheme,
   detailsSheme,
   espaceAnnexeSheme,
+  equipementSheme,
   financialInfoScheme,
   imagesStepSheme,
 } from "@/src/types/appartement.sheme";
@@ -16,7 +17,8 @@ export type AppartementFormState = {
   otherInformations: additionalInfoScheme;
   images: imagesStepSheme;
   espaceAnnexe: espaceAnnexeSheme;
-  PropertyType: PropertyType;
+  equipements: equipementSheme;
+  PropertyType: PropertyType | null;
 };
 
 export type AppartementFormActions = {
@@ -40,11 +42,10 @@ export type AppartementFormActions = {
   modifieImagesByKey: (key: string, newImage: imagesStepSheme[0]) => void;
   addEspaceAnnexe: (newEspaceAnnexe: espaceAnnexeSheme[0]) => void;
   removeEspaceAnnexe: (removeEspaceAnnexe: espaceAnnexeSheme[0]) => void;
+  addEquipement: (newEquipement: equipementSheme[0]) => void;
+  removeEquipement: (removeEquipement: equipementSheme[0]) => void;
   resetForm: () => void;
 };
-
-export type AppartementFormStore = AppartementFormState &
-  AppartementFormActions;
 
 export const defaultAppartementFormState: AppartementFormState = {
   basicInfos: {
@@ -69,7 +70,10 @@ export const defaultAppartementFormState: AppartementFormState = {
   },
   images: [],
   espaceAnnexe: [],
+  equipements: [],
 };
+export type AppartementFormStore = AppartementFormState &
+  AppartementFormActions;
 
 export const createAppartementFormStore = (
   initState: AppartementFormState = defaultAppartementFormState
@@ -166,7 +170,16 @@ export const createAppartementFormStore = (
           (espace) => espace !== removeEspaceAnnexe
         ),
       })),
-
+    addEquipement: (newEquipement: equipementSheme[0]) =>
+      set((state) => ({
+        equipements: [...state.equipements, newEquipement],
+      })),
+    removeEquipement: (removeEquipement: equipementSheme[0]) =>
+      set((state) => ({
+        equipements: state.equipements.filter(
+          (equipement) => equipement !== removeEquipement
+        ),
+      })),
     resetForm: () =>
       set({
         ...defaultAppartementFormState,
