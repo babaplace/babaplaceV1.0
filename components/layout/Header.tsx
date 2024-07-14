@@ -30,6 +30,8 @@ type HeaderProps = {
 export default function Header({ user }: HeaderProps) {
   const pathname = usePathname();
 
+  console.log(pathname);
+
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -55,20 +57,23 @@ export default function Header({ user }: HeaderProps) {
           />
         </Link>
         <div className="hidden md:flex space-x-6">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={cn(
-                "text-gray-600 hover:text-primary transition duration-300",
-                {
-                  "text-primary": pathname === item.href,
-                }
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            pathname.includes("/biens") &&
+            item.href.includes("/biens") ? null : (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "text-gray-600 hover:text-primary transition duration-300",
+                  {
+                    "text-primary": pathname === item.href,
+                  }
+                )}
+              >
+                {item.name}
+              </Link>
+            )
+          )}
         </div>
         <div className="flex items-center space-x-4">
           {user?.user ? (
@@ -118,24 +123,27 @@ export default function Header({ user }: HeaderProps) {
                   </SheetDescription>
                 </SheetHeader>
                 <div className="grid gap-4 py-4">
-                  {navItems.map((item) => (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        router.push(item.href);
-                        setMobileMenuOpen(false);
-                      }}
-                      key={item.name}
-                      className={cn(
-                        "text-gray-600 hover:text-primary transition duration-300",
-                        {
-                          "text-primary": pathname === item.href,
-                        }
-                      )}
-                    >
-                      {item.name}
-                    </button>
-                  ))}
+                  {navItems.map((item) =>
+                    pathname.includes("/biens") &&
+                    item.href.includes("/biens") ? null : (
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          router.push(item.href);
+                          setMobileMenuOpen(false);
+                        }}
+                        key={item.name}
+                        className={cn(
+                          "text-gray-600 hover:text-primary transition duration-300",
+                          {
+                            "text-primary": pathname === item.href,
+                          }
+                        )}
+                      >
+                        {item.name}
+                      </button>
+                    )
+                  )}
                 </div>
                 <SheetFooter></SheetFooter>
               </SheetContent>

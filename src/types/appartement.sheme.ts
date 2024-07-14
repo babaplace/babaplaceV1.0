@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-export type PropertyType = "APPARTMENT" | "ROOM" | null;
-
 export const basicInfoScheme = z.object({
   address: z
     .string({ required_error: "l'addresse est requis" })

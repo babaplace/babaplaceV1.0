@@ -8,7 +8,6 @@ import {
   imagesStepSheme,
 } from "@/src/types/appartement.sheme";
 import { createStore } from "zustand/vanilla";
-import { PropertyType } from "../../../src/types/appartement.sheme";
 
 export type AppartementFormState = {
   basicInfos: basicInfoScheme;
@@ -18,13 +17,11 @@ export type AppartementFormState = {
   images: imagesStepSheme;
   espaceAnnexe: espaceAnnexeSheme;
   equipements: equipementSheme;
-  PropertyType: PropertyType | null;
 };
 
 export type AppartementFormActions = {
   setQuartier: (newquartier: string) => void;
   setCity: (newCity: string) => void;
-  setPropertyType: (newPropertyType: PropertyType) => void;
   setAddress: (newAddress: string) => void;
   setSurface: (newSurface: number) => void;
   setNumberRooms: (newNumberRooms: number) => void;
@@ -53,8 +50,6 @@ export const defaultAppartementFormState: AppartementFormState = {
     city: "",
     address: "",
   },
-  PropertyType: null,
-
   details: {
     surface: 0,
     numberRooms: 0,
@@ -88,10 +83,7 @@ export const createAppartementFormStore = (
       set((state) => ({
         basicInfos: { ...state.basicInfos, city: newCity },
       })),
-    setPropertyType: (newProppertyType: PropertyType) =>
-      set((state) => ({
-        PropertyType: newProppertyType,
-      })),
+
     setAddress: (newAddress: string) =>
       set((state) => ({
         basicInfos: { ...state.basicInfos, address: newAddress },

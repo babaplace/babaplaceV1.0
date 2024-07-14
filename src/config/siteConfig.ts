@@ -10,7 +10,7 @@ export const SITECONFIG = {
 export const navlinks = {
   home: { name: "Accueil", href: "/" },
   discover: { name: "Découvrir", href: "/discover" },
-  rent: { name: "Mettre en location", href: "/appartements/appartement/add" },
+  rent: { name: "Mettre en location", href: "/biens/" },
   workWithUs: { name: "Travailler avec nous", href: "/partnariat" },
   about: { name: "A propos", href: "/about" },
 };
