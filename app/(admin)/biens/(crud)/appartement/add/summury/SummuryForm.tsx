@@ -15,7 +15,6 @@ import {
 } from "../../../../../../../src/types/appartement.sheme";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { uploadImages } from "../imagesStep/UploadImage";
 import { useEdgeStore } from "@/lib/edgestore";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/ui/Loader";
@@ -106,7 +105,7 @@ const SummaryForm = () => {
                 <div className="flex justify-between items-start">
                   <h1 className="text-xl font-extrabold">Localisations</h1>
                   <Link
-                    href={"/primary-foreground"}
+                    href={"/biens/appartement/add"}
                     className="w-fit text-gray-500hover:text-primary text-sm underline justify-end"
                   >
                     Modifier

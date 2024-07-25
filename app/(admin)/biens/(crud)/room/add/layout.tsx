@@ -30,14 +30,14 @@ const layout = async ({ children }: PropsWithChildren) => {
         <Sidebar />
         <div className="flex-1">
           <h1 className="text-2xl font-extrabold text-center">
-            Mettre en Location un appartement
+            Mettre en Location une chambre
           </h1>
           {children}
         </div>
       </section>
       <section className="mx-4 md:hidden rounded-lg mt-5 w-full">
         <h1 className="text-xl text-center font-bold">
-          Mettre en Location un appartement
+          Mettre en Location un chambre
         </h1>
         {children}
       </section>

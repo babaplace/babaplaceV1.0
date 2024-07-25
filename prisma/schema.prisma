@@ -9,15 +9,16 @@ datasource db {
 
 // Modèle pour stocker les images des propriétés
 model Image {
-  id           String      @id @default(cuid())
-  url          String
-  size         String?
-  propertyId   String
-  propertyType String // "Appartment" ou "Room"
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  appartment   Appartment? @relation(fields: [propertyId], references: [id], map: "Image_appartmentId_fkey")
-  room         Room?       @relation(fields: [propertyId], references: [id], map: "Image_roomId_fkey")
+  id            String      @id @default(cuid())
+  url           String
+  size          String?
+  roomId        String?
+  appartementId String?
+  propertyType  String // "Appartment" ou "Room"
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  appartment    Appartment? @relation(fields: [appartementId], references: [id])
+  room          Room?       @relation(fields: [roomId], references: [id])
 }
 
 // Modèle pour gérer les adresses
@@ -93,7 +94,7 @@ model Room {
   ownerId            String
   owner              User               @relation("OwnedRooms", fields: [ownerId], references: [id])
   price              Float // Prix
-  advancePayment     Float? // Paiement d'avance
+  caution            Float? // Paiement d'avance
   securityDeposit    Float? // Dépôt de garantie
   createdAt          DateTime           @default(now())
   updatedAt          DateTime           @updatedAt

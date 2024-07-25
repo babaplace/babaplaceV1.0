@@ -5,7 +5,7 @@ import {
   equipementRoomSheme,
   financialInfoRoomScheme,
 } from "@/src/types/room.sheme";
-import { createStore } from "zustand/vanilla";
+import { create } from "zustand";
 
 export type RoomFormState = {
   basicInfos: basicInfoRoomScheme;
@@ -55,82 +55,77 @@ export const defaultRoomFormState: RoomFormState = {
   equipements: [],
 };
 export type RoomFormStore = RoomFormState & RoomFormActions;
-
-export const useRoomFormStore = (
-  initState: RoomFormState = defaultRoomFormState
-) => {
-  return createStore<RoomFormStore>()((set) => ({
-    ...initState,
-    setQuartier: (newquartier: string) =>
-      set((state) => ({
-        basicInfos: { ...state.basicInfos, quartier: newquartier },
-      })),
-    setCity: (newCity: string) =>
-      set((state) => ({
-        basicInfos: { ...state.basicInfos, city: newCity },
-      })),
-    setAddress: (newAddress: string) =>
-      set((state) => ({
-        basicInfos: { ...state.basicInfos, address: newAddress },
-      })),
-    setPrice: (newPrice: number) =>
-      set((state) => ({
-        financialInfos: { ...state.financialInfos, price: newPrice },
-      })),
-    setCaution: (newCaution: number) =>
-      set((state) => ({
-        financialInfos: { ...state.financialInfos, caution: newCaution },
-      })),
-    setDescription: (newDescription: string) =>
-      set((state) => ({
-        otherInformations: {
-          ...state.otherInformations,
-          description: newDescription,
-        },
-      })),
-    setBasicInfos: (newBasicInfos: basicInfoRoomScheme) =>
-      set((state) => ({
-        basicInfos: newBasicInfos,
-      })),
-    setFinancialInfos: (newFinancialInfos: financialInfoRoomScheme) =>
-      set((state) => ({
-        financialInfos: newFinancialInfos,
-      })),
-    setOtherInformations: (newOtherInformations: additionalInfoRoomScheme) =>
-      set((state) => ({
-        otherInformations: newOtherInformations,
-      })),
-    addImages: (newImage: imagesStepRoomSheme[0]) =>
-      set((state) => ({
-        images: [...state.images, newImage],
-      })),
-    removeImageById: (removeImage: imagesStepRoomSheme[0]) =>
-      set((state) => ({
-        images: state.images.filter((image) => image.key !== removeImage.key),
-      })),
-    modifieImagesByKey: (key: string, newImage: imagesStepRoomSheme[0]) =>
-      set((state) => ({
-        images: state.images.map((image) =>
-          image.key === key ? newImage : image
-        ),
-      })),
-    addEquipement: (newEquipement: equipementRoomSheme[0]) =>
-      set((state) => ({
-        equipements: [...state.equipements, newEquipement],
-      })),
-    removeEquipement: (removeEquipement: equipementRoomSheme[0]) =>
-      set((state) => ({
-        equipements: state.equipements.filter(
-          (equipement) => equipement !== removeEquipement
-        ),
-      })),
-    setSurface: (newSurface: number) =>
-      set((state) => ({
-        otherInformations: {
-          ...state.otherInformations,
-          surface: newSurface,
-        },
-      })),
-    resetForm: () => set(() => defaultRoomFormState),
-  }));
-};
+export const useRoomCreateStore = create<RoomFormStore>()((set) => ({
+  ...defaultRoomFormState,
+  setQuartier: (newquartier: string) =>
+    set((state) => ({
+      basicInfos: { ...state.basicInfos, quartier: newquartier },
+    })),
+  setCity: (newCity: string) =>
+    set((state) => ({
+      basicInfos: { ...state.basicInfos, city: newCity },
+    })),
+  setAddress: (newAddress: string) =>
+    set((state) => ({
+      basicInfos: { ...state.basicInfos, address: newAddress },
+    })),
+  setPrice: (newPrice: number) =>
+    set((state) => ({
+      financialInfos: { ...state.financialInfos, price: newPrice },
+    })),
+  setCaution: (newCaution: number) =>
+    set((state) => ({
+      financialInfos: { ...state.financialInfos, caution: newCaution },
+    })),
+  setDescription: (newDescription: string) =>
+    set((state) => ({
+      otherInformations: {
+        ...state.otherInformations,
+        description: newDescription,
+      },
+    })),
+  setBasicInfos: (newBasicInfos: basicInfoRoomScheme) =>
+    set((state) => ({
+      basicInfos: newBasicInfos,
+    })),
+  setFinancialInfos: (newFinancialInfos: financialInfoRoomScheme) =>
+    set((state) => ({
+      financialInfos: newFinancialInfos,
+    })),
+  setOtherInformations: (newOtherInformations: additionalInfoRoomScheme) =>
+    set((state) => ({
+      otherInformations: newOtherInformations,
+    })),
+  addImages: (newImage: imagesStepRoomSheme[0]) =>
+    set((state) => ({
+      images: [...state.images, newImage],
+    })),
+  removeImageById: (removeImage: imagesStepRoomSheme[0]) =>
+    set((state) => ({
+      images: state.images.filter((image) => image.key !== removeImage.key),
+    })),
+  modifieImagesByKey: (key: string, newImage: imagesStepRoomSheme[0]) =>
+    set((state) => ({
+      images: state.images.map((image) =>
+        image.key === key ? newImage : image
+      ),
+    })),
+  addEquipement: (newEquipement: equipementRoomSheme[0]) =>
+    set((state) => ({
+      equipements: [...state.equipements, newEquipement],
+    })),
+  removeEquipement: (removeEquipement: equipementRoomSheme[0]) =>
+    set((state) => ({
+      equipements: state.equipements.filter(
+        (equipement) => equipement !== removeEquipement
+      ),
+    })),
+  setSurface: (newSurface: number) =>
+    set((state) => ({
+      otherInformations: {
+        ...state.otherInformations,
+        surface: newSurface,
+      },
+    })),
+  resetForm: () => set(() => defaultRoomFormState),
+}));

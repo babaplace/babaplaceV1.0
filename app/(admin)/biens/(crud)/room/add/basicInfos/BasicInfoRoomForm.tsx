@@ -16,11 +16,11 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 import NavigationStep from "../../../sidebar/NavigationStep";
-import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 import { basicInfoRoomScheme } from "@/src/types/room.sheme";
+import { useRoomCreateStore } from "@/lib/zustand/stores/roomCreateStore";
 
-const BasicInfoForm = () => {
-  const { basicInfos, setBasicInfos } = useAppartementStore((state) => state);
+const BasicInfoRoomForm = () => {
+  const { basicInfos, setBasicInfos } = useRoomCreateStore((state) => state);
   const router = useRouter();
   const form = useForm<basicInfoRoomScheme>({
     resolver: zodResolver(basicInfoRoomScheme),
@@ -33,7 +33,7 @@ const BasicInfoForm = () => {
     mutationFn: async (data: basicInfoRoomScheme) => {
       //ajouter dans un store et continuer
       setBasicInfos(data);
-      router.push("/biens/room/add/details");
+      router.push("/biens/room/add/financesInfos");
       return;
     },
   });
@@ -141,4 +141,4 @@ const BasicInfoForm = () => {
   );
 };
 
-export default BasicInfoForm;
+export default BasicInfoRoomForm;

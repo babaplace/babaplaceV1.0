@@ -21,7 +21,7 @@ export default function CardPropertyHorizontale({
       <div className="w-1/3 rounded-lg overflow-hidden">
         <Carousel className="w-full relative">
           <CarouselContent>
-            {property?.medias.map((image) => (
+            {property?.images.map((image) => (
               <CarouselItem key={image.id}>
                 <Image
                   src={image.url}
@@ -40,10 +40,10 @@ export default function CardPropertyHorizontale({
       <div className="flex flex-col justify-between w-2/3 pl-6">
         <div className="flex flex-col md:gap-2 max-md:text-[0.6rem] gap-1 ">
           <div className="text-sm max-md:text-[0.5rem] text-gray-500">
-            {property?.city}
+            {property?.address.city}
           </div>
           <div className="text-xl max-md:text-xs font-bold">
-            {property?.title}
+            {property?.address.quartier}
           </div>
           {property?.description ? (
             <p className="text-gray-500 line-clamp-1">
@@ -51,11 +51,11 @@ export default function CardPropertyHorizontale({
             </p>
           ) : null}
           <div className="text-gray-500 ">
-            <strong>Adresse :</strong> {property?.address}
+            <strong>Adresse :</strong> {property?.address.address}
           </div>
           <div className="flex items-center ">
             <div className="text-gray-500">Disponible maintenant</div>
-            {property?.status?.status === "disponible" ? (
+            {true ? (
               <CheckIcon className="ml-2 text-green-500" />
             ) : (
               <X className="ml-2 text-red-500" />

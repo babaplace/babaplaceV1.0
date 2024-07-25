@@ -1,12 +1,12 @@
 import Container from "@/components/layout/Container";
 import React from "react";
-import FinanceInfosForm from "./FinanceInfosForm";
+import FinanceInfosRoomForm from "./FinanceInfosRoomForm";
 
 const FinancesInfosPage = () => {
   return (
     <div>
       <Container>
-        <FinanceInfosForm />
+        <FinanceInfosRoomForm />
       </Container>
     </div>
   );

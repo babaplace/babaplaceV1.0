@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
 export const getAllAppartements = async (limit?: number) =>
-  await prisma.appartement.findMany({
+  await prisma.appartment.findMany({
     take: limit ? limit : undefined,
     orderBy: { createdAt: "desc" },
   });
@@ -12,7 +12,7 @@ export type allAppartementType = Prisma.PromiseReturnType<
 >;
 
 export const getAppartmentById = async (id: string) =>
-  await prisma.appartement.findUnique({
+  await prisma.appartment.findUnique({
     where: {
       id,
     },
@@ -23,7 +23,7 @@ export type appartmentByIdType = Prisma.PromiseReturnType<
 >;
 
 export const getAllAppartementsWithImages = async (limit?: number) => {
-  const appartements = await prisma.appartement.findMany({
+  const appartements = await prisma.appartment.findMany({
     take: limit ? limit : undefined,
     orderBy: { createdAt: "desc" },
     // where: {
@@ -34,8 +34,9 @@ export const getAllAppartementsWithImages = async (limit?: number) => {
     //   },
     // },
     include: {
-      medias: true,
-      status: true,
+      images: true,
+      address: true,
+      availability: true,
     },
   });
   return appartements;
@@ -46,13 +47,14 @@ export type allAppartementsWithImagesType = Prisma.PromiseReturnType<
 >;
 
 export const getAppartementByIdWithMedias = async (id: string) =>
-  await prisma.appartement.findUnique({
+  await prisma.appartment.findUnique({
     where: {
       id,
     },
     include: {
-      medias: true,
-      status: true,
+      images: true,
+      address: true,
+      availability: true,
     },
   });
 
@@ -64,14 +66,15 @@ export const getAppartementByIdWithMediasUser = async (
   id: string,
   userId: string
 ) => {
-  return await prisma.appartement.findUnique({
+  return await prisma.appartment.findUnique({
     where: {
       id,
       ownerId: userId,
     },
     include: {
-      medias: true,
-      status: true,
+      images: true,
+      address: true,
+      availability: true,
     },
   });
 };

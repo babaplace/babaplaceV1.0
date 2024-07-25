@@ -18,33 +18,33 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
-import { additionalInfoScheme } from "../../../../../../../src/types/appartement.sheme";
 import NavigationStep from "../../../sidebar/NavigationStep";
 import { Textarea } from "@/components/ui/textarea";
-import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
 import Link from "next/link";
+import { useRoomCreateStore } from "@/lib/zustand/stores/roomCreateStore";
+import { additionalInfoRoomScheme } from "@/src/types/room.sheme";
 
 const OtherInformationsForm = () => {
-  const { otherInformations, setOtherInformations } = useAppartementStore(
+  const { otherInformations, setOtherInformations } = useRoomCreateStore(
     (state) => state
   );
 
   const router = useRouter();
-  const form = useForm<additionalInfoScheme>({
-    resolver: zodResolver(additionalInfoScheme),
+  const form = useForm<additionalInfoRoomScheme>({
+    resolver: zodResolver(additionalInfoRoomScheme),
     defaultValues: {},
   });
 
   const createMatiereMutation = useMutation({
-    mutationFn: async (data: additionalInfoScheme) => {
+    mutationFn: async (data: additionalInfoRoomScheme) => {
       //ajouter dans un store et continuer
       setOtherInformations(data);
       //   rediriger vers la page de l'appartement
-      router.push("/biens/appartement/add/imagesStep");
+      router.push("/biens/room/add/imagesStep");
     },
   });
 
-  const onSubmit = (data: additionalInfoScheme) => {
+  const onSubmit = (data: additionalInfoRoomScheme) => {
     createMatiereMutation.mutate(data);
   };
 
@@ -64,7 +64,34 @@ const OtherInformationsForm = () => {
               className="my-8 flex-1  space-y-4 "
             >
               <div className="border border-gray-100 rounded-lg p-4">
-                <div className="divide-y-2 divide-dotted ">
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="surface"
+                    render={({ field }) => (
+                      <FormItem className="py-2">
+                        <h4 className="text-black font-semibold">
+                          Surface (m2)
+                        </h4>
+                        <div className="flex-1">
+                          <FormControl className="space-y-2">
+                            <Input
+                              id="surface"
+                              placeholder="surface"
+                              type="text"
+                              onChange={(e) => {
+                                const value = parseInt(e.target.value, 10);
+                                field.onChange(
+                                  Number(isNaN(value) ? 0 : value)
+                                );
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </div>
+                      </FormItem>
+                    )}
+                  />
                   <FormField
                     control={form.control}
                     name="description"
@@ -87,7 +114,7 @@ const OtherInformationsForm = () => {
 
               <NavigationStep>
                 <Link
-                  href={"/biens/appartement/add/equipement"}
+                  href={"/biens/room/add/equipement"}
                   className={buttonVariants({ variant: "outline" })}
                 >
                   Precedent

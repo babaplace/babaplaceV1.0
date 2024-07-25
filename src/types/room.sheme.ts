@@ -56,7 +56,7 @@ export type additionalInfoRoomScheme = z.infer<typeof additionalInfoRoomScheme>;
 export type imagesStepRoomSheme = z.infer<typeof imagesStepRoomSheme>;
 export type equipementRoomSheme = z.infer<typeof equipementRoomSheme>;
 
-export const appartementRoomScheme = z.object({
+export const RoomScheme = z.object({
   basicInfoRoomScheme,
   financialInfoRoomScheme,
   additionalInfoRoomScheme,
@@ -64,4 +64,4 @@ export const appartementRoomScheme = z.object({
   equipementRoomSheme,
 });
 
-export type appartementRoomScheme = z.infer<typeof appartementRoomScheme>;
+export type RoomScheme = z.infer<typeof RoomScheme>;

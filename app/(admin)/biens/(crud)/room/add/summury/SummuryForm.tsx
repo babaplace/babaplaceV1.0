@@ -2,35 +2,33 @@
 
 import React, { FormEventHandler } from "react";
 import Image from "next/image";
-import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
+import { useRoomCreateStore } from "@/lib/zustand/stores/roomCreateStore";
 import Link from "next/link";
 import NavigationStep from "../../../sidebar/NavigationStep";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { doCreateAppartement } from "../appartement.create.action";
 import {
-  appartementScheme,
-  equipementSheme,
-  espaceAnnexeSheme,
-  imagesStepSheme,
-} from "../../../../../../../src/types/appartement.sheme";
+  basicInfoRoomScheme,
+  equipementRoomSheme,
+  additionalInfoRoomScheme,
+  imagesStepRoomSheme,
+  RoomScheme,
+} from "../../../../../../../src/types/room.sheme";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { uploadImages } from "../imagesStep/UploadImage";
 import { useEdgeStore } from "@/lib/edgestore";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/ui/Loader";
+import { doCreateRoom } from "../room.create.action";
 
 const SummaryForm = () => {
   const {
     basicInfos,
-    details,
     financialInfos,
     otherInformations,
     images,
     resetForm,
-    espaceAnnexe,
     equipements,
-  } = useAppartementStore((state) => state);
+  } = useRoomCreateStore((state) => state);
   const { edgestore } = useEdgeStore();
   const router = useRouter();
 
@@ -39,19 +37,17 @@ const SummaryForm = () => {
       data,
     }: // imagesUrls,
     {
-      data: appartementScheme;
+      data: RoomScheme;
       // imagesUrls: { url: string }[];
     }) => {
       // ajouter dans un store et continuer
 
-      const result = await doCreateAppartement({
-        basicInfoScheme: data.basicInfoScheme,
-        detailsSheme: data.detailsSheme,
-        financialInfoScheme: data.financialInfoScheme,
-        additionalInfoScheme: data.additionalInfoScheme,
-        imagesStepSheme: data.imagesStepSheme,
-        espaceAnnexeSheme: data.espaceAnnexeSheme,
-        equipementSheme: data.equipementSheme,
+      const result = await doCreateRoom({
+        basicInfoRoomScheme: data.basicInfoRoomScheme,
+        financialInfoRoomScheme: data.financialInfoRoomScheme,
+        additionalInfoRoomScheme: data.additionalInfoRoomScheme,
+        imagesStepRoomSheme: data.imagesStepRoomSheme,
+        equipementRoomSheme: data.equipementRoomSheme,
       });
       if (!result.serverError) {
         toast.success(result.data?.message);
@@ -71,13 +67,11 @@ const SummaryForm = () => {
     });
     createMatiereMutation.mutate({
       data: {
-        basicInfoScheme: basicInfos,
-        detailsSheme: details,
-        financialInfoScheme: financialInfos,
-        additionalInfoScheme: otherInformations,
-        imagesStepSheme: images,
-        espaceAnnexeSheme: espaceAnnexe,
-        equipementSheme: equipements,
+        basicInfoRoomScheme: basicInfos,
+        financialInfoRoomScheme: financialInfos,
+        additionalInfoRoomScheme: otherInformations,
+        imagesStepRoomSheme: images,
+        equipementRoomSheme: equipements,
       },
     });
   };
@@ -96,7 +90,7 @@ const SummaryForm = () => {
           <div className="flex flex-col w-full gap-4">
             <div className="flex flex-col gap-1">
               <h1 className="text-black text-2xl font-bold">
-                Appartement informations finales
+                Chambre informations finales
               </h1>
               <p className="text-gray-500text-sm">verifier les informations</p>
             </div>
@@ -106,7 +100,7 @@ const SummaryForm = () => {
                 <div className="flex justify-between items-start">
                   <h1 className="text-xl font-extrabold">Localisations</h1>
                   <Link
-                    href={"/primary-foreground"}
+                    href={"/biens/room/add/"}
                     className="w-fit text-gray-500hover:text-primary text-sm underline justify-end"
                   >
                     Modifier
@@ -118,57 +112,12 @@ const SummaryForm = () => {
                   <ItemList label="Quartier" value={basicInfos.quartier} />
                 </div>
               </div>
-              {/* etape 3 details */}
-              <div className="border border-gray-100 rounded-lg p-4">
-                <div className="flex justify-between items-start">
-                  <h1 className="text-xl font-extrabold">Details</h1>
-                  <Link
-                    href={"/biens/appartement/add/details"}
-                    className="w-fit text-gray-500hover:text-primary text-sm underline justify-end"
-                  >
-                    Modifier
-                  </Link>
-                </div>
-                <div className="divide-y-2 divide-dotted flex flex-col ">
-                  <ItemList
-                    label="Nombre de chambres"
-                    value={details.numberRooms}
-                  />
-                  <ItemList label="Surface" value={details.surface} />
-                  <ItemList
-                    label="Nombre d'unités par étage"
-                    value={details.numberUnitsPerFloor}
-                  />
-                  <ItemList
-                    label="Nombre d'étages maximum"
-                    value={details.numberMaxFloor}
-                  />
-                </div>
-              </div>
-
-              {/* etape : Espaces Annexes  */}
-              <div className="border border-gray-100 rounded-lg p-4">
-                <div className="flex justify-between items-start">
-                  <h1 className="text-xl font-extrabold">Espaces Annexes</h1>
-                  <Link
-                    href={"/biens/appartement/add/espaceAnnexe"}
-                    className="w-fit text-gray-500hover:text-primary text-sm underline justify-end"
-                  >
-                    Modifier
-                  </Link>
-                </div>
-                <div className="grid grid-cols-2 gap-4 p-4 ">
-                  {espaceAnnexe.map((option, id) => (
-                    <CardComposantBien key={id} name={option} />
-                  ))}
-                </div>
-              </div>
 
               <div className="border border-gray-100 rounded-lg p-4">
                 <div className="flex justify-between items-start">
                   <h1 className="text-xl font-extrabold">Prix</h1>
                   <Link
-                    href={"/biens/appartement/add/financesInfos"}
+                    href={"/biens/room/add/financesInfos"}
                     className="w-fit text-gray-500hover:text-primary text-sm underline justify-end"
                   >
                     Modifier
@@ -185,7 +134,7 @@ const SummaryForm = () => {
                 <div className="flex justify-between items-start">
                   <h1 className="text-xl font-extrabold"> Equipements </h1>
                   <Link
-                    href={"/biens/appartement/add/equipement"}
+                    href={"/biens/room/add/equipement"}
                     className="w-fit text-gray-500hover:text-primary text-sm underline justify-end"
                   >
                     Modifier
@@ -206,7 +155,7 @@ const SummaryForm = () => {
                     Autres Details Sur le bien
                   </h1>
                   <Link
-                    href={"/biens/appartement/add/othersInformations"}
+                    href={"/biens/room/add/othersInformations"}
                     className="w-fit text-gray-500hover:text-primary text-sm underline justify-end"
                   >
                     Modifier
@@ -225,7 +174,7 @@ const SummaryForm = () => {
                 <div className="flex justify-between items-start">
                   <h1 className="text-xl font-extrabold">Images</h1>
                   <Link
-                    href={"/biens/appartement/add/imagesStep"}
+                    href={"/biens/room/add/imagesStep"}
                     className="w-fit text-gray-500hover:text-primary text-sm underline justify-end"
                   >
                     Modifier
@@ -259,7 +208,7 @@ const SummaryForm = () => {
           <div className="flex justify-between items-center">
             <NavigationStep>
               <Link
-                href={"/biens/appartement/add/imagesStep"}
+                href={"/biens/room/add/imagesStep"}
                 className={buttonVariants({ variant: "outline" })}
               >
                 Precedent
@@ -321,25 +270,19 @@ export const OptionItem = ({
 export const CardComposantBien = ({
   name,
 }: {
-  name: espaceAnnexeSheme[0] | equipementSheme[0];
+  name: equipementRoomSheme[0];
 }) => {
-  const translations: Record<string, string> = {
-    BALCONY: "Balcon",
-    SECURITY_GUARD: "Gardien de sécurité",
-    JARDIN: "Jardin",
-    TERRASSE: "Terrasse",
-    ESPACE_VERT: "Espace vert",
-    PISCINE: "Piscine",
-    ELEVATOR: "Ascenseur",
+  const translations: Record<equipementRoomSheme[0], string> = {
+    TOILET: "Toilettes",
+    SHOWER: "Douche",
     SHARED_BATHROOM: "Salle de bain partagée",
     PRIVATE_BATHROOM: "Salle de bain privée",
-    SHARED_KITCHEN: "Cuisine partagée",
-    PRIVATE_KITCHEN: "Cuisine privée",
-    SECURITY: "Sécurité",
-    LIVING_ROOM: "Salon",
-    TOILET: "Toilettes",
-    CLIMATISATION: "Climatisation",
-    CLOSED_RESIDENCE: "Résidence fermée",
+    BED: "Lit",
+    CLOSET: "Penderie",
+    DESK: "Bureau",
+    CHAIR: "Chaise",
+    FAN: "Ventilateur",
+    INTERNET_ACCESS: "Accès à internet",
   };
 
   return (

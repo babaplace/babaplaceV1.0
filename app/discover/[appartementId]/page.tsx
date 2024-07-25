@@ -35,14 +35,15 @@ const page = async ({ params: { appartementId } }: PageAppartementProps) => {
   return (
     <div>
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-2">{appartement.title}</h1>
+        <h1 className="text-4xl font-bold mb-2">
+          {appartement.address.city} {appartement.address.quartier}
+        </h1>
         <p className="text-xl text-gray-600 mb-6">
-          {appartement.numberChambres} chambres · {appartement.city} ·{" "}
-          {appartement.address}
+          {appartement.numberRooms} chambres · {appartement.address.address}
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <ImagesPageAppartement images={appartement.medias} />
+          <ImagesPageAppartement images={appartement.images} />
 
           <Booking appartementId={appartement.id} price={appartement.price} />
         </div>

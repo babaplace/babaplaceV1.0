@@ -11,19 +11,19 @@ import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 
 import NavigationStep from "../../../sidebar/NavigationStep";
-import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
-import { equipementSheme } from "@/src/types/appartement.sheme";
 import SelectedInputCard from "@/components/ui/SelectedInputCard";
+import { equipementRoomSheme } from "@/src/types/room.sheme";
+import { useRoomCreateStore } from "@/lib/zustand/stores/roomCreateStore";
 
-const EquipementForm: React.FC = () => {
-  const { equipements, addEquipement, removeEquipement } = useAppartementStore(
+const EquipementRoomForm: React.FC = () => {
+  const { equipements, addEquipement, removeEquipement } = useRoomCreateStore(
     (state) => state
   );
   const router = useRouter();
 
   const createMatiereMutation = useMutation({
     mutationFn: async () => {
-      router.push("/biens/appartement/add/othersInformations");
+      router.push("/biens/room/add/othersInformations");
     },
     onError: (error) => {
       console.error("Error submitting form:", error);
@@ -31,17 +31,17 @@ const EquipementForm: React.FC = () => {
     },
   });
 
-  const formFields: Array<{ name: equipementSheme[0]; label: string }> = [
-    { name: "ELEVATOR", label: "Ascenseur" },
+  const formFields: Array<{ name: equipementRoomSheme[0]; label: string }> = [
+    { name: "TOILET", label: "Toilettes" },
+    { name: "SHOWER", label: "Douche" },
     { name: "SHARED_BATHROOM", label: "Salle de bain partagée" },
     { name: "PRIVATE_BATHROOM", label: "Salle de bain privée" },
-    { name: "SHARED_KITCHEN", label: "Cuisine partagée" },
-    { name: "PRIVATE_KITCHEN", label: "Cuisine privée" },
-    { name: "LIVING_ROOM", label: "Salon" },
-    { name: "TOILET", label: "Toilettes" },
-    { name: "CLIMATISATION", label: "Climatisation" },
-    { name: "CLOSED_RESIDENCE", label: "Résidence fermée" },
-    { name: "SECURITY", label: "Dispositif de sécurité" },
+    { name: "BED", label: "Lit" },
+    { name: "CLOSET", label: "Penderie" },
+    { name: "DESK", label: "Bureau" },
+    { name: "CHAIR", label: "Chaise" },
+    { name: "FAN", label: "Ventilateur" },
+    { name: "INTERNET_ACCESS", label: "Accès à internet" },
   ];
 
   return (
@@ -102,9 +102,9 @@ const EquipementForm: React.FC = () => {
   );
 };
 
-export default EquipementForm;
+export default EquipementRoomForm;
 
 export const searchEspaceAnnexe = (
-  name: equipementSheme[0],
-  array: equipementSheme
+  name: equipementRoomSheme[0],
+  array: equipementRoomSheme
 ): boolean => array.includes(name);

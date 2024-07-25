@@ -42,7 +42,7 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
         <div className="h-48 mb-10">
           <Carousel className="w-full relative">
             <CarouselContent>
-              {appartement?.medias.map((image) => (
+              {appartement?.images.map((image) => (
                 <CarouselItem key={image.id}>
                   <Image
                     src={image.url}
@@ -59,7 +59,9 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
           </Carousel>
         </div>
         <div className="p-4">
-          <h3 className="font-bold text-lg mb-1">{appartement.title}</h3>
+          <h3 className="font-bold text-lg mb-1">
+            {appartement.address.city} {appartement.address.quartier}
+          </h3>
           <p className="text-gray-600 mb-4 line-clamp-2">
             {appartement?.description}
           </p>
@@ -69,15 +71,17 @@ const CardPropertyA = ({ appartement }: cardPropertyProps) => {
             </span>
             <div className="flex space-x-2 text-gray-500">
               <span>
-                <FaBed className="inline mr-1" /> {appartement?.numberChambres}
+                <FaBed className="inline mr-1" /> {appartement?.numberRooms}
               </span>
               <span>
                 <FaBath className="inline mr-1" />{" "}
-                {appartement?.numberToilettes}
+                {appartement.amenities.includes("TOILET") ? "Oui" : "Non"}
               </span>
               <span>
                 <FaRulerCombined className="inline mr-1" />{" "}
-                {appartement?.numberSalons}
+                {appartement.amenities.includes("SHARED_BATHROOM")
+                  ? "Oui"
+                  : "NOn"}
               </span>
             </div>
           </div>

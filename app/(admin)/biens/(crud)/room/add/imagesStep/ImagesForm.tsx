@@ -1,28 +1,17 @@
 "use client";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  ChangeEvent,
-  MouseEvent,
-  MouseEventHandler,
-  SVGProps,
-  useEffect,
-} from "react";
+import { MouseEvent, SVGProps } from "react";
 import NavigationStep from "../../../sidebar/NavigationStep";
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react"; // Import useState hook
-import { X } from "lucide-react";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
 import { useEdgeStore } from "@/lib/edgestore";
 import { FileState, MultiImageDropzone } from "@/lib/DropzoneImage";
-import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
+import { useRoomCreateStore } from "@/lib/zustand/stores/roomCreateStore";
 
-export default function ImageForm() {
-  const { images, addImages, removeImageById } = useAppartementStore(
+export default function ImageRoomForm() {
+  const { images, addImages, removeImageById } = useRoomCreateStore(
     (state) => state
   );
 
@@ -54,7 +43,7 @@ export default function ImageForm() {
   ) => {
     e.preventDefault();
 
-    router.push("/biens/appartement/add/summury");
+    router.push("/biens/room/add/summury");
   };
 
   return (
@@ -111,7 +100,7 @@ export default function ImageForm() {
 
       <NavigationStep>
         <Link
-          href={"/biens/appartement/add/othersInformations"}
+          href={"/biens/room/add/othersInformations"}
           className={buttonVariants({ variant: "outline" })}
         >
           Precedent

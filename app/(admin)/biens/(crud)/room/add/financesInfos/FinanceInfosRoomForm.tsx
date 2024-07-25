@@ -19,42 +19,47 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import NavigationStep from "../../../sidebar/NavigationStep";
-import { useAppartementStore } from "@/lib/zustand/Providers/CreateAppartementStoreProviders";
-import { financialInfoScheme } from "@/src/types/appartement.sheme";
+import { useRoomCreateStore } from "@/lib/zustand/stores/roomCreateStore";
+import { financialInfoRoomScheme } from "@/src/types/room.sheme";
 
-const FinanceInfosForm: React.FC = () => {
-  const { financialInfos, setFinancialInfos } = useAppartementStore(
+const FinanceInfosRoomForm: React.FC = () => {
+  const { financialInfos, setFinancialInfos } = useRoomCreateStore(
     (state) => state
   );
   const router = useRouter();
 
-  const form = useForm<financialInfoScheme>({
-    resolver: zodResolver(financialInfoScheme),
+  const form = useForm<financialInfoRoomScheme>({
+    resolver: zodResolver(financialInfoRoomScheme),
     defaultValues: {
       ...financialInfos,
     },
   });
 
-  const createMatiereMutation = useMutation<void, Error, financialInfoScheme>({
-    mutationFn: async (data: financialInfoScheme) => {
+  const createMatiereMutation = useMutation<
+    void,
+    Error,
+    financialInfoRoomScheme
+  >({
+    mutationFn: async (data: financialInfoRoomScheme) => {
       setFinancialInfos(data);
-      router.push("/biens/appartement/add/equipement");
+      router.push("/biens/room/add/equipement");
     },
     onError: (error) => {
       console.error("Error submitting form:", error);
-      // Gérer l'erreur ici (par exemple, afficher un message à l'utilisateur)
     },
   });
 
-  const onSubmit: SubmitHandler<financialInfoScheme> = (data) => {
+  const onSubmit: SubmitHandler<financialInfoRoomScheme> = (data) => {
     createMatiereMutation.mutate(data);
   };
 
-  const formFields: Array<{ name: keyof financialInfoScheme; label: string }> =
-    [
-      { name: "price", label: "Prix (DH)" },
-      { name: "caution", label: "Caution" },
-    ];
+  const formFields: Array<{
+    name: keyof financialInfoRoomScheme;
+    label: string;
+  }> = [
+    { name: "price", label: "Prix (DH)" },
+    { name: "caution", label: "Caution" },
+  ];
 
   return (
     <div className="max-w-6xl mx-auto flex-1">
@@ -63,7 +68,7 @@ const FinanceInfosForm: React.FC = () => {
           <div className="flex flex-col">
             <h1 className="text-black text-2xl font-bold">Prix </h1>
             <p className="text-gray-500 text-sm">
-              Informations sur le prix de votre appartement
+              Informations sur le prix de votre chambre
             </p>
           </div>
           <Form {...form}>
@@ -110,7 +115,7 @@ const FinanceInfosForm: React.FC = () => {
 
               <NavigationStep>
                 <Link
-                  href="/biens/appartement/add/espaceAnnexe"
+                  href="/biens/room/add/"
                   className={buttonVariants({ variant: "outline" })}
                 >
                   Precedent
@@ -130,4 +135,4 @@ const FinanceInfosForm: React.FC = () => {
   );
 };
 
-export default FinanceInfosForm;
+export default FinanceInfosRoomForm;

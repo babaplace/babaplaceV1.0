@@ -1,12 +1,12 @@
 import Container from "@/components/layout/Container";
 import React from "react";
-import EquipementForm from "./EquipementForm";
+import EquipementRoomForm from "./EquipementRoomForm";
 
 const page = () => {
   return (
     <div>
       <Container>
-        <EquipementForm />
+        <EquipementRoomForm />
       </Container>
     </div>
   );

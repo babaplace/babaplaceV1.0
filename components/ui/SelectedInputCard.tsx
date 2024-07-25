@@ -5,10 +5,11 @@ import {
   equipementSheme,
   espaceAnnexeSheme,
 } from "@/src/types/appartement.sheme";
+import { equipementRoomSheme } from "@/src/types/room.sheme";
 import React, { PropsWithoutRef } from "react";
 
 type Props = {
-  name: espaceAnnexeSheme[0] | equipementSheme[0];
+  name: espaceAnnexeSheme[0] | equipementSheme[0] | equipementRoomSheme[0];
   label: string;
   onSelected: () => void;
   isSelected?: boolean;
